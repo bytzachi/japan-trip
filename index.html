@@ -36,6 +36,15 @@ body{
 img,svg{max-width:100%;}
 .wrap{max-width:760px;margin:0 auto;padding:0 22px;}
 a{color:inherit;}
+.lang-block.hidden{display:none;}
+
+.lang-toggle{
+  position:fixed; z-index:50; bottom:18px; left:18px;
+  background:var(--indigo-deep); color:#F2EEE2; border:1px solid rgba(242,238,226,.3);
+  border-radius:22px; padding:9px 16px; font-family:var(--sans); font-size:13px; font-weight:600;
+  cursor:pointer; box-shadow:0 3px 12px rgba(0,0,0,.3); display:flex; align-items:center; gap:6px;
+}
+.lang-toggle:hover{background:var(--indigo);}
 
 .hero{
   color:#F2EEE2; padding:56px 0 40px; position:relative; overflow:hidden;
@@ -75,7 +84,7 @@ a{color:inherit;}
 .hero .eyebrow-jp{font-family:var(--serif); font-size:15px; letter-spacing:.12em; color:#cfa9b4; margin:0 0 6px;}
 .hero h1{
   font-family:var(--serif); font-weight:700; font-size:clamp(34px,7vw,54px);
-  line-height:1.08; margin:0 0 14px; max-width:11ch;
+  line-height:1.08; margin:0 0 14px; max-width:14ch;
 }
 .hero .sub{font-size:15.5px; color:#cdd6de; margin:0 0 4px;}
 .hero .dates{font-size:15.5px; color:#9fb2c2; margin:0 0 26px;}
@@ -84,21 +93,14 @@ a{color:inherit;}
 .route circle.sakura{fill:var(--sakura);}
 .route path{stroke:rgba(242,238,226,0.35); stroke-width:1.4; fill:none;}
 
-
 .trip-status{
   margin-top:22px; padding:13px 18px; border-radius:12px;
   background:rgba(242,238,226,0.08); border:1px solid rgba(242,238,226,0.16);
   display:none; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
 }
 .trip-status.show{display:flex;}
-.trip-status .msg{font-size:14px; color:#EDE7DA;}
+.trip-status .msg{font-size:14px; color:#EDE7DA; margin:0;}
 .trip-status .msg strong{color:#fff;}
-.trip-status button{
-  font-family:var(--sans); font-size:13px; font-weight:600; color:var(--indigo-deep);
-  background:var(--sakura); border:none; border-radius:20px; padding:7px 14px; cursor:pointer;
-  flex:0 0 auto;
-}
-.trip-status button:hover{opacity:.9;}
 .live-note{font-size:12.5px; color:var(--ink-soft); margin-top:4px;}
 
 .jump{
@@ -117,6 +119,7 @@ a{color:inherit;}
 main{padding-top:6px;}
 .chapter{padding:44px 0; border-bottom:1px solid var(--line);}
 .chapter:last-of-type{border-bottom:none;}
+.chapter.is-today{background:var(--paper-alt); margin:0 -22px; padding:44px 22px; border-radius:0;}
 .chapter-head{display:flex; align-items:baseline; gap:12px; margin-bottom:18px; flex-wrap:wrap;}
 .chapter-head .span{
   font-size:13px; color:var(--ink-soft); font-variant-numeric:tabular-nums;
@@ -126,7 +129,17 @@ main{padding-top:6px;}
   font-family:var(--serif); font-weight:700; font-size:28px; margin:0;
   display:flex; align-items:baseline; gap:10px; order:1;
 }
-.chapter-head .jp{font-size:16px; color:var(--sakura); font-weight:500; margin-left:8px;}
+.chapter-head .jp{font-size:16px; color:var(--sakura); font-weight:500; margin-left:8px; margin-right:8px;}
+
+.chapter-photo{margin-bottom:18px;}
+.chapter-photo img{
+  width:100%; height:200px; object-fit:cover; border-radius:14px; display:block;
+  background:var(--paper-alt);
+}
+.chapter-photo .credit{
+  font-size:11px; color:var(--ink-soft); margin:5px 2px 0; text-align:right;
+}
+.chapter-photo .credit a{color:var(--ink-soft); text-decoration:underline;}
 
 .hotel-card{
   background:var(--paper-alt); border-radius:14px; padding:16px 18px; margin-bottom:22px;
@@ -163,41 +176,11 @@ main{padding-top:6px;}
   text-decoration:none; font-weight:600; margin-top:6px;
 }
 .hotel-link:hover{text-decoration:underline;}
-.chapter-photo{margin-bottom:18px;}
-.chapter-photo img{
-  width:100%; height:200px; object-fit:cover; border-radius:14px; display:block;
-  background:var(--paper-alt);
-}
-.chapter-photo .credit{
-  font-size:11px; color:var(--ink-soft); margin:5px 2px 0; text-align:right;
-}
-.chapter-photo .credit a{color:var(--ink-soft); text-decoration:underline;}
-
-.two-col{display:flex; gap:16px; flex-wrap:wrap;}
-.info-card{
-  flex:1 1 260px; background:var(--paper-alt); border-radius:14px; padding:16px 18px;
-}
-.info-card h3{font-family:var(--serif); font-size:16px; margin:0 0 8px;}
-.info-card p{margin:0; font-size:14px; color:var(--ink-soft);}
-
-.open-items{}
-.open-items h2{
-  font-family:var(--serif); font-size:22px; margin:0 0 14px; color:var(--vermillion);
-}
-.open-items ul{margin:0; padding:0; list-style:none;}
-.open-items li{
-  display:flex; gap:10px; font-size:14.5px; padding:9px 0; border-top:1px dashed var(--line);
-}
-.open-items li:first-child{border-top:none;}
-.open-items li::before{content:"○"; color:var(--vermillion); flex:0 0 auto;}
-
-footer{padding:20px 0 50px; text-align:center; color:var(--ink-soft); font-size:13px;}
-.chapter.is-today{background:var(--paper-alt); margin:0 -22px; padding:44px 22px; border-radius:0;}
 
 .now-card{
   display:none; margin:22px auto 0; padding:20px 20px 18px; border-radius:16px;
   background:var(--paper-alt); border:1px solid var(--line);
-  border-right:5px solid var(--sakura);
+  border-right:5px solid var(--sakura); border-left:5px solid var(--sakura);
 }
 .now-card.show{display:block;}
 .now-card .eyebrow{
@@ -208,7 +191,6 @@ footer{padding:20px 0 50px; text-align:center; color:var(--ink-soft); font-size:
   font-family:var(--serif); font-size:22px; margin:0 0 8px;
 }
 .now-card p.desc{margin:0 0 10px; font-size:15px;}
-.now-card .stops{margin-top:0 0 10px;}
 .now-card .hotel-tonight{
   font-size:13px; color:var(--ink-soft); margin:10px 0 0; padding-top:10px;
   border-top:1px dashed var(--line);
@@ -224,12 +206,32 @@ footer{padding:20px 0 50px; text-align:center; color:var(--ink-soft); font-size:
 }
 .now-card .jump-btn:hover{text-decoration:underline;}
 
+.two-col{display:flex; gap:16px; flex-wrap:wrap;}
+.info-card{
+  flex:1 1 260px; background:var(--paper-alt); border-radius:14px; padding:16px 18px;
+}
+.info-card h3{font-family:var(--serif); font-size:16px; margin:0 0 8px;}
+.info-card p{margin:0; font-size:14px; color:var(--ink-soft);}
+
+.open-items h2{
+  font-family:var(--serif); font-size:22px; margin:0 0 14px; color:var(--vermillion);
+}
+.open-items ul{margin:0; padding:0; list-style:none;}
+.open-items li{
+  display:flex; gap:10px; font-size:14.5px; padding:9px 0; border-top:1px dashed var(--line);
+}
+.open-items li:first-child{border-top:none;}
+.open-items li::before{content:"○"; color:var(--vermillion); flex:0 0 auto;}
+
+footer{padding:20px 0 70px; text-align:center; color:var(--ink-soft); font-size:13px;}
+
 @media (max-width:480px){
   .hotel-card{flex-direction:column;}
 }
 
 @media print{
   .jump{display:none;}
+  .lang-toggle{display:none;}
   .hero{background:var(--indigo-deep) !important; -webkit-print-color-adjust:exact; print-color-adjust:exact;}
   .chapter{page-break-inside:avoid; border-bottom:none;}
   a{text-decoration:none;}
@@ -237,7 +239,7 @@ footer{padding:20px 0 50px; text-align:center; color:var(--ink-soft); font-size:
 </style>
 </head>
 <body>
-
+<div class="lang-block" id="block_he" dir="rtl" lang="he">
 <header class="hero">
   <div class="hero-bg">
       <img class="fuji" src="https://commons.wikimedia.org/wiki/Special:FilePath/Arakurayama%20Sengen%20Park%20-%20Japan.jpg" alt="Mount Fuji from Arakurayama Sengen Park" loading="eager" referrerpolicy="no-referrer" onerror="this.style.display='none'">
@@ -251,33 +253,33 @@ footer{padding:20px 0 50px; text-align:center; color:var(--ink-soft); font-size:
     <p class="sub">צחי ויפעת · שושנה וחן בר יהודה</p>
     <p class="dates">8–28 באפריל 2027 · 20 יום</p>
     <svg class="route" viewBox="0 0 600 34" preserveAspectRatio="none"><path d="M 30.0 17 L 97.5 17 L 165.0 17 L 232.5 17 L 300.0 17 L 367.5 17 L 435.0 17 L 502.5 17 L 570.0 17"/><circle cx="30.0" cy="17" r="5" class=""/><circle cx="97.5" cy="17" r="3.4" class=""/><circle cx="165.0" cy="17" r="3.4" class=""/><circle cx="232.5" cy="17" r="3.4" class=""/><circle cx="300.0" cy="17" r="3.4" class=""/><circle cx="367.5" cy="17" r="3.4" class="sakura"/><circle cx="435.0" cy="17" r="3.4" class=""/><circle cx="502.5" cy="17" r="3.4" class=""/><circle cx="570.0" cy="17" r="5" class=""/></svg>
-    <div class="trip-status" id="tripStatus"><p class="msg" id="tripStatusMsg"></p></div>
+    <div class="trip-status" id="tripStatus_he"><p class="msg" id="tripStatusMsg_he"></p></div>
     <p class="hero-credit">תמונות: Otto Domes (<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>), David Kernan (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>) · Wikimedia Commons</p>
   </div>
-</header><nav class="jump"><div class="wrap"><a href="#tokyo1">טוקיו</a><a href="#hakone">האקונה</a><a href="#kawaguchiko">פוג'י קוואגוצ'יקו</a><a href="#takayama">טקאיאמה</a><a href="#kanazawa">קנאזאווה</a><a href="#kyoto">קיוטו</a><a href="#osaka">אוסקה</a><a href="#hiroshima">הירושימה</a><a href="#tokyo2">טוקיו (גינזה)</a><a href="#logistics">תחבורה ולוגיסטיקה</a><a href="#open">נותר לאשר</a></div></nav><main><div class="wrap"><div class="now-card" id="nowCard">
-      <p class="eyebrow" id="nowEyebrow">כרגע</p>
-      <h2 id="nowTitle"></h2>
-      <p class="desc" id="nowDesc"></p>
-      <div class="stops" id="nowStops"></div>
-      <p class="hotel-tonight" id="nowHotel" style="display:none;"></p>
-      <p class="tomorrow" id="nowTomorrow" style="display:none;"></p>
-      <a class="jump-btn" id="nowJump" href="#" style="display:none;">📍 לצפייה בקטע המלא בהמשך העמוד</a>
+</header><nav class="jump"><div class="wrap"><a href="#tokyo1_he">טוקיו</a><a href="#hakone_he">האקונה</a><a href="#kawaguchiko_he">פוג'י קוואגוצ'יקו</a><a href="#takayama_he">טקאיאמה</a><a href="#kanazawa_he">קנאזאווה</a><a href="#kyoto_he">קיוטו</a><a href="#osaka_he">אוסקה</a><a href="#hiroshima_he">הירושימה</a><a href="#tokyo2_he">טוקיו (גינזה)</a><a href="#logistics_he">תחבורה ולוגיסטיקה</a><a href="#open_he">נותר לאשר</a></div></nav><main><div class="wrap"><div class="now-card" id="nowCard_he">
+      <p class="eyebrow" id="nowEyebrow_he">כרגע</p>
+      <h2 id="nowTitle_he"></h2>
+      <p class="desc" id="nowDesc_he"></p>
+      <div class="stops" id="nowStops_he"></div>
+      <p class="hotel-tonight" id="nowHotel_he" style="display:none;"></p>
+      <p class="tomorrow" id="nowTomorrow_he" style="display:none;"></p>
+      <a class="jump-btn" id="nowJump_he" href="#" style="display:none;">📍 לצפייה בקטע המלא בהמשך העמוד</a>
     </div>
-<section id="tokyo1" class="chapter">
+<section id="tokyo1_he" class="chapter">
   <div class="chapter-head">
     <h2>טוקיו <span class="jp">東京</span></h2>
     <span class="span">9–12 באפריל</span>
   </div>
   <div class="chapter-photo">
       <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Tokyo%20Shibuya%20Scramble%20Crossing%202018-10-09.jpg" alt="Shibuya Scramble Crossing, Tokyo" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.chapter-photo').style.display='none'">
-      <p class="credit">Shibuya Scramble Crossing, Tokyo — photo: Benh Lieu Song, <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener">CC BY-SA 2.0</a> / Wikimedia Commons</p>
+      <p class="credit">Shibuya Scramble Crossing, Tokyo — צילום: Benh Lieu Song, <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener">CC BY-SA 2.0</a> / Wikimedia Commons</p>
     </div>
   <div class="hotel-card">
     <div>
       <span class="pill confirmed">מאושר</span>
       <p class="name" dir="ltr" style="text-align:right;">Mitsui Garden Hotel Jingugaien Tokyo Premier</p>
       <p class="meta">2 חדרים</p>
-      <p class="meta">אישור: 5538964846 · קוד 4244</p>
+      <p class="meta">אישור: 5538964846 · code 4244</p>
       <a class="hotel-link" href="https://www.google.com/maps/search/?api=1&query=Mitsui%20Garden%20Hotel%20Jingugaien%20Tokyo%20Premier%2C%20Tokyo%2C%20Japan" target="_blank" rel="noopener">📍 צפייה בגוגל מפות</a>
     </div>
     <div class="right">
@@ -287,7 +289,7 @@ footer{padding:20px 0 50px; text-align:center; color:var(--ink-soft); font-size:
   </div>
   <div class="days"><div class="day"><div class="when"><span class="num">9</span><span class="wd">ו׳</span></div><div class="body"><p>נחיתה ב-Narita בשעה 13:30, רכבת N'EX ל-Shinjuku, ומשם מונית קצרה למלון. אונסן והתאקלמות.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Narita%20International%20Airport%2C%20Tokyo%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Narita International Airport</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Shinjuku%20Station%2C%20Tokyo%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Shinjuku Station</a></div></div></div><div class="day"><div class="when"><span class="num">10</span><span class="wd">ש׳</span></div><div class="body"><p>Shibuya Crossing, מקדש Meiji, פארק Yoyogi ורחוב Takeshita ב-Harajuku.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Shibuya%20Crossing%2C%20Tokyo%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Shibuya Crossing</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Meiji%20Shrine%2C%20Tokyo%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Meiji Shrine</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Yoyogi%20Park%2C%20Tokyo%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Yoyogi Park</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Takeshita%20Street%2C%20Tokyo%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Takeshita Street</a></div></div></div><div class="day"><div class="when"><span class="num">11</span><span class="wd">א׳</span></div><div class="body"><p>Asakusa ומקדש Sensō-ji, ואז Akihabara. בערב: אריזה מחדש למזוודות הגדולות.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Sens%C5%8D-ji%2C%20Tokyo%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Sensō-ji</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Akihabara%2C%20Tokyo%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Akihabara</a></div></div></div></div>
 </section>
-<section id="hakone" class="chapter">
+<section id="hakone_he" class="chapter">
   <div class="chapter-head">
     <h2>האקונה <span class="jp">箱根</span></h2>
     <span class="span">12 באפריל</span>
@@ -308,7 +310,7 @@ footer{padding:20px 0 50px; text-align:center; color:var(--ink-soft); font-size:
   </div>
   <div class="days"><div class="day"><div class="when"><span class="num">12</span><span class="wd">ב׳</span></div><div class="body"><p>המזוודות הגדולות נאספות ע״י שליח Takkyubin ויוצאות היישר ל-Kyoto. מונית ל-Shinjuku, רכבת ל-Odawara, ואיסוף הרכב השכור. עמק Owakudani ואגם Ashi.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Odawara%20Station%2C%20Hakone%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Odawara Station</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Owakudani%2C%20Hakone%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Owakudani</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Lake%20Ashi%2C%20Hakone%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Lake Ashi</a></div></div></div></div>
 </section>
-<section id="kawaguchiko" class="chapter">
+<section id="kawaguchiko_he" class="chapter">
   <div class="chapter-head">
     <h2>פוג'י קוואגוצ'יקו <span class="jp">富士河口湖</span></h2>
     <span class="span">13 באפריל</span>
@@ -329,7 +331,7 @@ footer{padding:20px 0 50px; text-align:center; color:var(--ink-soft); font-size:
   </div>
   <div class="days"><div class="day"><div class="when"><span class="num">13</span><span class="wd">ג׳</span></div><div class="body"><p>נסיעה ל-Fujikawaguchiko. Chureito Pagoda, פארק Oishi, וארוחת ערב מהסופר מול הר Fuji.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Chureito%20Pagoda%2C%20Fujikawaguchiko%2C%20Yamanashi%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Chureito Pagoda</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Oishi%20Park%2C%20Fujikawaguchiko%2C%20Yamanashi%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Oishi Park</a></div></div></div></div>
 </section>
-<section id="takayama" class="chapter">
+<section id="takayama_he" class="chapter">
   <div class="chapter-head">
     <h2>טקאיאמה <span class="jp">高山</span></h2>
     <span class="span">14 באפריל</span>
@@ -350,14 +352,14 @@ footer{padding:20px 0 50px; text-align:center; color:var(--ink-soft); font-size:
   </div>
   <div class="days"><div class="day"><div class="when"><span class="num">14</span><span class="wd">ד׳</span></div><div class="body"><p>בוקר עם נוף להר Fuji, ואז נסיעה שעוברת ב-Matsumoto Castle ומעל רכס Japan Alps אל Takayama.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Matsumoto%20Castle%2C%20Takayama%2C%20Gifu%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Matsumoto Castle</a></div></div></div></div>
 </section>
-<section id="kanazawa" class="chapter">
+<section id="kanazawa_he" class="chapter">
   <div class="chapter-head">
     <h2>קנאזאווה <span class="jp">金沢</span></h2>
     <span class="span">15 באפריל</span>
   </div>
   <div class="chapter-photo">
       <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Kenrokuen10-r.jpg" alt="Kenrokuen Garden, Kanazawa" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.chapter-photo').style.display='none'">
-      <p class="credit">Kenrokuen Garden, Kanazawa — photo: Oilstreet, <a href="https://creativecommons.org/licenses/by-sa/2.5/" target="_blank" rel="noopener">CC BY-SA 2.5</a> / Wikimedia Commons</p>
+      <p class="credit">Kenrokuen Garden, Kanazawa — צילום: Oilstreet, <a href="https://creativecommons.org/licenses/by-sa/2.5/" target="_blank" rel="noopener">CC BY-SA 2.5</a> / Wikimedia Commons</p>
     </div>
   <div class="hotel-card">
     <div>
@@ -374,14 +376,14 @@ footer{padding:20px 0 50px; text-align:center; color:var(--ink-soft); font-size:
   </div>
   <div class="days"><div class="day"><div class="when"><span class="num">15</span><span class="wd">ה׳</span></div><div class="body"><p>השוק והעיר העתיקה של Takayama בבוקר, ואז כפר Shirakawa-go בדרך אל Kanazawa.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Takayama%20Old%20Town%2C%20Kanazawa%2C%20Ishikawa%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Takayama Old Town</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Shirakawa-go%2C%20Kanazawa%2C%20Ishikawa%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Shirakawa-go</a></div></div></div></div>
 </section>
-<section id="kyoto" class="chapter">
+<section id="kyoto_he" class="chapter">
   <div class="chapter-head">
     <h2>קיוטו <span class="jp">京都</span></h2>
     <span class="span">16–20 באפריל</span>
   </div>
   <div class="chapter-photo">
       <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Fushimi%20Inari%20-%20Main%20gate.jpg" alt="Fushimi Inari Taisha, Kyoto" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.chapter-photo').style.display='none'">
-      <p class="credit">Fushimi Inari Taisha, Kyoto — photo: Chris Gladis, <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a> / Wikimedia Commons</p>
+      <p class="credit">Fushimi Inari Taisha, Kyoto — צילום: Chris Gladis, <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a> / Wikimedia Commons</p>
     </div>
   <div class="hotel-card">
     <div>
@@ -398,14 +400,14 @@ footer{padding:20px 0 50px; text-align:center; color:var(--ink-soft); font-size:
   </div>
   <div class="days"><div class="day"><div class="when"><span class="num">16</span><span class="wd">ו׳</span></div><div class="body"><p>גן Kenrokuen, ואז נסיעה ל-Kyoto והחזרת הרכב השכור בתחנת Kyoto. צ׳ק-אין — המזוודות הגדולות מחכות.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Kenrokuen%20Garden%2C%20Kyoto%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Kenrokuen Garden</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Kyoto%20Station%2C%20Kyoto%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Kyoto Station</a></div></div></div><div class="day"><div class="when"><span class="num">17</span><span class="wd">ש׳</span></div><div class="body"><p>אלפי שערי הטוריי של Fushimi Inari, ואז הרחובות ההיסטוריים של Gion.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Fushimi%20Inari%20Taisha%2C%20Kyoto%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Fushimi Inari Taisha</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Gion%2C%20Kyoto%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Gion</a></div></div></div><div class="day"><div class="when"><span class="num">18</span><span class="wd">א׳</span></div><div class="body"><p>מערב Kyoto: יער הבמבוק של Arashiyama והמקדש המוזהב Kinkaku-ji.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Arashiyama%20Bamboo%20Grove%2C%20Kyoto%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Arashiyama Bamboo Grove</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Kinkaku-ji%2C%20Kyoto%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Kinkaku-ji</a></div></div></div><div class="day"><div class="when"><span class="num">19</span><span class="wd">ב׳</span></div><div class="body"><p>טיול יום ברכבת אל Nara — פארק הצבאים ו-Tōdai-ji — וחזרה ל-Kyoto בערב.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Nara%20Park%2C%20Kyoto%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Nara Park</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Todai-ji%2C%20Kyoto%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Todai-ji</a></div></div></div></div>
 </section>
-<section id="osaka" class="chapter">
+<section id="osaka_he" class="chapter">
   <div class="chapter-head">
     <h2>אוסקה <span class="jp">大阪</span></h2>
     <span class="span">20 באפריל</span>
   </div>
   <div class="chapter-photo">
       <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Osaka%20Castle%2002bs3200.jpg" alt="Osaka Castle" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.chapter-photo').style.display='none'">
-      <p class="credit">Osaka Castle — photo: 663highland, <a href="https://creativecommons.org/licenses/by-sa/2.5/" target="_blank" rel="noopener">CC BY-SA 2.5</a> / Wikimedia Commons</p>
+      <p class="credit">Osaka Castle — צילום: 663highland, <a href="https://creativecommons.org/licenses/by-sa/2.5/" target="_blank" rel="noopener">CC BY-SA 2.5</a> / Wikimedia Commons</p>
     </div>
   <div class="hotel-card">
     <div>
@@ -422,14 +424,14 @@ footer{padding:20px 0 50px; text-align:center; color:var(--ink-soft); font-size:
   </div>
   <div class="days"><div class="day"><div class="when"><span class="num">20</span><span class="wd">ג׳</span></div><div class="body"><p>רכבת קצרה ל-Osaka, Osaka Castle, צ׳ק-אין, וערב קולינרי בסמטאות Dotonbori.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Osaka%20Castle%2C%20Osaka%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Osaka Castle</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Dotonbori%2C%20Osaka%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Dotonbori</a></div></div></div></div>
 </section>
-<section id="hiroshima" class="chapter">
+<section id="hiroshima_he" class="chapter">
   <div class="chapter-head">
     <h2>הירושימה <span class="jp">広島</span></h2>
     <span class="span">21–23 באפריל</span>
   </div>
   <div class="chapter-photo">
       <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Itsukushima%20Gate.jpg" alt="Itsukushima Shrine torii, Miyajima" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.chapter-photo').style.display='none'">
-      <p class="credit">Itsukushima Shrine torii, Miyajima — photo: JordyMeow, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a> / Wikimedia Commons</p>
+      <p class="credit">Itsukushima Shrine torii, Miyajima — צילום: JordyMeow, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a> / Wikimedia Commons</p>
     </div>
   <div class="hotel-card">
     <div>
@@ -446,7 +448,7 @@ footer{padding:20px 0 50px; text-align:center; color:var(--ink-soft); font-size:
   </div>
   <div class="days"><div class="day"><div class="when"><span class="num">21</span><span class="wd">ד׳</span></div><div class="body"><p>שינקנסן מהיר ל-Hiroshima. Peace Park, מוזיאון הזיכרון לשלום, וכיפת ה-A-Bomb Dome — ורופטופ במלון בערב.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Hiroshima%20Peace%20Memorial%20Park%2C%20Hiroshima%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Hiroshima Peace Memorial Park</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Hiroshima%20Peace%20Memorial%20Museum%2C%20Hiroshima%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Hiroshima Peace Memorial Museum</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Atomic%20Bomb%20Dome%2C%20Hiroshima%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Atomic Bomb Dome</a></div></div></div><div class="day"><div class="when"><span class="num">22</span><span class="wd">ה׳</span></div><div class="body"><p>יום מלא באי Miyajima: המעבורת, שער הטוריי הצף של Itsukushima Shrine, והרכבל אל הר Misen.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Miyajima%20Ferry%20Terminal%2C%20Hiroshima%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Miyajima Ferry Terminal</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Itsukushima%20Shrine%2C%20Hiroshima%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Itsukushima Shrine</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Mount%20Misen%20Ropeway%2C%20Hiroshima%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Mount Misen Ropeway</a></div></div></div></div>
 </section>
-<section id="tokyo2" class="chapter">
+<section id="tokyo2_he" class="chapter">
   <div class="chapter-head">
     <h2>טוקיו (גינזה) <span class="jp">東京・銀座</span></h2>
     <span class="span">23–27 באפריל</span>
@@ -467,7 +469,7 @@ footer{padding:20px 0 50px; text-align:center; color:var(--ink-soft); font-size:
   </div>
   <div class="days"><div class="day"><div class="when"><span class="num">23</span><span class="wd">ו׳</span></div><div class="body"><p>שינקנסן ישיר מ-Hiroshima ל-Tokyo. צ׳ק-אין ב-Ginza וסיור ברחובות.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Ginza%2C%20Ginza%2C%20Tokyo%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Ginza</a></div></div></div><div class="day"><div class="when"><span class="num">24</span><span class="wd">ש׳</span></div><div class="body"><p>teamLab Planets, ואז חוף Odaiba.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=teamLab%20Planets%20TOKYO%2C%20Ginza%2C%20Tokyo%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>teamLab Planets TOKYO</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Odaiba%2C%20Ginza%2C%20Tokyo%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Odaiba</a></div></div></div><div class="day"><div class="when"><span class="num">25</span><span class="wd">א׳</span></div><div class="body"><p>שוק הדגים החיצוני Tsukiji, גני Hamarikyu, וקניות בכלבואים של Ginza.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Tsukiji%20Outer%20Market%2C%20Ginza%2C%20Tokyo%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Tsukiji Outer Market</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Hamarikyu%20Gardens%2C%20Ginza%2C%20Tokyo%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Hamarikyu Gardens</a></div></div></div><div class="day"><div class="when"><span class="num">26</span><span class="wd">ב׳</span></div><div class="body"><p>יום אחרון לקניות ולאטרקציות נוספות — אריזת המזוודות.</p></div></div><div class="day"><div class="when"><span class="num">27</span><span class="wd">ג׳</span></div><div class="body"><p>צ׳ק-אאוט, השארת המזוודות, ויציאה לנמל התעופה Haneda בסביבות השעה 20:30.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Haneda%20Airport%2C%20Ginza%2C%20Tokyo%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Haneda Airport</a></div></div></div></div>
 </section>
-<section id="logistics" class="chapter">
+<section id="logistics_he" class="chapter">
   <div class="chapter-head"><h2>תחבורה ולוגיסטיקה</h2></div>
   <div class="two-col" style="margin-bottom:16px;">
     <div class="info-card"><h3>טיסת ההלוך</h3><p>המראה מ-Tel Aviv בשעה 15:50 ב-8 באפריל · Emirates דרך Dubai · נחיתה ב-Narita בשעה 13:30 ב-9 באפריל</p></div>
@@ -475,11 +477,252 @@ footer{padding:20px 0 50px; text-align:center; color:var(--ink-soft); font-size:
   </div>
   <div class="two-col"><div class="info-card"><h3>רכב שכור</h3><p>נאסף ב-Odawara ב-12 באפריל, ומכסה את הקטע Hakone → Fujikawaguchiko → Takayama → Kanazawa, ומוחזר בתחנת Kyoto ב-16 באפריל.</p></div><div class="info-card"><h3>כבודה</h3><p>המזוודות הגדולות נשלחות מראש ע״י שליח Takkyubin מ-Hakone היישר למלון ב-Kyoto, ומגיעות בזמן לצ׳ק-אין. רק הטרולים הקטנים נוסעים איתכם בדרך.</p></div></div>
 </section>
-<section id="open" class="chapter open-items">
+<section id="open_he" class="chapter open-items">
   <h2>נותר לאשר</h2>
   <ul><li>לבחור ולהזמין את ה-ryokan ב-Hakone — Ten-yu או Tensui Saryo</li><li>לאשר את ההזמנה ב-Takayama Ouan</li><li>לאשר את ההזמנה ב-The Hotel Sanraku Kanazawa</li><li>להשיג את התאריכים המדויקים לביטול חינם עבור Villa Sanjomuromachi, Hotel Forza Osaka, THE KNOT HIROSHIMA ו-Daiwa Roynet Ginza</li></ul>
-</section></div></main><footer>הכל מוכן ליפן 🌸 &nbsp;·&nbsp; נסיעה נעימה!<p class="live-note">העמוד הזה מתעדכן במקום — פתחו את הקישור הזה בכל שלב כדי לראות את התוכנית העדכנית.</p></footer>
-<script type="application/json" id="tripData">{"departure": "2027-04-08", "return": "2027-04-28", "flight_out": "המראה מ-Tel Aviv בשעה 15:50 ב-8 באפריל · Emirates דרך Dubai · נחיתה ב-Narita בשעה 13:30 ב-9 באפריל", "flight_back": "עזיבת המלון בסביבות השעה 20:30 ב-27 באפריל · המראה מ-Haneda (HND) בשעה 00:05 ב-28 באפריל · Emirates דרך Dubai · נחיתה בישראל באותו הבוקר", "days": [{"date": "2027-04-09", "day": "9", "wd": "ו׳", "key": "tokyo1", "city": "טוקיו", "hotel": "Mitsui Garden Hotel Jingugaien Tokyo Premier", "desc": "נחיתה ב-Narita בשעה 13:30, רכבת N'EX ל-Shinjuku, ומשם מונית קצרה למלון. אונסן והתאקלמות.", "stops": ["Narita International Airport", "Shinjuku Station"], "area": "Tokyo"}, {"date": "2027-04-10", "day": "10", "wd": "ש׳", "key": "tokyo1", "city": "טוקיו", "hotel": "Mitsui Garden Hotel Jingugaien Tokyo Premier", "desc": "Shibuya Crossing, מקדש Meiji, פארק Yoyogi ורחוב Takeshita ב-Harajuku.", "stops": ["Shibuya Crossing", "Meiji Shrine", "Yoyogi Park", "Takeshita Street"], "area": "Tokyo"}, {"date": "2027-04-11", "day": "11", "wd": "א׳", "key": "tokyo1", "city": "טוקיו", "hotel": "Mitsui Garden Hotel Jingugaien Tokyo Premier", "desc": "Asakusa ומקדש Sensō-ji, ואז Akihabara. בערב: אריזה מחדש למזוודות הגדולות.", "stops": ["Sensō-ji", "Akihabara"], "area": "Tokyo"}, {"date": "2027-04-12", "day": "12", "wd": "ב׳", "key": "hakone", "city": "האקונה", "hotel": "Ten-yu or Tensui Saryo (onsen ryokan)", "desc": "המזוודות הגדולות נאספות ע״י שליח Takkyubin ויוצאות היישר ל-Kyoto. מונית ל-Shinjuku, רכבת ל-Odawara, ואיסוף הרכב השכור. עמק Owakudani ואגם Ashi.", "stops": ["Odawara Station", "Owakudani", "Lake Ashi"], "area": "Hakone"}, {"date": "2027-04-13", "day": "13", "wd": "ג׳", "key": "kawaguchiko", "city": "פוג'י קוואגוצ'יקו", "hotel": "Kawaguchiko Country Cottage Ban", "desc": "נסיעה ל-Fujikawaguchiko. Chureito Pagoda, פארק Oishi, וארוחת ערב מהסופר מול הר Fuji.", "stops": ["Chureito Pagoda", "Oishi Park"], "area": "Fujikawaguchiko, Yamanashi"}, {"date": "2027-04-14", "day": "14", "wd": "ד׳", "key": "takayama", "city": "טקאיאמה", "hotel": "Takayama Ouan", "desc": "בוקר עם נוף להר Fuji, ואז נסיעה שעוברת ב-Matsumoto Castle ומעל רכס Japan Alps אל Takayama.", "stops": ["Matsumoto Castle"], "area": "Takayama, Gifu"}, {"date": "2027-04-15", "day": "15", "wd": "ה׳", "key": "kanazawa", "city": "קנאזאווה", "hotel": "The Hotel Sanraku Kanazawa", "desc": "השוק והעיר העתיקה של Takayama בבוקר, ואז כפר Shirakawa-go בדרך אל Kanazawa.", "stops": ["Takayama Old Town", "Shirakawa-go"], "area": "Kanazawa, Ishikawa"}, {"date": "2027-04-16", "day": "16", "wd": "ו׳", "key": "kyoto", "city": "קיוטו", "hotel": "Villa Sanjomuromachi KYOTO", "desc": "גן Kenrokuen, ואז נסיעה ל-Kyoto והחזרת הרכב השכור בתחנת Kyoto. צ׳ק-אין — המזוודות הגדולות מחכות.", "stops": ["Kenrokuen Garden", "Kyoto Station"], "area": "Kyoto"}, {"date": "2027-04-17", "day": "17", "wd": "ש׳", "key": "kyoto", "city": "קיוטו", "hotel": "Villa Sanjomuromachi KYOTO", "desc": "אלפי שערי הטוריי של Fushimi Inari, ואז הרחובות ההיסטוריים של Gion.", "stops": ["Fushimi Inari Taisha", "Gion"], "area": "Kyoto"}, {"date": "2027-04-18", "day": "18", "wd": "א׳", "key": "kyoto", "city": "קיוטו", "hotel": "Villa Sanjomuromachi KYOTO", "desc": "מערב Kyoto: יער הבמבוק של Arashiyama והמקדש המוזהב Kinkaku-ji.", "stops": ["Arashiyama Bamboo Grove", "Kinkaku-ji"], "area": "Kyoto"}, {"date": "2027-04-19", "day": "19", "wd": "ב׳", "key": "kyoto", "city": "קיוטו", "hotel": "Villa Sanjomuromachi KYOTO", "desc": "טיול יום ברכבת אל Nara — פארק הצבאים ו-Tōdai-ji — וחזרה ל-Kyoto בערב.", "stops": ["Nara Park", "Todai-ji"], "area": "Kyoto"}, {"date": "2027-04-20", "day": "20", "wd": "ג׳", "key": "osaka", "city": "אוסקה", "hotel": "Hotel Forza Osaka Namba", "desc": "רכבת קצרה ל-Osaka, Osaka Castle, צ׳ק-אין, וערב קולינרי בסמטאות Dotonbori.", "stops": ["Osaka Castle", "Dotonbori"], "area": "Osaka"}, {"date": "2027-04-21", "day": "21", "wd": "ד׳", "key": "hiroshima", "city": "הירושימה", "hotel": "THE KNOT HIROSHIMA", "desc": "שינקנסן מהיר ל-Hiroshima. Peace Park, מוזיאון הזיכרון לשלום, וכיפת ה-A-Bomb Dome — ורופטופ במלון בערב.", "stops": ["Hiroshima Peace Memorial Park", "Hiroshima Peace Memorial Museum", "Atomic Bomb Dome"], "area": "Hiroshima"}, {"date": "2027-04-22", "day": "22", "wd": "ה׳", "key": "hiroshima", "city": "הירושימה", "hotel": "THE KNOT HIROSHIMA", "desc": "יום מלא באי Miyajima: המעבורת, שער הטוריי הצף של Itsukushima Shrine, והרכבל אל הר Misen.", "stops": ["Miyajima Ferry Terminal", "Itsukushima Shrine", "Mount Misen Ropeway"], "area": "Hiroshima"}, {"date": "2027-04-23", "day": "23", "wd": "ו׳", "key": "tokyo2", "city": "טוקיו (גינזה)", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "שינקנסן ישיר מ-Hiroshima ל-Tokyo. צ׳ק-אין ב-Ginza וסיור ברחובות.", "stops": ["Ginza"], "area": "Ginza, Tokyo"}, {"date": "2027-04-24", "day": "24", "wd": "ש׳", "key": "tokyo2", "city": "טוקיו (גינזה)", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "teamLab Planets, ואז חוף Odaiba.", "stops": ["teamLab Planets TOKYO", "Odaiba"], "area": "Ginza, Tokyo"}, {"date": "2027-04-25", "day": "25", "wd": "א׳", "key": "tokyo2", "city": "טוקיו (גינזה)", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "שוק הדגים החיצוני Tsukiji, גני Hamarikyu, וקניות בכלבואים של Ginza.", "stops": ["Tsukiji Outer Market", "Hamarikyu Gardens"], "area": "Ginza, Tokyo"}, {"date": "2027-04-26", "day": "26", "wd": "ב׳", "key": "tokyo2", "city": "טוקיו (גינזה)", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "יום אחרון לקניות ולאטרקציות נוספות — אריזת המזוודות.", "stops": [], "area": "Ginza, Tokyo"}, {"date": "2027-04-27", "day": "27", "wd": "ג׳", "key": "tokyo2", "city": "טוקיו (גינזה)", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "צ׳ק-אאוט, השארת המזוודות, ויציאה לנמל התעופה Haneda בסביבות השעה 20:30.", "stops": ["Haneda Airport"], "area": "Ginza, Tokyo"}]}</script>
+</section></div></main><footer>הכל מוכן ליפן 🌸 &nbsp;·&nbsp; נסיעה נעימה!<p class="live-note">העמוד הזה מתעדכן במקום — פתחו את הקישור הזה בכל שלב כדי לראות את התוכנית העדכנית.</p></footer></div><div class="lang-block hidden" id="block_en" dir="ltr" lang="en">
+<header class="hero">
+  <div class="hero-bg">
+      <img class="fuji" src="https://commons.wikimedia.org/wiki/Special:FilePath/Arakurayama%20Sengen%20Park%20-%20Japan.jpg" alt="Mount Fuji from Arakurayama Sengen Park" loading="eager" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+      <img class="tokyo" src="https://commons.wikimedia.org/wiki/Special:FilePath/Tokyo%20Tower%2C%20Minato%20City.jpg" alt="Tokyo Tower, Minato City" loading="eager" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+    </div>
+    <div class="hero-scrim"></div>
+    <div class="hero-flag"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="6" fill="#BC002D"/></svg></div>
+  <div class="wrap">
+    <p class="eyebrow-jp">Japan · April 2027</p>
+    <h1>Japan, April 2027</h1>
+    <p class="sub">Tzachi & Yifat · Shoshana & Hen Bar Yehuda</p>
+    <p class="dates">8 – 28 April 2027 · 20 days</p>
+    <svg class="route" viewBox="0 0 600 34" preserveAspectRatio="none"><path d="M 30.0 17 L 97.5 17 L 165.0 17 L 232.5 17 L 300.0 17 L 367.5 17 L 435.0 17 L 502.5 17 L 570.0 17"/><circle cx="30.0" cy="17" r="5" class=""/><circle cx="97.5" cy="17" r="3.4" class=""/><circle cx="165.0" cy="17" r="3.4" class=""/><circle cx="232.5" cy="17" r="3.4" class=""/><circle cx="300.0" cy="17" r="3.4" class=""/><circle cx="367.5" cy="17" r="3.4" class="sakura"/><circle cx="435.0" cy="17" r="3.4" class=""/><circle cx="502.5" cy="17" r="3.4" class=""/><circle cx="570.0" cy="17" r="5" class=""/></svg>
+    <div class="trip-status" id="tripStatus_en"><p class="msg" id="tripStatusMsg_en"></p></div>
+    <p class="hero-credit">Photos: Otto Domes (<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>), David Kernan (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>) · Wikimedia Commons</p>
+  </div>
+</header><nav class="jump"><div class="wrap"><a href="#tokyo1_en">Tokyo</a><a href="#hakone_en">Hakone</a><a href="#kawaguchiko_en">Fujikawaguchiko</a><a href="#takayama_en">Takayama</a><a href="#kanazawa_en">Kanazawa</a><a href="#kyoto_en">Kyoto</a><a href="#osaka_en">Osaka</a><a href="#hiroshima_en">Hiroshima</a><a href="#tokyo2_en">Tokyo · Ginza</a><a href="#logistics_en">Getting around</a><a href="#open_en">Still to confirm</a></div></nav><main><div class="wrap"><div class="now-card" id="nowCard_en">
+      <p class="eyebrow" id="nowEyebrow_en">Right now</p>
+      <h2 id="nowTitle_en"></h2>
+      <p class="desc" id="nowDesc_en"></p>
+      <div class="stops" id="nowStops_en"></div>
+      <p class="hotel-tonight" id="nowHotel_en" style="display:none;"></p>
+      <p class="tomorrow" id="nowTomorrow_en" style="display:none;"></p>
+      <a class="jump-btn" id="nowJump_en" href="#" style="display:none;">📍 See the full section below</a>
+    </div>
+<section id="tokyo1_en" class="chapter">
+  <div class="chapter-head">
+    <h2>Tokyo <span class="jp">東京</span></h2>
+    <span class="span">9 – 12 April</span>
+  </div>
+  <div class="chapter-photo">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Tokyo%20Shibuya%20Scramble%20Crossing%202018-10-09.jpg" alt="Shibuya Scramble Crossing, Tokyo" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.chapter-photo').style.display='none'">
+      <p class="credit">Shibuya Scramble Crossing, Tokyo — Photo: Benh Lieu Song, <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener">CC BY-SA 2.0</a> / Wikimedia Commons</p>
+    </div>
+  <div class="hotel-card">
+    <div>
+      <span class="pill confirmed">Confirmed</span>
+      <p class="name" dir="ltr" style="text-align:left;">Mitsui Garden Hotel Jingugaien Tokyo Premier</p>
+      <p class="meta">2 rooms</p>
+      <p class="meta">Confirmation: 5538964846 · code 4244</p>
+      <a class="hotel-link" href="https://www.google.com/maps/search/?api=1&query=Mitsui%20Garden%20Hotel%20Jingugaien%20Tokyo%20Premier%2C%20Tokyo%2C%20Japan" target="_blank" rel="noopener">📍 View on Google Maps</a>
+    </div>
+    <div class="right">
+      <p class="meta">₪5,458</p>
+      <p class="meta">Free cancellation until 5 Apr 2027</p>
+    </div>
+  </div>
+  <div class="days"><div class="day"><div class="when"><span class="num">9</span><span class="wd">Fri</span></div><div class="body"><p>Land at Narita 13:30, N'EX train to Shinjuku, short taxi to the hotel. Onsen and settling in.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Narita%20International%20Airport%2C%20Tokyo%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Narita International Airport</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Shinjuku%20Station%2C%20Tokyo%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Shinjuku Station</a></div></div></div><div class="day"><div class="when"><span class="num">10</span><span class="wd">Sat</span></div><div class="body"><p>Shibuya crossing, Meiji Shrine, Yoyogi Park, Harajuku's Takeshita Street.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Shibuya%20Crossing%2C%20Tokyo%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Shibuya Crossing</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Meiji%20Shrine%2C%20Tokyo%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Meiji Shrine</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Yoyogi%20Park%2C%20Tokyo%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Yoyogi Park</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Takeshita%20Street%2C%20Tokyo%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Takeshita Street</a></div></div></div><div class="day"><div class="when"><span class="num">11</span><span class="wd">Sun</span></div><div class="body"><p>Asakusa and Sensō-ji, then Akihabara. In the evening: repack into the big suitcases.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Sens%C5%8D-ji%2C%20Tokyo%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Sensō-ji</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Akihabara%2C%20Tokyo%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Akihabara</a></div></div></div></div>
+</section>
+<section id="hakone_en" class="chapter">
+  <div class="chapter-head">
+    <h2>Hakone <span class="jp">箱根</span></h2>
+    <span class="span">12 April</span>
+  </div>
+  
+  <div class="hotel-card">
+    <div>
+      <span class="pill open">Choosing</span>
+      <p class="name" dir="ltr" style="text-align:left;">Ten-yu or Tensui Saryo (onsen ryokan)</p>
+      <p class="meta">4 adults</p>
+      
+      <a class="hotel-link" href="https://www.google.com/maps/search/?api=1&query=Hakone%20Ten-yu%2C%20Hakone%2C%20Japan" target="_blank" rel="noopener">📍 Hakone Ten-yu on Maps</a>&nbsp;&nbsp;<a class="hotel-link" href="https://www.google.com/maps/search/?api=1&query=Tensui%20Saryo%2C%20Hakone%2C%20Japan" target="_blank" rel="noopener">📍 Tensui Saryo on Maps</a>&nbsp;&nbsp;
+    </div>
+    <div class="right">
+      
+      <p class="meta">Still choosing between the two</p>
+    </div>
+  </div>
+  <div class="days"><div class="day"><div class="when"><span class="num">12</span><span class="wd">Mon</span></div><div class="body"><p>Big suitcases picked up by Takkyubin courier, heading straight to Kyoto. Taxi to Shinjuku, train to Odawara, pick up the rental car. Owakudani valley and Lake Ashi.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Odawara%20Station%2C%20Hakone%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Odawara Station</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Owakudani%2C%20Hakone%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Owakudani</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Lake%20Ashi%2C%20Hakone%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Lake Ashi</a></div></div></div></div>
+</section>
+<section id="kawaguchiko_en" class="chapter">
+  <div class="chapter-head">
+    <h2>Fujikawaguchiko <span class="jp">富士河口湖</span></h2>
+    <span class="span">13 April</span>
+  </div>
+  
+  <div class="hotel-card">
+    <div>
+      <span class="pill confirmed">Confirmed</span>
+      <p class="name" dir="ltr" style="text-align:left;">Kawaguchiko Country Cottage Ban</p>
+      <p class="meta">whole cottage, 91 m²</p>
+      
+      <a class="hotel-link" href="https://www.google.com/maps/search/?api=1&query=Kawaguchiko%20Country%20Cottage%20Ban%2C%20Fujikawaguchiko%2C%20Yamanashi%2C%20Japan" target="_blank" rel="noopener">📍 View on Google Maps</a>
+    </div>
+    <div class="right">
+      <p class="meta">₪2,536</p>
+      <p class="meta">Free cancellation until 5 Apr 2027, 17:59 IL time</p>
+    </div>
+  </div>
+  <div class="days"><div class="day"><div class="when"><span class="num">13</span><span class="wd">Tue</span></div><div class="body"><p>Drive to Fujikawaguchiko. Chureito Pagoda, Oishi Park, and a supermarket dinner facing Mt Fuji.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Chureito%20Pagoda%2C%20Fujikawaguchiko%2C%20Yamanashi%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Chureito Pagoda</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Oishi%20Park%2C%20Fujikawaguchiko%2C%20Yamanashi%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Oishi Park</a></div></div></div></div>
+</section>
+<section id="takayama_en" class="chapter">
+  <div class="chapter-head">
+    <h2>Takayama <span class="jp">高山</span></h2>
+    <span class="span">14 April</span>
+  </div>
+  
+  <div class="hotel-card">
+    <div>
+      <span class="pill open">Choosing</span>
+      <p class="name" dir="ltr" style="text-align:left;">Takayama Ouan</p>
+      <p class="meta">2 rooms</p>
+      
+      <a class="hotel-link" href="https://www.google.com/maps/search/?api=1&query=Takayama%20Ouan%2C%20Takayama%2C%20Gifu%2C%20Japan" target="_blank" rel="noopener">📍 View on Google Maps</a>
+    </div>
+    <div class="right">
+      
+      <p class="meta">Tentative pick, not yet booked</p>
+    </div>
+  </div>
+  <div class="days"><div class="day"><div class="when"><span class="num">14</span><span class="wd">Wed</span></div><div class="body"><p>Morning views of Fuji, then a drive past Matsumoto Castle and over the Japan Alps to Takayama.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Matsumoto%20Castle%2C%20Takayama%2C%20Gifu%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Matsumoto Castle</a></div></div></div></div>
+</section>
+<section id="kanazawa_en" class="chapter">
+  <div class="chapter-head">
+    <h2>Kanazawa <span class="jp">金沢</span></h2>
+    <span class="span">15 April</span>
+  </div>
+  <div class="chapter-photo">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Kenrokuen10-r.jpg" alt="Kenrokuen Garden, Kanazawa" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.chapter-photo').style.display='none'">
+      <p class="credit">Kenrokuen Garden, Kanazawa — Photo: Oilstreet, <a href="https://creativecommons.org/licenses/by-sa/2.5/" target="_blank" rel="noopener">CC BY-SA 2.5</a> / Wikimedia Commons</p>
+    </div>
+  <div class="hotel-card">
+    <div>
+      <span class="pill open">Choosing</span>
+      <p class="name" dir="ltr" style="text-align:left;">The Hotel Sanraku Kanazawa</p>
+      <p class="meta">2 rooms</p>
+      
+      <a class="hotel-link" href="https://www.google.com/maps/search/?api=1&query=The%20Hotel%20Sanraku%20Kanazawa%2C%20Kanazawa%2C%20Ishikawa%2C%20Japan" target="_blank" rel="noopener">📍 View on Google Maps</a>
+    </div>
+    <div class="right">
+      
+      <p class="meta">Tentative pick, not yet booked</p>
+    </div>
+  </div>
+  <div class="days"><div class="day"><div class="when"><span class="num">15</span><span class="wd">Thu</span></div><div class="body"><p>Takayama's morning market and old town, then Shirakawa-gō village on the way to Kanazawa.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Takayama%20Old%20Town%2C%20Kanazawa%2C%20Ishikawa%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Takayama Old Town</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Shirakawa-go%2C%20Kanazawa%2C%20Ishikawa%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Shirakawa-go</a></div></div></div></div>
+</section>
+<section id="kyoto_en" class="chapter">
+  <div class="chapter-head">
+    <h2>Kyoto <span class="jp">京都</span></h2>
+    <span class="span">16 – 20 April</span>
+  </div>
+  <div class="chapter-photo">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Fushimi%20Inari%20-%20Main%20gate.jpg" alt="Fushimi Inari Taisha, Kyoto" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.chapter-photo').style.display='none'">
+      <p class="credit">Fushimi Inari Taisha, Kyoto — Photo: Chris Gladis, <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a> / Wikimedia Commons</p>
+    </div>
+  <div class="hotel-card">
+    <div>
+      <span class="pill confirmed">Confirmed</span>
+      <p class="name" dir="ltr" style="text-align:left;">Villa Sanjomuromachi KYOTO</p>
+      <p class="meta">2 rooms</p>
+      
+      <a class="hotel-link" href="https://www.google.com/maps/search/?api=1&query=Villa%20Sanjomuromachi%20KYOTO%2C%20Kyoto%2C%20Japan" target="_blank" rel="noopener">📍 View on Google Maps</a>
+    </div>
+    <div class="right">
+      <p class="meta">₪8,361</p>
+      <p class="meta">Free cancellation — exact date to be confirmed</p>
+    </div>
+  </div>
+  <div class="days"><div class="day"><div class="when"><span class="num">16</span><span class="wd">Fri</span></div><div class="body"><p>Kenrokuen Garden, then drive to Kyoto and return the rental car at Kyoto Station. Check in — the big suitcases are waiting.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Kenrokuen%20Garden%2C%20Kyoto%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Kenrokuen Garden</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Kyoto%20Station%2C%20Kyoto%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Kyoto Station</a></div></div></div><div class="day"><div class="when"><span class="num">17</span><span class="wd">Sat</span></div><div class="body"><p>Fushimi Inari's thousand torii gates, then the historic streets of Gion.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Fushimi%20Inari%20Taisha%2C%20Kyoto%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Fushimi Inari Taisha</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Gion%2C%20Kyoto%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Gion</a></div></div></div><div class="day"><div class="when"><span class="num">18</span><span class="wd">Sun</span></div><div class="body"><p>West Kyoto: the Arashiyama bamboo forest and the golden Kinkaku-ji.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Arashiyama%20Bamboo%20Grove%2C%20Kyoto%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Arashiyama Bamboo Grove</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Kinkaku-ji%2C%20Kyoto%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Kinkaku-ji</a></div></div></div><div class="day"><div class="when"><span class="num">19</span><span class="wd">Mon</span></div><div class="body"><p>Day trip by train to Nara — the deer park and Tōdai-ji — back to Kyoto for the evening.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Nara%20Park%2C%20Kyoto%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Nara Park</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Todai-ji%2C%20Kyoto%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Todai-ji</a></div></div></div></div>
+</section>
+<section id="osaka_en" class="chapter">
+  <div class="chapter-head">
+    <h2>Osaka <span class="jp">大阪</span></h2>
+    <span class="span">20 April</span>
+  </div>
+  <div class="chapter-photo">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Osaka%20Castle%2002bs3200.jpg" alt="Osaka Castle" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.chapter-photo').style.display='none'">
+      <p class="credit">Osaka Castle — Photo: 663highland, <a href="https://creativecommons.org/licenses/by-sa/2.5/" target="_blank" rel="noopener">CC BY-SA 2.5</a> / Wikimedia Commons</p>
+    </div>
+  <div class="hotel-card">
+    <div>
+      <span class="pill confirmed">Confirmed</span>
+      <p class="name" dir="ltr" style="text-align:left;">Hotel Forza Osaka Namba</p>
+      <p class="meta">2 rooms</p>
+      
+      <a class="hotel-link" href="https://www.google.com/maps/search/?api=1&query=Hotel%20Forza%20Osaka%20Namba%2C%20Osaka%2C%20Japan" target="_blank" rel="noopener">📍 View on Google Maps</a>
+    </div>
+    <div class="right">
+      <p class="meta">₪882</p>
+      <p class="meta">Free cancellation — exact date to be confirmed</p>
+    </div>
+  </div>
+  <div class="days"><div class="day"><div class="when"><span class="num">20</span><span class="wd">Tue</span></div><div class="body"><p>Short train to Osaka, Osaka Castle, check in, then a culinary evening through the Dōtonbori alleys.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Osaka%20Castle%2C%20Osaka%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Osaka Castle</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Dotonbori%2C%20Osaka%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Dotonbori</a></div></div></div></div>
+</section>
+<section id="hiroshima_en" class="chapter">
+  <div class="chapter-head">
+    <h2>Hiroshima <span class="jp">広島</span></h2>
+    <span class="span">21 – 23 April</span>
+  </div>
+  <div class="chapter-photo">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Itsukushima%20Gate.jpg" alt="Itsukushima Shrine torii, Miyajima" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.chapter-photo').style.display='none'">
+      <p class="credit">Itsukushima Shrine torii, Miyajima — Photo: JordyMeow, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a> / Wikimedia Commons</p>
+    </div>
+  <div class="hotel-card">
+    <div>
+      <span class="pill confirmed">Confirmed</span>
+      <p class="name" dir="ltr" style="text-align:left;">THE KNOT HIROSHIMA</p>
+      <p class="meta">2 rooms</p>
+      
+      <a class="hotel-link" href="https://www.google.com/maps/search/?api=1&query=THE%20KNOT%20HIROSHIMA%2C%20Hiroshima%2C%20Japan" target="_blank" rel="noopener">📍 View on Google Maps</a>
+    </div>
+    <div class="right">
+      <p class="meta">₪3,225</p>
+      <p class="meta">Free cancellation — exact date to be confirmed</p>
+    </div>
+  </div>
+  <div class="days"><div class="day"><div class="when"><span class="num">21</span><span class="wd">Wed</span></div><div class="body"><p>Fast shinkansen to Hiroshima. Peace Park, the Memorial Museum, the A-Bomb Dome — rooftop at the hotel in the evening.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Hiroshima%20Peace%20Memorial%20Park%2C%20Hiroshima%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Hiroshima Peace Memorial Park</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Hiroshima%20Peace%20Memorial%20Museum%2C%20Hiroshima%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Hiroshima Peace Memorial Museum</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Atomic%20Bomb%20Dome%2C%20Hiroshima%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Atomic Bomb Dome</a></div></div></div><div class="day"><div class="when"><span class="num">22</span><span class="wd">Thu</span></div><div class="body"><p>Full day on Miyajima: the ferry, Itsukushima Shrine's floating gate, and the ropeway up Mt Misen.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Miyajima%20Ferry%20Terminal%2C%20Hiroshima%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Miyajima Ferry Terminal</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Itsukushima%20Shrine%2C%20Hiroshima%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Itsukushima Shrine</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Mount%20Misen%20Ropeway%2C%20Hiroshima%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Mount Misen Ropeway</a></div></div></div></div>
+</section>
+<section id="tokyo2_en" class="chapter">
+  <div class="chapter-head">
+    <h2>Tokyo · Ginza <span class="jp">東京・銀座</span></h2>
+    <span class="span">23 – 27 April</span>
+  </div>
+  
+  <div class="hotel-card">
+    <div>
+      <span class="pill reserved">Reserved</span>
+      <p class="name" dir="ltr" style="text-align:left;">Daiwa Roynet Ginza PREMIER</p>
+      <p class="meta">2 rooms, 21–23 m²</p>
+      
+      <a class="hotel-link" href="https://www.google.com/maps/search/?api=1&query=Daiwa%20Roynet%20Ginza%20PREMIER%2C%20Ginza%2C%20Tokyo%2C%20Japan" target="_blank" rel="noopener">📍 View on Google Maps</a>
+    </div>
+    <div class="right">
+      <p class="meta">₪4,894</p>
+      <p class="meta">Free cancellation — exact date to be confirmed</p>
+    </div>
+  </div>
+  <div class="days"><div class="day"><div class="when"><span class="num">23</span><span class="wd">Fri</span></div><div class="body"><p>Direct shinkansen from Hiroshima to Tokyo. Check in at Ginza and stroll the boulevards.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Ginza%2C%20Ginza%2C%20Tokyo%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Ginza</a></div></div></div><div class="day"><div class="when"><span class="num">24</span><span class="wd">Sat</span></div><div class="body"><p>teamLab Planets, then the Odaiba waterfront.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=teamLab%20Planets%20TOKYO%2C%20Ginza%2C%20Tokyo%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>teamLab Planets TOKYO</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Odaiba%2C%20Ginza%2C%20Tokyo%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Odaiba</a></div></div></div><div class="day"><div class="when"><span class="num">25</span><span class="wd">Sun</span></div><div class="body"><p>The outer Tsukiji market, Hamarikyu Gardens, and shopping among Ginza's department stores.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Tsukiji%20Outer%20Market%2C%20Ginza%2C%20Tokyo%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Tsukiji Outer Market</a><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Hamarikyu%20Gardens%2C%20Ginza%2C%20Tokyo%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Hamarikyu Gardens</a></div></div></div><div class="day"><div class="when"><span class="num">26</span><span class="wd">Mon</span></div><div class="body"><p>A last day for shopping and any final sights — pack the suitcases.</p></div></div><div class="day"><div class="when"><span class="num">27</span><span class="wd">Tue</span></div><div class="body"><p>Check out, leave the luggage. Head for Haneda Airport around 20:30.</p><div class="stops"><a class="stop-chip" href="https://www.google.com/maps/search/?api=1&query=Haneda%20Airport%2C%20Ginza%2C%20Tokyo%2C%20Japan" target="_blank" rel="noopener"><span class="pin">📍</span>Haneda Airport</a></div></div></div></div>
+</section>
+<section id="logistics_en" class="chapter">
+  <div class="chapter-head"><h2>Getting around</h2></div>
+  <div class="two-col" style="margin-bottom:16px;">
+    <div class="info-card"><h3>Outbound flight</h3><p>Depart Tel Aviv 15:50 on 8 April · Emirates via Dubai · land Narita 13:30 on 9 April</p></div>
+    <div class="info-card"><h3>Return flight</h3><p>Leave the hotel ~20:30 on 27 April · depart Haneda (HND) 00:05 on 28 April · Emirates via Dubai · land in Israel that same morning</p></div>
+  </div>
+  <div class="two-col"><div class="info-card"><h3>Rental car</h3><p>Picked up in Odawara on 12 April, covers Hakone → Fujikawaguchiko → Takayama → Kanazawa, returned at Kyoto Station on 16 April.</p></div><div class="info-card"><h3>Luggage</h3><p>Big suitcases travel ahead by Takkyubin courier from Hakone straight to the Kyoto hotel, arriving in time for check-in. Only small trolleys travel with you in between.</p></div></div>
+</section>
+<section id="open_en" class="chapter open-items">
+  <h2>Still to confirm</h2>
+  <ul><li>Choose and book the Hakone ryokan — Ten-yu or Tensui Saryo</li><li>Confirm the Takayama Ouan booking</li><li>Confirm The Hotel Sanraku Kanazawa booking</li><li>Get the exact free-cancellation dates for Villa Sanjomuromachi, Hotel Forza Osaka, THE KNOT HIROSHIMA, and Daiwa Roynet Ginza</li></ul>
+</section></div></main><footer>Everything's ready for Japan 🌸 &nbsp;·&nbsp; Have a wonderful trip!<p class="live-note">This page updates in place — reopen the same link any time for the latest plan.</p></footer></div><button class="lang-toggle" id="langToggleBtn" type="button" onclick="switchLang()">🌐 <span id="langToggleLabel"></span></button>
+<script type="application/json" id="tripData">{"departure": "2027-04-08", "return": "2027-04-28", "langs": {"he": {"days": [{"date": "2027-04-09", "key": "tokyo1_he", "city": "טוקיו", "hotel": "Mitsui Garden Hotel Jingugaien Tokyo Premier", "desc": "נחיתה ב-Narita בשעה 13:30, רכבת N'EX ל-Shinjuku, ומשם מונית קצרה למלון. אונסן והתאקלמות.", "stops": ["Narita International Airport", "Shinjuku Station"], "area": "Tokyo"}, {"date": "2027-04-10", "key": "tokyo1_he", "city": "טוקיו", "hotel": "Mitsui Garden Hotel Jingugaien Tokyo Premier", "desc": "Shibuya Crossing, מקדש Meiji, פארק Yoyogi ורחוב Takeshita ב-Harajuku.", "stops": ["Shibuya Crossing", "Meiji Shrine", "Yoyogi Park", "Takeshita Street"], "area": "Tokyo"}, {"date": "2027-04-11", "key": "tokyo1_he", "city": "טוקיו", "hotel": "Mitsui Garden Hotel Jingugaien Tokyo Premier", "desc": "Asakusa ומקדש Sensō-ji, ואז Akihabara. בערב: אריזה מחדש למזוודות הגדולות.", "stops": ["Sensō-ji", "Akihabara"], "area": "Tokyo"}, {"date": "2027-04-12", "key": "hakone_he", "city": "האקונה", "hotel": "Ten-yu or Tensui Saryo (onsen ryokan)", "desc": "המזוודות הגדולות נאספות ע״י שליח Takkyubin ויוצאות היישר ל-Kyoto. מונית ל-Shinjuku, רכבת ל-Odawara, ואיסוף הרכב השכור. עמק Owakudani ואגם Ashi.", "stops": ["Odawara Station", "Owakudani", "Lake Ashi"], "area": "Hakone"}, {"date": "2027-04-13", "key": "kawaguchiko_he", "city": "פוג'י קוואגוצ'יקו", "hotel": "Kawaguchiko Country Cottage Ban", "desc": "נסיעה ל-Fujikawaguchiko. Chureito Pagoda, פארק Oishi, וארוחת ערב מהסופר מול הר Fuji.", "stops": ["Chureito Pagoda", "Oishi Park"], "area": "Fujikawaguchiko, Yamanashi"}, {"date": "2027-04-14", "key": "takayama_he", "city": "טקאיאמה", "hotel": "Takayama Ouan", "desc": "בוקר עם נוף להר Fuji, ואז נסיעה שעוברת ב-Matsumoto Castle ומעל רכס Japan Alps אל Takayama.", "stops": ["Matsumoto Castle"], "area": "Takayama, Gifu"}, {"date": "2027-04-15", "key": "kanazawa_he", "city": "קנאזאווה", "hotel": "The Hotel Sanraku Kanazawa", "desc": "השוק והעיר העתיקה של Takayama בבוקר, ואז כפר Shirakawa-go בדרך אל Kanazawa.", "stops": ["Takayama Old Town", "Shirakawa-go"], "area": "Kanazawa, Ishikawa"}, {"date": "2027-04-16", "key": "kyoto_he", "city": "קיוטו", "hotel": "Villa Sanjomuromachi KYOTO", "desc": "גן Kenrokuen, ואז נסיעה ל-Kyoto והחזרת הרכב השכור בתחנת Kyoto. צ׳ק-אין — המזוודות הגדולות מחכות.", "stops": ["Kenrokuen Garden", "Kyoto Station"], "area": "Kyoto"}, {"date": "2027-04-17", "key": "kyoto_he", "city": "קיוטו", "hotel": "Villa Sanjomuromachi KYOTO", "desc": "אלפי שערי הטוריי של Fushimi Inari, ואז הרחובות ההיסטוריים של Gion.", "stops": ["Fushimi Inari Taisha", "Gion"], "area": "Kyoto"}, {"date": "2027-04-18", "key": "kyoto_he", "city": "קיוטו", "hotel": "Villa Sanjomuromachi KYOTO", "desc": "מערב Kyoto: יער הבמבוק של Arashiyama והמקדש המוזהב Kinkaku-ji.", "stops": ["Arashiyama Bamboo Grove", "Kinkaku-ji"], "area": "Kyoto"}, {"date": "2027-04-19", "key": "kyoto_he", "city": "קיוטו", "hotel": "Villa Sanjomuromachi KYOTO", "desc": "טיול יום ברכבת אל Nara — פארק הצבאים ו-Tōdai-ji — וחזרה ל-Kyoto בערב.", "stops": ["Nara Park", "Todai-ji"], "area": "Kyoto"}, {"date": "2027-04-20", "key": "osaka_he", "city": "אוסקה", "hotel": "Hotel Forza Osaka Namba", "desc": "רכבת קצרה ל-Osaka, Osaka Castle, צ׳ק-אין, וערב קולינרי בסמטאות Dotonbori.", "stops": ["Osaka Castle", "Dotonbori"], "area": "Osaka"}, {"date": "2027-04-21", "key": "hiroshima_he", "city": "הירושימה", "hotel": "THE KNOT HIROSHIMA", "desc": "שינקנסן מהיר ל-Hiroshima. Peace Park, מוזיאון הזיכרון לשלום, וכיפת ה-A-Bomb Dome — ורופטופ במלון בערב.", "stops": ["Hiroshima Peace Memorial Park", "Hiroshima Peace Memorial Museum", "Atomic Bomb Dome"], "area": "Hiroshima"}, {"date": "2027-04-22", "key": "hiroshima_he", "city": "הירושימה", "hotel": "THE KNOT HIROSHIMA", "desc": "יום מלא באי Miyajima: המעבורת, שער הטוריי הצף של Itsukushima Shrine, והרכבל אל הר Misen.", "stops": ["Miyajima Ferry Terminal", "Itsukushima Shrine", "Mount Misen Ropeway"], "area": "Hiroshima"}, {"date": "2027-04-23", "key": "tokyo2_he", "city": "טוקיו (גינזה)", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "שינקנסן ישיר מ-Hiroshima ל-Tokyo. צ׳ק-אין ב-Ginza וסיור ברחובות.", "stops": ["Ginza"], "area": "Ginza, Tokyo"}, {"date": "2027-04-24", "key": "tokyo2_he", "city": "טוקיו (גינזה)", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "teamLab Planets, ואז חוף Odaiba.", "stops": ["teamLab Planets TOKYO", "Odaiba"], "area": "Ginza, Tokyo"}, {"date": "2027-04-25", "key": "tokyo2_he", "city": "טוקיו (גינזה)", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "שוק הדגים החיצוני Tsukiji, גני Hamarikyu, וקניות בכלבואים של Ginza.", "stops": ["Tsukiji Outer Market", "Hamarikyu Gardens"], "area": "Ginza, Tokyo"}, {"date": "2027-04-26", "key": "tokyo2_he", "city": "טוקיו (גינזה)", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "יום אחרון לקניות ולאטרקציות נוספות — אריזת המזוודות.", "stops": [], "area": "Ginza, Tokyo"}, {"date": "2027-04-27", "key": "tokyo2_he", "city": "טוקיו (גינזה)", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "צ׳ק-אאוט, השארת המזוודות, ויציאה לנמל התעופה Haneda בסביבות השעה 20:30.", "stops": ["Haneda Airport"], "area": "Ginza, Tokyo"}], "flight_out": "המראה מ-Tel Aviv בשעה 15:50 ב-8 באפריל · Emirates דרך Dubai · נחיתה ב-Narita בשעה 13:30 ב-9 באפריל", "flight_back": "עזיבת המלון בסביבות השעה 20:30 ב-27 באפריל · המראה מ-Haneda (HND) בשעה 00:05 ב-28 באפריל · Emirates דרך Dubai · נחיתה בישראל באותו הבוקר", "text": {"title": "יפן, אפריל 2027", "subtitle": "צחי ויפעת · שושנה וחן בר יהודה", "dates": "8–28 באפריל 2027 · 20 יום", "getting_around": "תחבורה ולוגיסטיקה", "still_to_confirm": "נותר לאשר", "outbound_flight": "טיסת ההלוך", "return_flight": "טיסת החזור", "view_on_maps": "צפייה בגוגל מפות", "on_maps_suffix": "במפות", "confirmation": "אישור", "footer_ready": "הכל מוכן ליפן 🌸", "footer_trip": "נסיעה נעימה!", "live_note": "העמוד הזה מתעדכן במקום — פתחו את הקישור הזה בכל שלב כדי לראות את התוכנית העדכנית.", "photo_credit_prefix": "תמונות", "chapter_photo_credit": "צילום", "toggle_label": "English", "days_until": "עד הטיסה", "day_word_1": "יום", "day_word_n": "ימים", "bon_voyage": "נסיעה טובה — היום יוצאים לדרך 🌸", "hope_wonderful": "מקווים שהיה לכם טיול נפלא ביפן 🌸", "today_flight_narita": "היום: טיסה ל-Narita ✈️", "today_flight_home": "היום: חזרה לישראל ✈️", "today_prefix": "היום", "day_of_20": "מתוך 20", "tonight": "🏨 הלילה", "tomorrow": "מחר", "tomorrow_flight_home": "<strong>מחר:</strong> טיסה חזרה לישראל ✈️", "see_full_section": "📍 לצפייה בקטע המלא בהמשך העמוד", "eyebrow_jp": "יפן · אפריל 2027"}}, "en": {"days": [{"date": "2027-04-09", "key": "tokyo1_en", "city": "Tokyo", "hotel": "Mitsui Garden Hotel Jingugaien Tokyo Premier", "desc": "Land at Narita 13:30, N'EX train to Shinjuku, short taxi to the hotel. Onsen and settling in.", "stops": ["Narita International Airport", "Shinjuku Station"], "area": "Tokyo"}, {"date": "2027-04-10", "key": "tokyo1_en", "city": "Tokyo", "hotel": "Mitsui Garden Hotel Jingugaien Tokyo Premier", "desc": "Shibuya crossing, Meiji Shrine, Yoyogi Park, Harajuku's Takeshita Street.", "stops": ["Shibuya Crossing", "Meiji Shrine", "Yoyogi Park", "Takeshita Street"], "area": "Tokyo"}, {"date": "2027-04-11", "key": "tokyo1_en", "city": "Tokyo", "hotel": "Mitsui Garden Hotel Jingugaien Tokyo Premier", "desc": "Asakusa and Sensō-ji, then Akihabara. In the evening: repack into the big suitcases.", "stops": ["Sensō-ji", "Akihabara"], "area": "Tokyo"}, {"date": "2027-04-12", "key": "hakone_en", "city": "Hakone", "hotel": "Ten-yu or Tensui Saryo (onsen ryokan)", "desc": "Big suitcases picked up by Takkyubin courier, heading straight to Kyoto. Taxi to Shinjuku, train to Odawara, pick up the rental car. Owakudani valley and Lake Ashi.", "stops": ["Odawara Station", "Owakudani", "Lake Ashi"], "area": "Hakone"}, {"date": "2027-04-13", "key": "kawaguchiko_en", "city": "Fujikawaguchiko", "hotel": "Kawaguchiko Country Cottage Ban", "desc": "Drive to Fujikawaguchiko. Chureito Pagoda, Oishi Park, and a supermarket dinner facing Mt Fuji.", "stops": ["Chureito Pagoda", "Oishi Park"], "area": "Fujikawaguchiko, Yamanashi"}, {"date": "2027-04-14", "key": "takayama_en", "city": "Takayama", "hotel": "Takayama Ouan", "desc": "Morning views of Fuji, then a drive past Matsumoto Castle and over the Japan Alps to Takayama.", "stops": ["Matsumoto Castle"], "area": "Takayama, Gifu"}, {"date": "2027-04-15", "key": "kanazawa_en", "city": "Kanazawa", "hotel": "The Hotel Sanraku Kanazawa", "desc": "Takayama's morning market and old town, then Shirakawa-gō village on the way to Kanazawa.", "stops": ["Takayama Old Town", "Shirakawa-go"], "area": "Kanazawa, Ishikawa"}, {"date": "2027-04-16", "key": "kyoto_en", "city": "Kyoto", "hotel": "Villa Sanjomuromachi KYOTO", "desc": "Kenrokuen Garden, then drive to Kyoto and return the rental car at Kyoto Station. Check in — the big suitcases are waiting.", "stops": ["Kenrokuen Garden", "Kyoto Station"], "area": "Kyoto"}, {"date": "2027-04-17", "key": "kyoto_en", "city": "Kyoto", "hotel": "Villa Sanjomuromachi KYOTO", "desc": "Fushimi Inari's thousand torii gates, then the historic streets of Gion.", "stops": ["Fushimi Inari Taisha", "Gion"], "area": "Kyoto"}, {"date": "2027-04-18", "key": "kyoto_en", "city": "Kyoto", "hotel": "Villa Sanjomuromachi KYOTO", "desc": "West Kyoto: the Arashiyama bamboo forest and the golden Kinkaku-ji.", "stops": ["Arashiyama Bamboo Grove", "Kinkaku-ji"], "area": "Kyoto"}, {"date": "2027-04-19", "key": "kyoto_en", "city": "Kyoto", "hotel": "Villa Sanjomuromachi KYOTO", "desc": "Day trip by train to Nara — the deer park and Tōdai-ji — back to Kyoto for the evening.", "stops": ["Nara Park", "Todai-ji"], "area": "Kyoto"}, {"date": "2027-04-20", "key": "osaka_en", "city": "Osaka", "hotel": "Hotel Forza Osaka Namba", "desc": "Short train to Osaka, Osaka Castle, check in, then a culinary evening through the Dōtonbori alleys.", "stops": ["Osaka Castle", "Dotonbori"], "area": "Osaka"}, {"date": "2027-04-21", "key": "hiroshima_en", "city": "Hiroshima", "hotel": "THE KNOT HIROSHIMA", "desc": "Fast shinkansen to Hiroshima. Peace Park, the Memorial Museum, the A-Bomb Dome — rooftop at the hotel in the evening.", "stops": ["Hiroshima Peace Memorial Park", "Hiroshima Peace Memorial Museum", "Atomic Bomb Dome"], "area": "Hiroshima"}, {"date": "2027-04-22", "key": "hiroshima_en", "city": "Hiroshima", "hotel": "THE KNOT HIROSHIMA", "desc": "Full day on Miyajima: the ferry, Itsukushima Shrine's floating gate, and the ropeway up Mt Misen.", "stops": ["Miyajima Ferry Terminal", "Itsukushima Shrine", "Mount Misen Ropeway"], "area": "Hiroshima"}, {"date": "2027-04-23", "key": "tokyo2_en", "city": "Tokyo · Ginza", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "Direct shinkansen from Hiroshima to Tokyo. Check in at Ginza and stroll the boulevards.", "stops": ["Ginza"], "area": "Ginza, Tokyo"}, {"date": "2027-04-24", "key": "tokyo2_en", "city": "Tokyo · Ginza", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "teamLab Planets, then the Odaiba waterfront.", "stops": ["teamLab Planets TOKYO", "Odaiba"], "area": "Ginza, Tokyo"}, {"date": "2027-04-25", "key": "tokyo2_en", "city": "Tokyo · Ginza", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "The outer Tsukiji market, Hamarikyu Gardens, and shopping among Ginza's department stores.", "stops": ["Tsukiji Outer Market", "Hamarikyu Gardens"], "area": "Ginza, Tokyo"}, {"date": "2027-04-26", "key": "tokyo2_en", "city": "Tokyo · Ginza", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "A last day for shopping and any final sights — pack the suitcases.", "stops": [], "area": "Ginza, Tokyo"}, {"date": "2027-04-27", "key": "tokyo2_en", "city": "Tokyo · Ginza", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "Check out, leave the luggage. Head for Haneda Airport around 20:30.", "stops": ["Haneda Airport"], "area": "Ginza, Tokyo"}], "flight_out": "Depart Tel Aviv 15:50 on 8 April · Emirates via Dubai · land Narita 13:30 on 9 April", "flight_back": "Leave the hotel ~20:30 on 27 April · depart Haneda (HND) 00:05 on 28 April · Emirates via Dubai · land in Israel that same morning", "text": {"title": "Japan, April 2027", "subtitle": "Tzachi & Yifat · Shoshana & Hen Bar Yehuda", "dates": "8 – 28 April 2027 · 20 days", "getting_around": "Getting around", "still_to_confirm": "Still to confirm", "outbound_flight": "Outbound flight", "return_flight": "Return flight", "view_on_maps": "View on Google Maps", "on_maps_suffix": "on Maps", "confirmation": "Confirmation", "footer_ready": "Everything's ready for Japan 🌸", "footer_trip": "Have a wonderful trip!", "live_note": "This page updates in place — reopen the same link any time for the latest plan.", "photo_credit_prefix": "Photos", "chapter_photo_credit": "Photo", "toggle_label": "עברית", "days_until": "until departure", "day_word_1": "day", "day_word_n": "days", "bon_voyage": "Bon voyage — wheels up today 🌸", "hope_wonderful": "Hope you had a wonderful trip in Japan 🌸", "today_flight_narita": "Today: flight to Narita ✈️", "today_flight_home": "Today: flight home to Israel ✈️", "today_prefix": "Today", "day_of_20": "of 20", "tonight": "🏨 Tonight", "tomorrow": "Tomorrow", "tomorrow_flight_home": "<strong>Tomorrow:</strong> flight home to Israel ✈️", "see_full_section": "📍 See the full section below", "eyebrow_jp": "Japan · April 2027"}}}}</script>
 <script>
 (function(){
   var data = JSON.parse(document.getElementById('tripData').textContent);
@@ -491,15 +734,9 @@ footer{padding:20px 0 50px; text-align:center; color:var(--ink-soft); font-size:
   var today = new Date(); today.setHours(0,0,0,0);
   var todayStr = fmt(today);
   var dep = toDate(data.departure), ret = toDate(data.return);
-  var byDate = {};
-  data.days.forEach(function(d){ byDate[d.date] = d; });
-
-  var msgEl = document.getElementById('tripStatusMsg');
-  var wrapEl = document.getElementById('tripStatus');
   var oneDay = 24*60*60*1000;
   function daysBetween(a,b){ return Math.round((b-a)/oneDay); }
 
-  var nowCard = document.getElementById('nowCard');
   function renderStops(container, stops, area){
     container.innerHTML = '';
     stops.forEach(function(s){
@@ -510,56 +747,90 @@ footer{padding:20px 0 50px; text-align:center; color:var(--ink-soft); font-size:
       container.appendChild(a);
     });
   }
-  function tomorrowLine(nextDay){
-    if(!nextDay) return '';
-    return '<strong>מחר:</strong> ' + nextDay.city + ' — ' + nextDay.desc;
-  }
-  function showNowCard(opts){
-    document.getElementById('nowTitle').textContent = opts.title;
-    document.getElementById('nowDesc').textContent = opts.desc || '';
-    renderStops(document.getElementById('nowStops'), opts.stops || [], opts.area || '');
-    var hotelEl = document.getElementById('nowHotel');
-    if(opts.hotel){ hotelEl.textContent = '🏨 הלילה: ' + opts.hotel; hotelEl.style.display = 'block'; }
-    var tmrEl = document.getElementById('nowTomorrow');
-    if(opts.tomorrow){ tmrEl.innerHTML = opts.tomorrow; tmrEl.style.display = 'block'; }
-    var jumpEl = document.getElementById('nowJump');
-    if(opts.key){
-      jumpEl.style.display = 'inline-flex';
-      jumpEl.addEventListener('click', function(e){
-        e.preventDefault();
-        var el = document.getElementById(opts.key);
-        if(el){ el.classList.add('is-today'); el.scrollIntoView({behavior:'smooth', block:'start'}); }
-      });
-    }
-    nowCard.classList.add('show');
-  }
 
-  var msg = '';
-  if(today < dep){
-    var n = daysBetween(today, dep);
-    msg = '<strong>' + n + (n===1 ? ' יום' : ' ימים') + '</strong> עד הטיסה ✈️';
-  } else if(todayStr === data.departure){
-    var first = byDate[fmt(plusDays(dep,1))];
-    showNowCard({
-      title: 'היום: טיסה ל-Narita ✈️',
-      desc: data.flight_out,
-      tomorrow: first ? tomorrowLine(first) : ''
-    });
-  } else if(byDate[todayStr]){
-    var d = byDate[todayStr];
-    var tmr = byDate[fmt(plusDays(today,1))];
-    var tmrLine = tmr ? tomorrowLine(tmr) : (fmt(plusDays(today,1)) === data.return ? '<strong>מחר:</strong> טיסה חזרה לישראל ✈️' : '');
-    showNowCard({
-      title: 'היום · יום ' + (daysBetween(dep, today) + 1) + ' מתוך 20 · ' + d.city,
-      desc: d.desc, stops: d.stops, area: d.area, hotel: d.hotel,
-      tomorrow: tmrLine, key: d.key
-    });
-  } else if(todayStr === data.return){
-    showNowCard({ title: 'היום: חזרה לישראל ✈️', desc: data.flight_back });
-  } else if(today > ret){
-    msg = 'מקווים שהיה לכם טיול נפלא ביפן 🌸';
-  }
-  if(msg){ msgEl.innerHTML = msg; wrapEl.classList.add('show'); }
+  ['he','en'].forEach(function(lang){
+    var L = data.langs[lang];
+    var byDate = {};
+    L.days.forEach(function(d){ byDate[d.date] = d; });
+    var msgEl = document.getElementById('tripStatusMsg_' + lang);
+    var wrapEl = document.getElementById('tripStatus_' + lang);
+    var nowCard = document.getElementById('nowCard_' + lang);
+    var t = L.text;
+
+    function tomorrowLine(nextDay){
+      if(!nextDay) return '';
+      return '<strong>' + t.tomorrow + ':</strong> ' + nextDay.city + ' — ' + nextDay.desc;
+    }
+    function showNowCard(opts){
+      document.getElementById('nowTitle_' + lang).textContent = opts.title;
+      document.getElementById('nowDesc_' + lang).textContent = opts.desc || '';
+      renderStops(document.getElementById('nowStops_' + lang), opts.stops || [], opts.area || '');
+      var hotelEl = document.getElementById('nowHotel_' + lang);
+      if(opts.hotel){ hotelEl.textContent = t.tonight + ': ' + opts.hotel; hotelEl.style.display = 'block'; }
+      var tmrEl = document.getElementById('nowTomorrow_' + lang);
+      if(opts.tomorrow){ tmrEl.innerHTML = opts.tomorrow; tmrEl.style.display = 'block'; }
+      var jumpEl = document.getElementById('nowJump_' + lang);
+      if(opts.key){
+        jumpEl.style.display = 'inline-flex';
+        jumpEl.addEventListener('click', function(e){
+          e.preventDefault();
+          var el = document.getElementById(opts.key);
+          if(el){ el.classList.add('is-today'); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+        });
+      }
+      nowCard.classList.add('show');
+    }
+
+    var msg = '';
+    if(today < dep){
+      var n = daysBetween(today, dep);
+      msg = '<strong>' + n + '</strong> ' + (n===1 ? t.day_word_1 : t.day_word_n) + ' ' + t.days_until;
+    } else if(todayStr === data.departure){
+      var first = byDate[fmt(plusDays(dep,1))];
+      showNowCard({ title: t.today_flight_narita, desc: L.flight_out, tomorrow: first ? tomorrowLine(first) : '' });
+    } else if(byDate[todayStr]){
+      var d = byDate[todayStr];
+      var tmr = byDate[fmt(plusDays(today,1))];
+      var tmrLine = tmr ? tomorrowLine(tmr) : (fmt(plusDays(today,1)) === data.return ? t.tomorrow_flight_home : '');
+      showNowCard({
+        title: t.today_prefix + ' · ' + (daysBetween(dep, today) + 1) + ' ' + t.day_of_20 + ' · ' + d.city,
+        desc: d.desc, stops: d.stops, area: d.area, hotel: d.hotel,
+        tomorrow: tmrLine, key: d.key
+      });
+    } else if(todayStr === data.return){
+      showNowCard({ title: t.today_flight_home, desc: L.flight_back });
+    } else if(today > ret){
+      msg = t.hope_wonderful;
+    }
+    if(msg){ msgEl.innerHTML = msg; wrapEl.classList.add('show'); }
+  });
+})();
+
+function switchLang(){
+  var he = document.getElementById('block_he');
+  var en = document.getElementById('block_en');
+  var showEn = he.classList.contains('hidden') === false && false;
+  var nowShowingHe = !he.classList.contains('hidden');
+  if(nowShowingHe){ he.classList.add('hidden'); en.classList.remove('hidden'); localStorage.setItem('japanTripLang','en'); }
+  else { en.classList.add('hidden'); he.classList.remove('hidden'); localStorage.setItem('japanTripLang','he'); }
+  updateToggleLabel();
+}
+function updateToggleLabel(){
+  var he = document.getElementById('block_he');
+  var label = document.getElementById('langToggleLabel');
+  if(!label) return;
+  var nowShowingHe = !he.classList.contains('hidden');
+  label.textContent = nowShowingHe ? 'English' : 'עברית';
+}
+(function(){
+  try{
+    var saved = localStorage.getItem('japanTripLang');
+    if(saved === 'en'){
+      document.getElementById('block_he').classList.add('hidden');
+      document.getElementById('block_en').classList.remove('hidden');
+    }
+  }catch(e){}
+  updateToggleLabel();
 })();
 </script>
 </body>
