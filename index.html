@@ -223,6 +223,26 @@ main{padding-top:6px;}
 .open-items li:first-child{border-top:none;}
 .open-items li::before{content:"○"; color:var(--vermillion); flex:0 0 auto;}
 
+.reminders{
+  margin:26px 0 0; padding:20px 20px 16px; border-radius:16px;
+  background:rgba(168,67,59,0.09); border:2px solid var(--vermillion);
+}
+.reminders .head{
+  display:flex; align-items:center; gap:8px; margin:0 0 14px;
+  font-family:var(--serif); font-size:20px; font-weight:700; color:var(--vermillion);
+}
+.reminders ul{margin:0; padding:0; list-style:none;}
+.reminders li{
+  display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 10px;
+  padding:10px 0; border-top:1px dashed rgba(168,67,59,0.25);
+}
+.reminders li:first-child{border-top:none;}
+.reminders .rdate{
+  font-size:12px; font-weight:700; color:#fff; background:var(--vermillion);
+  border-radius:20px; padding:3px 11px; flex:0 0 auto; white-space:nowrap;
+}
+.reminders .rtext{font-size:14px; flex:1 1 200px;}
+
 footer{padding:20px 0 70px; text-align:center; color:var(--ink-soft); font-size:13px;}
 
 @media (max-width:480px){
@@ -256,7 +276,7 @@ footer{padding:20px 0 70px; text-align:center; color:var(--ink-soft); font-size:
     <div class="trip-status" id="tripStatus_he"><p class="msg" id="tripStatusMsg_he"></p></div>
     <p class="hero-credit">תמונות: Otto Domes (<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>), David Kernan (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>) · Wikimedia Commons</p>
   </div>
-</header><nav class="jump"><div class="wrap"><a href="#tokyo1_he">טוקיו</a><a href="#hakone_he">האקונה</a><a href="#kawaguchiko_he">פוג'י קוואגוצ'יקו</a><a href="#takayama_he">טקאיאמה</a><a href="#kanazawa_he">קנאזאווה</a><a href="#kyoto_he">קיוטו</a><a href="#osaka_he">אוסקה</a><a href="#hiroshima_he">הירושימה</a><a href="#tokyo2_he">טוקיו (גינזה)</a><a href="#logistics_he">תחבורה ולוגיסטיקה</a><a href="#open_he">נותר לאשר</a></div></nav><main><div class="wrap"><div class="now-card" id="nowCard_he">
+</header><nav class="jump"><div class="wrap"><a href="#reminders_he" style="color:var(--vermillion); font-weight:700;">🔔 תזכורות</a><a href="#tokyo1_he">טוקיו</a><a href="#hakone_he">האקונה</a><a href="#kawaguchiko_he">פוג'י קוואגוצ'יקו</a><a href="#takayama_he">טקאיאמה</a><a href="#kanazawa_he">קנאזאווה</a><a href="#kyoto_he">קיוטו</a><a href="#osaka_he">אוסקה</a><a href="#hiroshima_he">הירושימה</a><a href="#tokyo2_he">טוקיו (גינזה)</a><a href="#logistics_he">תחבורה ולוגיסטיקה</a><a href="#open_he">נותר לאשר</a></div></nav><main><div class="wrap"><div class="now-card" id="nowCard_he">
       <p class="eyebrow" id="nowEyebrow_he">כרגע</p>
       <h2 id="nowTitle_he"></h2>
       <p class="desc" id="nowDesc_he"></p>
@@ -264,6 +284,9 @@ footer{padding:20px 0 70px; text-align:center; color:var(--ink-soft); font-size:
       <p class="hotel-tonight" id="nowHotel_he" style="display:none;"></p>
       <p class="tomorrow" id="nowTomorrow_he" style="display:none;"></p>
       <a class="jump-btn" id="nowJump_he" href="#" style="display:none;">📍 לצפייה בקטע המלא בהמשך העמוד</a>
+    </div><div class="reminders" id="reminders_he">
+      <p class="head">🔔 תזכורות — להזמין מראש</p>
+      <ul><li><span class="rdate">עד אמצע פברואר 2027</span><span class="rtext">כרטיסים ל-teamLab Biovortex Kyoto (19 באפריל) נפתחים למכירה כ-60 יום מראש ואוזלים מהר — לקנות מיד כשנפתח (בערך 18.2.2027).</span></li><li><span class="rdate">בהקדם</span><span class="rtext">לבחור ולהזמין את ה-ryokan ב-Hakone — Ten-yu או Tensui Saryo.</span></li><li><span class="rdate">בהקדם</span><span class="rtext">לאשר את ההזמנה ב-Takayama Ouan.</span></li><li><span class="rdate">בהקדם</span><span class="rtext">לאשר את ההזמנה ב-The Hotel Sanraku Kanazawa.</span></li><li><span class="rdate">בהקדם</span><span class="rtext">להזמין רכב שכור לקטע Odawara–Kyoto (12–16 באפריל) — ביקוש גבוה בעונת פריחת הדובדבן.</span></li><li><span class="rdate">ממתין</span><span class="rtext">להשיג תאריכי ביטול חינם מדויקים עבור Villa Sanjomuromachi, Hotel Forza Osaka, THE KNOT HIROSHIMA ו-Daiwa Roynet Ginza.</span></li></ul>
     </div>
 <section id="tokyo1_he" class="chapter">
   <div class="chapter-head">
@@ -500,7 +523,7 @@ footer{padding:20px 0 70px; text-align:center; color:var(--ink-soft); font-size:
     <div class="trip-status" id="tripStatus_en"><p class="msg" id="tripStatusMsg_en"></p></div>
     <p class="hero-credit">Photos: Otto Domes (<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>), David Kernan (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>) · Wikimedia Commons</p>
   </div>
-</header><nav class="jump"><div class="wrap"><a href="#tokyo1_en">Tokyo</a><a href="#hakone_en">Hakone</a><a href="#kawaguchiko_en">Fujikawaguchiko</a><a href="#takayama_en">Takayama</a><a href="#kanazawa_en">Kanazawa</a><a href="#kyoto_en">Kyoto</a><a href="#osaka_en">Osaka</a><a href="#hiroshima_en">Hiroshima</a><a href="#tokyo2_en">Tokyo · Ginza</a><a href="#logistics_en">Getting around</a><a href="#open_en">Still to confirm</a></div></nav><main><div class="wrap"><div class="now-card" id="nowCard_en">
+</header><nav class="jump"><div class="wrap"><a href="#reminders_en" style="color:var(--vermillion); font-weight:700;">🔔 Reminders</a><a href="#tokyo1_en">Tokyo</a><a href="#hakone_en">Hakone</a><a href="#kawaguchiko_en">Fujikawaguchiko</a><a href="#takayama_en">Takayama</a><a href="#kanazawa_en">Kanazawa</a><a href="#kyoto_en">Kyoto</a><a href="#osaka_en">Osaka</a><a href="#hiroshima_en">Hiroshima</a><a href="#tokyo2_en">Tokyo · Ginza</a><a href="#logistics_en">Getting around</a><a href="#open_en">Still to confirm</a></div></nav><main><div class="wrap"><div class="now-card" id="nowCard_en">
       <p class="eyebrow" id="nowEyebrow_en">Right now</p>
       <h2 id="nowTitle_en"></h2>
       <p class="desc" id="nowDesc_en"></p>
@@ -508,6 +531,9 @@ footer{padding:20px 0 70px; text-align:center; color:var(--ink-soft); font-size:
       <p class="hotel-tonight" id="nowHotel_en" style="display:none;"></p>
       <p class="tomorrow" id="nowTomorrow_en" style="display:none;"></p>
       <a class="jump-btn" id="nowJump_en" href="#" style="display:none;">📍 See the full section below</a>
+    </div><div class="reminders" id="reminders_en">
+      <p class="head">🔔 Reminders — book in advance</p>
+      <ul><li><span class="rdate">By mid-February 2027</span><span class="rtext">teamLab Biovortex Kyoto tickets (for Apr 19) go on sale ~60 days ahead and sell out fast — buy the moment they open (around Feb 18, 2027).</span></li><li><span class="rdate">As soon as possible</span><span class="rtext">Choose and book the Hakone ryokan — Ten-yu or Tensui Saryo.</span></li><li><span class="rdate">As soon as possible</span><span class="rtext">Confirm the Takayama Ouan booking.</span></li><li><span class="rdate">As soon as possible</span><span class="rtext">Confirm The Hotel Sanraku Kanazawa booking.</span></li><li><span class="rdate">As soon as possible</span><span class="rtext">Reserve the rental car for the Odawara–Kyoto leg (Apr 12–16) — high demand during cherry blossom season.</span></li><li><span class="rdate">Ongoing</span><span class="rtext">Get the exact free-cancellation dates for Villa Sanjomuromachi, Hotel Forza Osaka, THE KNOT HIROSHIMA, and Daiwa Roynet Ginza.</span></li></ul>
     </div>
 <section id="tokyo1_en" class="chapter">
   <div class="chapter-head">
