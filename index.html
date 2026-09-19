@@ -246,10 +246,10 @@ main{padding-top:6px;}
 
 .view-tabs{
   position:sticky; top:0; z-index:11; background:var(--paper);
-  border-bottom:1px solid var(--line); display:flex; gap:0;
+  border-bottom:1px solid var(--line); display:flex; gap:0; overflow-x:auto;
 }
 .view-tabs button{
-  flex:1; font-family:var(--sans); font-size:14px; font-weight:600; padding:13px 10px;
+  flex:1; font-family:var(--sans); font-size:13.5px; font-weight:600; padding:13px 6px; white-space:nowrap; min-width:max-content;
   background:none; border:none; color:var(--ink-soft); cursor:pointer;
   border-bottom:3px solid transparent;
 }
@@ -298,6 +298,108 @@ main{padding-top:6px;}
 .fx-err{font-size:14px; color:var(--vermillion); font-weight:600;}
 .fx-note{font-size:12.5px; color:var(--ink-soft); margin:14px 2px 0; line-height:1.6;}
 
+.view-tix{display:none;}
+.view-tix.show{display:block;}
+.tix-wrap{padding:0 16px 110px;}
+.tx-ltr{unicode-bidi:isolate; direction:ltr; display:inline-block;}
+.tix-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; letter-spacing:.06em;}
+
+/* lock screen */
+.tix-lock{max-width:420px; margin:36px auto 0; text-align:center; padding:26px 20px; background:var(--paper-alt); border:1px solid var(--line); border-radius:16px;}
+.tix-lock .ico{font-size:34px;}
+.tix-lock h2{font-family:var(--serif); font-size:22px; margin:6px 0 4px;}
+.tix-lock p{font-size:14px; color:var(--ink-soft); margin:0 0 16px;}
+.tix-code{width:100%; box-sizing:border-box; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:22px; letter-spacing:.12em; text-align:center; padding:12px; border:1px solid var(--line); border-radius:10px; background:var(--paper); color:var(--ink);}
+.tix-code:focus{outline:2px solid var(--indigo); outline-offset:1px;}
+.tix-remember{display:flex; gap:8px; align-items:center; justify-content:center; font-size:13px; color:var(--ink-soft); margin:12px 0;}
+.tix-err{color:var(--vermillion); font-weight:600; font-size:14px; margin-top:12px; min-height:20px;}
+.tix-busy{padding:60px 0; text-align:center; color:var(--ink-soft); font-size:15px;}
+
+/* person chips */
+.tix-chips{position:sticky; top:var(--tabsH,46px); z-index:9; background:var(--paper); padding:10px 0 8px; display:flex; gap:5px; overflow-x:auto; -webkit-overflow-scrolling:touch;}
+.tix-chip{flex:0 0 auto; font-family:var(--sans); font-size:13.5px; font-weight:700; padding:9px 10px; border-radius:999px; border:1px solid var(--line); background:var(--paper-alt); color:var(--ink); cursor:pointer;}
+.tix-chip.on{background:var(--indigo); color:var(--paper); border-color:var(--indigo);}
+
+/* next-flight banner */
+.tix-next{margin:8px 0 14px; padding:14px 16px; border-radius:14px; background:var(--indigo-deep); color:#EDE7DA; border-inline-start:5px solid var(--sakura);}
+.tix-next .k{font-size:12px; font-weight:700; letter-spacing:.05em; opacity:.8;}
+.tix-next .big{font-family:var(--serif); font-size:21px; margin:4px 0 2px;}
+.tix-next .sub{font-size:14px;}
+.tix-next .sub b{color:#fff;}
+.tix-next.done{background:var(--paper-alt); color:var(--ink);}
+
+/* pass card */
+.tix-pass{background:var(--paper-alt); border:1px solid var(--line); border-radius:16px; padding:16px;}
+.tix-first{font-family:var(--serif); font-size:24px; font-weight:700; line-height:1.1;}
+.tix-printed{font-size:12.5px; color:var(--ink-soft); margin-top:3px;}
+.tix-ids{display:grid; gap:10px; margin:14px 0;}
+.tix-id{display:flex; align-items:center; gap:10px; background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:10px 12px;}
+.tix-id .kv{flex:1; min-width:0;}
+.tix-id .k{font-size:11.5px; font-weight:700; color:var(--ink-soft); letter-spacing:.03em;}
+.tix-id .v{font-size:25px; font-weight:700; line-height:1.25; word-break:break-all;}
+.tix-id .v.sm{font-size:clamp(15px,4.9vw,21px); white-space:nowrap; word-break:normal;}
+.tix-copy{flex:0 0 auto; font-family:var(--sans); font-size:13px; font-weight:700; padding:9px 12px; border-radius:9px; border:1px solid var(--line); background:var(--paper-alt); color:var(--indigo); cursor:pointer; min-width:74px;}
+.tix-bc{background:#fff; border-radius:12px; padding:6px; border:1px solid var(--line); cursor:zoom-in;}
+.tix-bc img{display:block; width:100%; height:auto;}
+.tix-bc-hint{font-size:12px; color:var(--ink-soft); text-align:center; margin:6px 0 0;}
+.tix-actions{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px;}
+.tix-btn{display:flex; align-items:center; justify-content:center; text-align:center; gap:6px; font-family:var(--sans); font-size:14px; font-weight:700; padding:13px 8px; min-height:48px; border-radius:12px; border:1px solid var(--line); background:var(--paper); color:var(--indigo); text-decoration:none; cursor:pointer; box-sizing:border-box;}
+.tix-btn.primary{background:var(--indigo); color:var(--paper); border-color:var(--indigo); grid-column:1 / -1;}
+.tix-btn.on{background:var(--sakura-soft); border-color:var(--sakura);}
+.tix-btn[aria-disabled="true"]{opacity:.55; pointer-events:none;}
+
+/* legs */
+.tix-h{font-family:var(--serif); font-size:19px; margin:24px 0 10px;}
+.tix-leg{background:var(--paper-alt); border:1px solid var(--line); border-radius:14px; padding:14px; margin-bottom:12px;}
+.tix-leg.done{opacity:.55;}
+.tix-leg.todo.first-todo, .tix-leg.air{border-color:var(--sakura); box-shadow:0 0 0 2px var(--sakura-soft);}
+.tix-leg-h{display:flex; align-items:center; justify-content:space-between; gap:8px;}
+.tix-leg-h .route{font-size:22px; font-weight:800; letter-spacing:.02em;}
+.tix-badge{font-size:11.5px; font-weight:800; padding:3px 9px; border-radius:999px; background:var(--sakura); color:#fff;}
+.tix-badge.dim{background:var(--line); color:var(--ink-soft);}
+.tix-cities{font-size:13px; color:var(--ink-soft); margin:2px 0 10px;}
+.tix-times{display:grid; grid-template-columns:1fr auto 1fr; gap:8px; align-items:start;}
+.tix-times .k{font-size:11.5px; font-weight:700; color:var(--ink-soft);}
+.tix-times .t{font-size:30px; font-weight:800; line-height:1.1; direction:ltr; unicode-bidi:isolate;}
+.tix-times .d{font-size:13px; font-weight:600;}
+.tix-times .s{font-size:12.5px; color:var(--ink-soft); margin-top:2px;}
+.tix-times .mid{align-self:center; font-size:20px; color:var(--ink-soft);}
+.tix-meta{display:grid; grid-template-columns:auto 1fr; gap:6px 12px; margin-top:12px; padding-top:10px; border-top:1px dashed var(--line); font-size:14px;}
+.tix-meta .k{color:var(--ink-soft); font-weight:600;}
+.tix-note{margin-top:10px; padding:8px 10px; border-radius:9px; background:var(--paper); font-size:13.5px;}
+.tix-note b{color:var(--vermillion);}
+
+/* all view */
+.tix-row{display:block; width:100%; text-align:start; font-family:var(--sans); background:var(--paper-alt); border:1px solid var(--line); border-radius:14px; padding:13px 14px; margin-bottom:10px; color:var(--ink); cursor:pointer;}
+.tix-row .n{font-family:var(--serif); font-size:19px; font-weight:700;}
+.tix-row .pn{font-family:var(--sans); font-size:12px; font-weight:400; color:var(--ink-soft); margin-inline-start:8px;}
+.tix-row .m{font-size:14px; margin-top:5px;}
+.tix-row .m2{font-size:13px; color:var(--ink-soft); margin-top:3px;}
+.tix-warn{background:var(--sakura-soft); border:1px solid var(--sakura); border-radius:12px; padding:12px 14px; font-size:14px; margin:14px 0;}
+.tix-warn b{display:block; margin-bottom:4px;}
+
+/* rules + footer */
+.tix-rules{background:var(--paper-alt); border:1px solid var(--line); border-radius:14px; padding:6px 16px;}
+.tix-rules li{padding:9px 0; border-top:1px dashed var(--line); font-size:14px; list-style:none;}
+.tix-rules li:first-child{border-top:none;}
+.tix-rules ul{margin:0; padding:0;}
+.tix-foot{margin-top:22px; text-align:center; font-size:12.5px; color:var(--ink-soft); line-height:1.9;}
+.tix-foot button{font-family:var(--sans); font-size:12.5px; background:none; border:none; color:var(--indigo); text-decoration:underline; cursor:pointer;}
+
+/* full-screen barcode */
+.tix-full{position:fixed; inset:0; z-index:300; background:#fff; color:#000; display:none; flex-direction:column; align-items:center; justify-content:center; padding:18px; text-align:center; overflow:auto;}
+.tix-full.show{display:flex;}
+.tix-full img{width:100%; max-width:1000px; height:auto; display:block;}
+.tix-full .fx-close{position:absolute; top:calc(12px + env(safe-area-inset-top, 0px)); inset-inline-end:14px; font-size:22px; font-weight:700; width:48px; height:48px; border-radius:50%; border:2px solid #000; background:#fff; color:#000; cursor:pointer;}
+.tix-full .fname{font-size:16px; font-weight:800; margin-bottom:12px; direction:ltr;}
+.tix-full .fnum{font:800 28px/1.2 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; margin-top:16px; direction:ltr; letter-spacing:.05em;}
+.tix-full .fpnr{font:800 24px/1.2 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; margin-top:8px; direction:ltr; letter-spacing:.12em;}
+.tix-full .hint{font-size:13px; color:#444; margin-top:16px; max-width:420px;}
+@media print{ .view-tix,.tix-full{display:none !important;} }
+
+body.tix-on .lang-toggle{display:none;}
+.now-card #nowTix_he,.now-card #nowTix_en{width:fit-content; font-size:14px; font-weight:700;}
+
 footer{padding:20px 0 70px; text-align:center; color:var(--ink-soft); font-size:13px;}
 
 @media (max-width:480px){
@@ -333,8 +435,9 @@ footer{padding:20px 0 70px; text-align:center; color:var(--ink-soft); font-size:
   </div>
 </header><div class="view-tabs">
       <button type="button" class="active" id="tabItin_he" onclick="showView('he','itin')">📋 מסלול</button>
+      <button type="button" id="tabTix_he" onclick="showView('he','tix')">🎫 כרטיסים</button>
       <button type="button" id="tabMap_he" onclick="showView('he','map')">🗺️ מפה</button>
-      <button type="button" id="tabFx_he" onclick="showView('he','fx')">💴 המרת מטבע</button>
+      <button type="button" id="tabFx_he" onclick="showView('he','fx')">💴 מטבע</button>
     </div><div class="view-itinerary" id="viewItin_he"><nav class="jump"><div class="wrap"><a href="#reminders_he" style="color:var(--vermillion); font-weight:700;">🔔 תזכורות</a><a href="#tokyo1_he">טוקיו</a><a href="#hakone_he">האקונה</a><a href="#kawaguchiko_he">פוג'י קוואגוצ'יקו</a><a href="#takayama_he">טקאיאמה</a><a href="#kanazawa_he">קנאזאווה</a><a href="#kyoto_he">קיוטו</a><a href="#osaka_he">אוסקה</a><a href="#hiroshima_he">הירושימה</a><a href="#tokyo2_he">טוקיו (גינזה)</a><a href="#logistics_he">תחבורה ולוגיסטיקה</a><a href="#open_he">נותר לאשר</a></div></nav><main><div class="wrap"><div class="now-card" id="nowCard_he">
       <p class="eyebrow" id="nowEyebrow_he">כרגע</p>
       <h2 id="nowTitle_he"></h2>
@@ -343,6 +446,7 @@ footer{padding:20px 0 70px; text-align:center; color:var(--ink-soft); font-size:
       <p class="hotel-tonight" id="nowHotel_he" style="display:none;"></p>
       <p class="tomorrow" id="nowTomorrow_he" style="display:none;"></p>
       <a class="jump-btn" id="nowJump_he" href="#" style="display:none;">📍 לצפייה בקטע המלא בהמשך העמוד</a>
+      <a class="jump-btn" id="nowTix_he" href="#tickets" style="display:none;">🎫 פתיחת כרטיסי הטיסה</a>
     </div><div class="reminders" id="reminders_he">
       <p class="head">🔔 תזכורות — להזמין מראש</p>
       <ul><li><span class="rdate">עד אמצע פברואר 2027</span><span class="rtext">כרטיסים ל-teamLab Biovortex Kyoto (19 באפריל) נפתחים למכירה כ-60 יום מראש ואוזלים מהר — לקנות מיד כשנפתח (בערך 18.2.2027).</span></li><li><span class="rdate">בהקדם</span><span class="rtext">לבחור ולהזמין את ה-ryokan ב-Hakone — Ten-yu או Tensui Saryo.</span></li><li><span class="rdate">בהקדם</span><span class="rtext">לאשר את ההזמנה ב-Takayama Ouan.</span></li><li><span class="rdate">בהקדם</span><span class="rtext">לאשר את ההזמנה ב-The Hotel Sanraku Kanazawa.</span></li><li><span class="rdate">בהקדם</span><span class="rtext">להזמין רכב שכור לקטע Odawara–Kyoto (12–16 באפריל) — ביקוש גבוה בעונת פריחת הדובדבן.</span></li><li><span class="rdate">ממתין</span><span class="rtext">להשיג תאריכי ביטול חינם מדויקים עבור Villa Sanjomuromachi, Hotel Forza Osaka, THE KNOT HIROSHIMA ו-Daiwa Roynet Ginza.</span></li></ul>
@@ -576,6 +680,7 @@ footer{padding:20px 0 70px; text-align:center; color:var(--ink-soft); font-size:
         </div>
       </div>
     </div>
+<div class="view-tix" id="viewTix_he"><div class="wrap tix-wrap" id="tixRoot_he"></div></div>
 <div class="view-fx" id="viewFx_he">
       <div class="wrap fx-wrap">
         <h2>מחשבון המרה: שקל ← ין</h2>
@@ -609,6 +714,7 @@ footer{padding:20px 0 70px; text-align:center; color:var(--ink-soft); font-size:
   </div>
 </header><div class="view-tabs">
       <button type="button" class="active" id="tabItin_en" onclick="showView('en','itin')">📋 Itinerary</button>
+      <button type="button" id="tabTix_en" onclick="showView('en','tix')">🎫 Tickets</button>
       <button type="button" id="tabMap_en" onclick="showView('en','map')">🗺️ Map</button>
       <button type="button" id="tabFx_en" onclick="showView('en','fx')">💴 Currency</button>
     </div><div class="view-itinerary" id="viewItin_en"><nav class="jump"><div class="wrap"><a href="#reminders_en" style="color:var(--vermillion); font-weight:700;">🔔 Reminders</a><a href="#tokyo1_en">Tokyo</a><a href="#hakone_en">Hakone</a><a href="#kawaguchiko_en">Fujikawaguchiko</a><a href="#takayama_en">Takayama</a><a href="#kanazawa_en">Kanazawa</a><a href="#kyoto_en">Kyoto</a><a href="#osaka_en">Osaka</a><a href="#hiroshima_en">Hiroshima</a><a href="#tokyo2_en">Tokyo · Ginza</a><a href="#logistics_en">Getting around</a><a href="#open_en">Still to confirm</a></div></nav><main><div class="wrap"><div class="now-card" id="nowCard_en">
@@ -619,6 +725,7 @@ footer{padding:20px 0 70px; text-align:center; color:var(--ink-soft); font-size:
       <p class="hotel-tonight" id="nowHotel_en" style="display:none;"></p>
       <p class="tomorrow" id="nowTomorrow_en" style="display:none;"></p>
       <a class="jump-btn" id="nowJump_en" href="#" style="display:none;">📍 See the full section below</a>
+      <a class="jump-btn" id="nowTix_en" href="#tickets" style="display:none;">🎫 Open flight tickets</a>
     </div><div class="reminders" id="reminders_en">
       <p class="head">🔔 Reminders — book in advance</p>
       <ul><li><span class="rdate">By mid-February 2027</span><span class="rtext">teamLab Biovortex Kyoto tickets (for Apr 19) go on sale ~60 days ahead and sell out fast — buy the moment they open (around Feb 18, 2027).</span></li><li><span class="rdate">As soon as possible</span><span class="rtext">Choose and book the Hakone ryokan — Ten-yu or Tensui Saryo.</span></li><li><span class="rdate">As soon as possible</span><span class="rtext">Confirm the Takayama Ouan booking.</span></li><li><span class="rdate">As soon as possible</span><span class="rtext">Confirm The Hotel Sanraku Kanazawa booking.</span></li><li><span class="rdate">As soon as possible</span><span class="rtext">Reserve the rental car for the Odawara–Kyoto leg (Apr 12–16) — high demand during cherry blossom season.</span></li><li><span class="rdate">Ongoing</span><span class="rtext">Get the exact free-cancellation dates for Villa Sanjomuromachi, Hotel Forza Osaka, THE KNOT HIROSHIMA, and Daiwa Roynet Ginza.</span></li></ul>
@@ -852,6 +959,7 @@ footer{padding:20px 0 70px; text-align:center; color:var(--ink-soft); font-size:
         </div>
       </div>
     </div>
+<div class="view-tix" id="viewTix_en"><div class="wrap tix-wrap" id="tixRoot_en"></div></div>
 <div class="view-fx" id="viewFx_en">
       <div class="wrap fx-wrap">
         <h2>Currency converter: shekel → yen</h2>
@@ -866,7 +974,8 @@ footer{padding:20px 0 70px; text-align:center; color:var(--ink-soft); font-size:
         </div>
         <p class="fx-note">Mid-market reference rate, refreshed once a day by the free rate providers. Card, ATM and exchange-counter rates in Japan differ slightly because of fees and spreads.</p>
       </div>
-    </div></div><button class="lang-toggle" id="langToggleBtn" type="button" onclick="switchLang()">🌐 <span id="langToggleLabel"></span></button>
+    </div></div><div class="tix-full" id="tixFull" role="dialog" aria-modal="true"><button type="button" class="fx-close" aria-label="Close">✕</button><div class="fname" id="tixFullName"></div><img id="tixFullImg" alt="Ticket barcode"><div class="fnum" id="tixFullNum"></div><div class="fpnr" id="tixFullPnr"></div><p class="hint" id="tixFullHint"></p></div>
+<button class="lang-toggle" id="langToggleBtn" type="button" onclick="switchLang()">🌐 <span id="langToggleLabel"></span></button>
 <script type="application/json" id="tripData">{"departure": "2027-04-08", "return": "2027-04-28", "langs": {"he": {"days": [{"date": "2027-04-09", "key": "tokyo1_he", "city": "טוקיו", "hotel": "Mitsui Garden Hotel Jingugaien Tokyo Premier", "desc": "נחיתה ב-Narita בשעה 13:30, רכבת N'EX ל-Shinjuku, ומשם מונית קצרה למלון. אונסן והתאקלמות.", "stops": ["Narita International Airport", "Shinjuku Station"], "area": "Tokyo"}, {"date": "2027-04-10", "key": "tokyo1_he", "city": "טוקיו", "hotel": "Mitsui Garden Hotel Jingugaien Tokyo Premier", "desc": "Shibuya Crossing, מקדש Meiji, פארק Yoyogi ורחוב Takeshita ב-Harajuku.", "stops": ["Shibuya Crossing", "Meiji Shrine", "Yoyogi Park", "Takeshita Street"], "area": "Tokyo"}, {"date": "2027-04-11", "key": "tokyo1_he", "city": "טוקיו", "hotel": "Mitsui Garden Hotel Jingugaien Tokyo Premier", "desc": "Asakusa ומקדש Sensō-ji, ואז Akihabara. בערב: אריזה מחדש למזוודות הגדולות.", "stops": ["Sensō-ji", "Akihabara"], "area": "Tokyo"}, {"date": "2027-04-12", "key": "hakone_he", "city": "האקונה", "hotel": "Ten-yu or Tensui Saryo (onsen ryokan)", "desc": "המזוודות הגדולות נאספות ע״י שליח Takkyubin ויוצאות היישר ל-Kyoto. מונית ל-Shinjuku, רכבת ל-Odawara, ואיסוף הרכב השכור. עמק Owakudani ואגם Ashi.", "stops": ["Odawara Station", "Owakudani", "Lake Ashi"], "area": "Hakone"}, {"date": "2027-04-13", "key": "kawaguchiko_he", "city": "פוג'י קוואגוצ'יקו", "hotel": "Kawaguchiko Country Cottage Ban", "desc": "נסיעה ל-Fujikawaguchiko. Chureito Pagoda, פארק Oishi, וארוחת ערב מהסופר מול הר Fuji.", "stops": ["Chureito Pagoda", "Oishi Park"], "area": "Fujikawaguchiko, Yamanashi"}, {"date": "2027-04-14", "key": "takayama_he", "city": "טקאיאמה", "hotel": "Takayama Ouan", "desc": "בוקר עם נוף להר Fuji, ואז נסיעה שעוברת ב-Matsumoto Castle ומעל רכס Japan Alps אל Takayama.", "stops": ["Matsumoto Castle"], "area": "Takayama, Gifu"}, {"date": "2027-04-15", "key": "kanazawa_he", "city": "קנאזאווה", "hotel": "The Hotel Sanraku Kanazawa", "desc": "השוק והעיר העתיקה של Takayama בבוקר, ואז כפר Shirakawa-go בדרך אל Kanazawa.", "stops": ["Takayama Old Town", "Shirakawa-go"], "area": "Kanazawa, Ishikawa"}, {"date": "2027-04-16", "key": "kyoto_he", "city": "קיוטו", "hotel": "Villa Sanjomuromachi KYOTO", "desc": "גן Kenrokuen, ואז נסיעה ל-Kyoto והחזרת הרכב השכור בתחנת Kyoto. צ׳ק-אין — המזוודות הגדולות מחכות.", "stops": ["Kenrokuen Garden", "Kyoto Station"], "area": "Kyoto"}, {"date": "2027-04-17", "key": "kyoto_he", "city": "קיוטו", "hotel": "Villa Sanjomuromachi KYOTO", "desc": "אלפי שערי הטוריי של Fushimi Inari, ואז הרחובות ההיסטוריים של Gion.", "stops": ["Fushimi Inari Taisha", "Gion"], "area": "Kyoto"}, {"date": "2027-04-18", "key": "kyoto_he", "city": "קיוטו", "hotel": "Villa Sanjomuromachi KYOTO", "desc": "מערב Kyoto: יער הבמבוק של Arashiyama והמקדש המוזהב Kinkaku-ji.", "stops": ["Arashiyama Bamboo Grove", "Kinkaku-ji"], "area": "Kyoto"}, {"date": "2027-04-19", "key": "kyoto_he", "city": "קיוטו", "hotel": "Villa Sanjomuromachi KYOTO", "desc": "בוקר וצהריים: Kiyomizu-dera והסמטאות ההיסטוריות Sannenzaka ו-Ninenzaka. בערב: teamLab Biovortex Kyoto (פתוח עד 21:00), קרוב לתחנת Kyoto.", "stops": ["Kiyomizu-dera", "Sannenzaka", "Ninenzaka", "teamLab Biovortex Kyoto"], "area": "Kyoto"}, {"date": "2027-04-20", "key": "osaka_he", "city": "אוסקה", "hotel": "Hotel Forza Osaka Namba", "desc": "רכבת קצרה ל-Osaka, Osaka Castle, צ׳ק-אין, וערב קולינרי בסמטאות Dotonbori.", "stops": ["Osaka Castle", "Dotonbori"], "area": "Osaka"}, {"date": "2027-04-21", "key": "hiroshima_he", "city": "הירושימה", "hotel": "THE KNOT HIROSHIMA", "desc": "שינקנסן מהיר ל-Hiroshima. Peace Park, מוזיאון הזיכרון לשלום, וכיפת ה-A-Bomb Dome — ורופטופ במלון בערב.", "stops": ["Hiroshima Peace Memorial Park", "Hiroshima Peace Memorial Museum", "Atomic Bomb Dome"], "area": "Hiroshima"}, {"date": "2027-04-22", "key": "hiroshima_he", "city": "הירושימה", "hotel": "THE KNOT HIROSHIMA", "desc": "יום מלא באי Miyajima: המעבורת, שער הטוריי הצף של Itsukushima Shrine, והרכבל אל הר Misen.", "stops": ["Miyajima Ferry Terminal", "Itsukushima Shrine", "Mount Misen Ropeway"], "area": "Hiroshima"}, {"date": "2027-04-23", "key": "tokyo2_he", "city": "טוקיו (גינזה)", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "שינקנסן ישיר מ-Hiroshima ל-Tokyo. צ׳ק-אין ב-Ginza וסיור ברחובות.", "stops": ["Ginza"], "area": "Ginza, Tokyo"}, {"date": "2027-04-24", "key": "tokyo2_he", "city": "טוקיו (גינזה)", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "יום רגוע יותר ב-Odaiba — אפשר להוסיף בהתאם לרצון.", "stops": ["Odaiba"], "area": "Ginza, Tokyo"}, {"date": "2027-04-25", "key": "tokyo2_he", "city": "טוקיו (גינזה)", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "שוק הדגים החיצוני Tsukiji, גני Hamarikyu, וקניות בכלבואים של Ginza.", "stops": ["Tsukiji Outer Market", "Hamarikyu Gardens"], "area": "Ginza, Tokyo"}, {"date": "2027-04-26", "key": "tokyo2_he", "city": "טוקיו (גינזה)", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "יום אחרון לקניות ולאטרקציות נוספות — אריזת המזוודות.", "stops": [], "area": "Ginza, Tokyo"}, {"date": "2027-04-27", "key": "tokyo2_he", "city": "טוקיו (גינזה)", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "צ׳ק-אאוט, השארת המזוודות, ויציאה לנמל התעופה Haneda בסביבות השעה 20:30.", "stops": ["Haneda Airport"], "area": "Ginza, Tokyo"}], "flight_out": "המראה מ-Tel Aviv בשעה 15:50 ב-8 באפריל · Emirates דרך Dubai · נחיתה ב-Narita בשעה 13:30 ב-9 באפריל", "flight_back": "עזיבת המלון בסביבות השעה 20:30 ב-27 באפריל · המראה מ-Haneda (HND) בשעה 00:05 ב-28 באפריל · Emirates דרך Dubai · נחיתה בישראל באותו הבוקר", "text": {"title": "יפן, אפריל 2027", "subtitle": "נוחות בע״מ", "dates": "8–28 באפריל 2027 · 20 יום", "getting_around": "תחבורה ולוגיסטיקה", "still_to_confirm": "נותר לאשר", "outbound_flight": "טיסת ההלוך", "return_flight": "טיסת החזור", "view_on_maps": "צפייה בגוגל מפות", "on_maps_suffix": "במפות", "confirmation": "אישור", "footer_ready": "הכל מוכן ליפן 🌸", "footer_trip": "נסיעה נעימה!", "live_note": "העמוד הזה מתעדכן במקום — פתחו את הקישור הזה בכל שלב כדי לראות את התוכנית העדכנית.", "photo_credit_prefix": "תמונות", "chapter_photo_credit": "צילום", "toggle_label": "English", "days_until": "עד הטיסה", "day_word_1": "יום", "day_word_n": "ימים", "bon_voyage": "נסיעה טובה — היום יוצאים לדרך 🌸", "hope_wonderful": "מקווים שהיה לכם טיול נפלא ביפן 🌸", "today_flight_narita": "היום: טיסה ל-Narita ✈️", "today_flight_home": "היום: חזרה לישראל ✈️", "today_prefix": "היום", "day_of_20": "מתוך 20", "tonight": "🏨 הלילה", "tomorrow": "מחר", "tomorrow_flight_home": "<strong>מחר:</strong> טיסה חזרה לישראל ✈️", "see_full_section": "📍 לצפייה בקטע המלא בהמשך העמוד", "eyebrow_jp": "יפן · אפריל 2027"}}, "en": {"days": [{"date": "2027-04-09", "key": "tokyo1_en", "city": "Tokyo", "hotel": "Mitsui Garden Hotel Jingugaien Tokyo Premier", "desc": "Land at Narita 13:30, N'EX train to Shinjuku, short taxi to the hotel. Onsen and settling in.", "stops": ["Narita International Airport", "Shinjuku Station"], "area": "Tokyo"}, {"date": "2027-04-10", "key": "tokyo1_en", "city": "Tokyo", "hotel": "Mitsui Garden Hotel Jingugaien Tokyo Premier", "desc": "Shibuya crossing, Meiji Shrine, Yoyogi Park, Harajuku's Takeshita Street.", "stops": ["Shibuya Crossing", "Meiji Shrine", "Yoyogi Park", "Takeshita Street"], "area": "Tokyo"}, {"date": "2027-04-11", "key": "tokyo1_en", "city": "Tokyo", "hotel": "Mitsui Garden Hotel Jingugaien Tokyo Premier", "desc": "Asakusa and Sensō-ji, then Akihabara. In the evening: repack into the big suitcases.", "stops": ["Sensō-ji", "Akihabara"], "area": "Tokyo"}, {"date": "2027-04-12", "key": "hakone_en", "city": "Hakone", "hotel": "Ten-yu or Tensui Saryo (onsen ryokan)", "desc": "Big suitcases picked up by Takkyubin courier, heading straight to Kyoto. Taxi to Shinjuku, train to Odawara, pick up the rental car. Owakudani valley and Lake Ashi.", "stops": ["Odawara Station", "Owakudani", "Lake Ashi"], "area": "Hakone"}, {"date": "2027-04-13", "key": "kawaguchiko_en", "city": "Fujikawaguchiko", "hotel": "Kawaguchiko Country Cottage Ban", "desc": "Drive to Fujikawaguchiko. Chureito Pagoda, Oishi Park, and a supermarket dinner facing Mt Fuji.", "stops": ["Chureito Pagoda", "Oishi Park"], "area": "Fujikawaguchiko, Yamanashi"}, {"date": "2027-04-14", "key": "takayama_en", "city": "Takayama", "hotel": "Takayama Ouan", "desc": "Morning views of Fuji, then a drive past Matsumoto Castle and over the Japan Alps to Takayama.", "stops": ["Matsumoto Castle"], "area": "Takayama, Gifu"}, {"date": "2027-04-15", "key": "kanazawa_en", "city": "Kanazawa", "hotel": "The Hotel Sanraku Kanazawa", "desc": "Takayama's morning market and old town, then Shirakawa-gō village on the way to Kanazawa.", "stops": ["Takayama Old Town", "Shirakawa-go"], "area": "Kanazawa, Ishikawa"}, {"date": "2027-04-16", "key": "kyoto_en", "city": "Kyoto", "hotel": "Villa Sanjomuromachi KYOTO", "desc": "Kenrokuen Garden, then drive to Kyoto and return the rental car at Kyoto Station. Check in — the big suitcases are waiting.", "stops": ["Kenrokuen Garden", "Kyoto Station"], "area": "Kyoto"}, {"date": "2027-04-17", "key": "kyoto_en", "city": "Kyoto", "hotel": "Villa Sanjomuromachi KYOTO", "desc": "Fushimi Inari's thousand torii gates, then the historic streets of Gion.", "stops": ["Fushimi Inari Taisha", "Gion"], "area": "Kyoto"}, {"date": "2027-04-18", "key": "kyoto_en", "city": "Kyoto", "hotel": "Villa Sanjomuromachi KYOTO", "desc": "West Kyoto: the Arashiyama bamboo forest and the golden Kinkaku-ji.", "stops": ["Arashiyama Bamboo Grove", "Kinkaku-ji"], "area": "Kyoto"}, {"date": "2027-04-19", "key": "kyoto_en", "city": "Kyoto", "hotel": "Villa Sanjomuromachi KYOTO", "desc": "Morning and afternoon: Kiyomizu-dera and the historic lanes of Sannenzaka and Ninenzaka. In the evening: teamLab Biovortex Kyoto (open until 21:00), close to Kyoto Station.", "stops": ["Kiyomizu-dera", "Sannenzaka", "Ninenzaka", "teamLab Biovortex Kyoto"], "area": "Kyoto"}, {"date": "2027-04-20", "key": "osaka_en", "city": "Osaka", "hotel": "Hotel Forza Osaka Namba", "desc": "Short train to Osaka, Osaka Castle, check in, then a culinary evening through the Dōtonbori alleys.", "stops": ["Osaka Castle", "Dotonbori"], "area": "Osaka"}, {"date": "2027-04-21", "key": "hiroshima_en", "city": "Hiroshima", "hotel": "THE KNOT HIROSHIMA", "desc": "Fast shinkansen to Hiroshima. Peace Park, the Memorial Museum, the A-Bomb Dome — rooftop at the hotel in the evening.", "stops": ["Hiroshima Peace Memorial Park", "Hiroshima Peace Memorial Museum", "Atomic Bomb Dome"], "area": "Hiroshima"}, {"date": "2027-04-22", "key": "hiroshima_en", "city": "Hiroshima", "hotel": "THE KNOT HIROSHIMA", "desc": "Full day on Miyajima: the ferry, Itsukushima Shrine's floating gate, and the ropeway up Mt Misen.", "stops": ["Miyajima Ferry Terminal", "Itsukushima Shrine", "Mount Misen Ropeway"], "area": "Hiroshima"}, {"date": "2027-04-23", "key": "tokyo2_en", "city": "Tokyo · Ginza", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "Direct shinkansen from Hiroshima to Tokyo. Check in at Ginza and stroll the boulevards.", "stops": ["Ginza"], "area": "Ginza, Tokyo"}, {"date": "2027-04-24", "key": "tokyo2_en", "city": "Tokyo · Ginza", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "A lighter day at Odaiba — room to add anything else you'd like.", "stops": ["Odaiba"], "area": "Ginza, Tokyo"}, {"date": "2027-04-25", "key": "tokyo2_en", "city": "Tokyo · Ginza", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "The outer Tsukiji market, Hamarikyu Gardens, and shopping among Ginza's department stores.", "stops": ["Tsukiji Outer Market", "Hamarikyu Gardens"], "area": "Ginza, Tokyo"}, {"date": "2027-04-26", "key": "tokyo2_en", "city": "Tokyo · Ginza", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "A last day for shopping and any final sights — pack the suitcases.", "stops": [], "area": "Ginza, Tokyo"}, {"date": "2027-04-27", "key": "tokyo2_en", "city": "Tokyo · Ginza", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "Check out, leave the luggage. Head for Haneda Airport around 20:30.", "stops": ["Haneda Airport"], "area": "Ginza, Tokyo"}], "flight_out": "Depart Tel Aviv 15:50 on 8 April · Emirates via Dubai · land Narita 13:30 on 9 April", "flight_back": "Leave the hotel ~20:30 on 27 April · depart Haneda (HND) 00:05 on 28 April · Emirates via Dubai · land in Israel that same morning", "text": {"title": "Japan, April 2027", "subtitle": "Comfort Ltd.", "dates": "8 – 28 April 2027 · 20 days", "getting_around": "Getting around", "still_to_confirm": "Still to confirm", "outbound_flight": "Outbound flight", "return_flight": "Return flight", "view_on_maps": "View on Google Maps", "on_maps_suffix": "on Maps", "confirmation": "Confirmation", "footer_ready": "Everything's ready for Japan 🌸", "footer_trip": "Have a wonderful trip!", "live_note": "This page updates in place — reopen the same link any time for the latest plan.", "photo_credit_prefix": "Photos", "chapter_photo_credit": "Photo", "toggle_label": "עברית", "days_until": "until departure", "day_word_1": "day", "day_word_n": "days", "bon_voyage": "Bon voyage — wheels up today 🌸", "hope_wonderful": "Hope you had a wonderful trip in Japan 🌸", "today_flight_narita": "Today: flight to Narita ✈️", "today_flight_home": "Today: flight home to Israel ✈️", "today_prefix": "Today", "day_of_20": "of 20", "tonight": "🏨 Tonight", "tomorrow": "Tomorrow", "tomorrow_flight_home": "<strong>Tomorrow:</strong> flight home to Israel ✈️", "see_full_section": "📍 See the full section below", "eyebrow_jp": "Japan · April 2027"}}}}</script>
 <script>
 (function(){
@@ -923,6 +1032,11 @@ footer{padding:20px 0 70px; text-align:center; color:var(--ink-soft); font-size:
           if(el){ el.classList.add('is-today'); el.scrollIntoView({behavior:'smooth', block:'start'}); }
         });
       }
+      if(opts.tix){
+        var tixEl = document.getElementById('nowTix_' + lang);
+        tixEl.style.display = 'flex';
+        tixEl.addEventListener('click', function(e){ e.preventDefault(); window.showView(lang, 'tix'); window.scrollTo(0, 0); });
+      }
       nowCard.classList.add('show');
     }
 
@@ -932,7 +1046,7 @@ footer{padding:20px 0 70px; text-align:center; color:var(--ink-soft); font-size:
       msg = '<strong>' + n + '</strong> ' + (n===1 ? t.day_word_1 : t.day_word_n) + ' ' + t.days_until;
     } else if(todayStr === data.departure){
       var first = byDate[fmt(plusDays(dep,1))];
-      showNowCard({ title: t.today_flight_narita, desc: L.flight_out, tomorrow: first ? tomorrowLine(first) : '' });
+      showNowCard({ title: t.today_flight_narita, desc: L.flight_out, tomorrow: first ? tomorrowLine(first) : '', tix: true });
     } else if(byDate[todayStr]){
       var d = byDate[todayStr];
       var tmr = byDate[fmt(plusDays(today,1))];
@@ -940,10 +1054,10 @@ footer{padding:20px 0 70px; text-align:center; color:var(--ink-soft); font-size:
       showNowCard({
         title: t.today_prefix + ' · ' + (daysBetween(dep, today) + 1) + ' ' + t.day_of_20 + ' · ' + d.city,
         desc: d.desc, stops: d.stops, area: d.area, hotel: d.hotel,
-        tomorrow: tmrLine, key: d.key
+        tomorrow: tmrLine, key: d.key, tix: (fmt(plusDays(today,1)) === data.return)
       });
     } else if(todayStr === data.return){
-      showNowCard({ title: t.today_flight_home, desc: L.flight_back });
+      showNowCard({ title: t.today_flight_home, desc: L.flight_back, tix: true });
     } else if(today > ret){
       msg = t.hope_wonderful;
     }
@@ -1013,14 +1127,13 @@ function updateToggleLabel(){
     mapsInited[lang] = map;
   }
   window.showView = function(lang, view){
-    var btns = { itin: document.getElementById('tabItin_' + lang), map: document.getElementById('tabMap_' + lang), fx: document.getElementById('tabFx_' + lang) };
     var itinView = document.getElementById('viewItin_' + lang);
-    var mapView = document.getElementById('viewMap_' + lang);
-    var fxView = document.getElementById('viewFx_' + lang);
     itinView.style.display = (view === 'itin') ? '' : 'none';
-    mapView.classList.toggle('show', view === 'map');
-    fxView.classList.toggle('show', view === 'fx');
-    Object.keys(btns).forEach(function(k){ btns[k].classList.toggle('active', k === view); });
+    ['Itin','Tix','Map','Fx'].forEach(function(N){
+      var key = N.toLowerCase(), b = document.getElementById('tab' + N + '_' + lang), v = document.getElementById('view' + N + '_' + lang);
+      if(b) b.classList.toggle('active', key === view);
+      if(v && key !== 'itin') v.classList.toggle('show', key === view);
+    });
     if(view === 'map'){
       initMap(lang);
       setTimeout(function(){ if(mapsInited[lang]) mapsInited[lang].invalidateSize(); }, 60);
@@ -1028,6 +1141,13 @@ function updateToggleLabel(){
     if(view === 'fx'){
       var inp = document.getElementById('fxAmt_' + lang);
       if(inp && !inp.value){ try{ inp.focus({preventScroll:true}); }catch(e){} }
+    }
+    document.body.classList.toggle('tix-on', view === 'tix');
+    if(view === 'tix'){
+      try{ history.replaceState(null, '', '#tickets'); }catch(e){}
+      if(window.TixOpen) window.TixOpen(lang);
+    } else if(location.hash === '#tickets'){
+      try{ history.replaceState(null, '', location.pathname + location.search); }catch(e){}
     }
   };
 })();
@@ -1133,6 +1253,343 @@ function updateToggleLabel(){
     inp.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); calc(); } });
   }
   setup('he'); setup('en');
+})();
+</script>
+<script>
+(function(){
+  'use strict';
+  var LS_KEY = 'japanTripTixKey', LS_PERSON = 'japanTripTixPerson';
+  var S = { keys:{}, pass:'', data:null, pdf:{}, person:null, lang:'he', wake:null, wakeWanted:false, err:'', tick:null, pdfStarted:false };
+
+  var T = {
+    he: { locale:'he-IL', title:'כרטיסי טיסה', lockSub:'הכרטיסים מוצפנים. הזינו את קוד הגישה של המשפחה.',
+      remember:'זכור במכשיר זה (מומלץ לשדה התעופה)', unlock:'פתח', opening:'פותח…',
+      bad:'הקוד לא נכון. נסו שוב.', loadFail:'לא הצלחתי לטעון את הכרטיסים. בדקו חיבור לאינטרנט ונסו שוב.',
+      all:'👥 כולם', nextFlight:'הטיסה הבאה', inFlight:'בטיסה כעת', landsIn:'נוחתת בעוד', departsIn:'ממריאה בעוד', tripDone:'כל הטיסות הסתיימו 🌸',
+      arriveBy:'להגיע לשדה עד', arriveByNote:'שעה מקומית · 3 שעות לפני ההמראה', layover:'קונקשן ב-', layoverWord:'המתנה',
+      bookingRef:'קוד הזמנה (PNR)', ticketNo:'מספר כרטיס', copy:'העתק', copied:'הועתק ✓',
+      full:'🔆 ברקוד במסך מלא', tapFull:'הקישו על הברקוד להגדלה לסריקה', openPdf:'📄 פתח PDF', savePdf:'⬇︎ שמור PDF', pdfWait:'טוען PDF…',
+      keepOn:'☀️ השאר מסך דלוק', keepOnActive:'☀️ המסך יישאר דלוק ✓',
+      flights:'הטיסות', dep:'יציאה', arr:'הגעה', terminal:'טרמינל', intl:'בינלאומי', flight:'טיסה', operated:'מופעלת ע״י', seat:'מושב',
+      seatNone:'טרם נקבע — יקבע בצ׳ק-אין', bag:'כבודה', kg:'ק״ג', next:'הבאה', now:'באוויר', done:'הסתיימה',
+      rulesTitle:'בשדה — לפי הכרטיסים',
+      rules:['להגיע לשדה עד 3 שעות לפני ההמראה (בחלק מהשדות עד 4).','90 דקות לפני ההמראה — לעבור בקרת דרכונים.','60 דקות לפני ההמראה — להיות בשער העלייה (Economy).','כבודה לבטן: 35 ק״ג לפי הכרטיס. פריט בודד מעל 32 ק״ג לא יתקבל.','כבודת יד (Economy): פריט אחד, עד 7 ק״ג, במידות 55×38×22 ס״מ.'],
+      lock:'🔒 נעילה ומחיקת הקוד ממכשיר זה', offlineOk:'✓ הכרטיסים שמורים לשימוש גם בלי אינטרנט', offlineNo:'⚠ עוד לא שמור לשימוש בלי אינטרנט — פתחו את העמוד פעם אחת עם חיבור',
+      day1:'יום', dayN:'ימים', hour1:'שעה', hourN:'שעות', min:'דק׳', arrow:'←', otherLang:'🌐 English',
+      allHead:'כל הנוסעים', retDiff:'שימו לב: טיסת החזור מדובאי שונה בין ההזמנות', ret:'חזרה', seatLbl:'מושב', noSeat:'ללא מושב עדיין', local:'שעות מקומיות בכל שדה',
+      city:{TLV:'תל אביב',DXB:'דובאי',NRT:'טוקיו (נריטה)',HND:'טוקיו (האנדה)'}, fullHint:'הגבירו את בהירות המסך. אם הסורק לא קורא — הראו את מספר הכרטיס לנציג.' },
+    en: { locale:'en-GB', title:'Flight tickets', lockSub:'The tickets are encrypted. Enter the family access code.',
+      remember:'Remember on this device (recommended for the airport)', unlock:'Unlock', opening:'Unlocking…',
+      bad:'Wrong code. Try again.', loadFail:'Could not load the tickets. Check your connection and try again.',
+      all:'👥 All', nextFlight:'Next flight', inFlight:'In flight now', landsIn:'lands in', departsIn:'departs in', tripDone:'All flights completed 🌸',
+      arriveBy:'Be at the airport by', arriveByNote:'local time · 3 h before departure', layover:'Connection in ', layoverWord:'layover',
+      bookingRef:'Booking reference (PNR)', ticketNo:'Ticket number', copy:'Copy', copied:'Copied ✓',
+      full:'🔆 Full-screen barcode', tapFull:'Tap the barcode to enlarge for scanning', openPdf:'📄 Open PDF', savePdf:'⬇︎ Save PDF', pdfWait:'Loading PDF…',
+      keepOn:'☀️ Keep screen on', keepOnActive:'☀️ Screen will stay on ✓',
+      flights:'Flights', dep:'Departs', arr:'Arrives', terminal:'Terminal', intl:'international', flight:'Flight', operated:'operated by', seat:'Seat',
+      seatNone:'not assigned yet — set at check-in', bag:'Baggage', kg:'kg', next:'NEXT', now:'IN AIR', done:'DONE',
+      rulesTitle:'At the airport — per your tickets',
+      rules:['Arrive up to 3 hours before departure (up to 4 at some airports).','90 minutes before take-off — go through passport control.','60 minutes before take-off — be ready at the gate (Economy).','Checked baggage: 35 kg on your ticket. A single item over 32 kg cannot be accepted.','Cabin bag (Economy): one piece, up to 7 kg, max 55×38×22 cm.'],
+      lock:'🔒 Lock and forget the code on this device', offlineOk:'✓ Tickets saved for use without internet', offlineNo:'⚠ Not saved for offline use yet — open this page once while online',
+      day1:'day', dayN:'days', hour1:'hour', hourN:'hours', min:'min', arrow:'→', otherLang:'🌐 עברית',
+      allHead:'All travellers', retDiff:'Heads-up: the return flight from Dubai differs between the bookings', ret:'Return', seatLbl:'Seat', noSeat:'no seat yet', local:'All times are local at each airport',
+      city:{TLV:'Tel Aviv',DXB:'Dubai',NRT:'Tokyo (Narita)',HND:'Tokyo (Haneda)'}, fullHint:'Turn screen brightness up. If the scanner cannot read it, show the ticket number to the agent.' }
+  };
+
+  function $(id){ return document.getElementById(id); }
+  function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function ltr(s){ return '<bdi dir="ltr" class="tx-ltr">' + esc(s) + '</bdi>'; }
+  function normCode(s){ return String(s || '').toLowerCase().replace(/[\s\-\u2013\u2014]/g, ''); }
+  function tt(){ return T[S.lang]; }
+
+  /* ---------- crypto ---------- */
+  function fetchBytes(url){
+    return fetch(url, { cache: 'no-cache' }).then(function(r){ if(!r.ok) throw new Error('load'); return r.arrayBuffer(); }).then(function(b){ return new Uint8Array(b); });
+  }
+  function parseHdr(u){
+    if(u.length < 36 || u[0] !== 74 || u[1] !== 84 || u[2] !== 49) throw new Error('load');
+    return { iter: ((u[3] << 24) | (u[4] << 16) | (u[5] << 8) | u[6]) >>> 0, salt: u.slice(7, 23), iv: u.slice(23, 35), ct: u.subarray(35) };
+  }
+  function saltKey(h){ var s = ''; for(var i = 0; i < h.salt.length; i++) s += h.salt[i].toString(16); return s + ':' + h.iter; }
+  function deriveKey(pass, h){
+    return crypto.subtle.importKey('raw', new TextEncoder().encode(pass), 'PBKDF2', false, ['deriveKey']).then(function(base){
+      return crypto.subtle.deriveKey({ name: 'PBKDF2', salt: h.salt, iterations: h.iter, hash: 'SHA-256' }, base, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+    });
+  }
+  function decryptBytes(u, pass, cacheKey){
+    var h = parseHdr(u), sk = saltKey(h);
+    var kp = S.keys[sk] ? Promise.resolve(S.keys[sk]) : deriveKey(pass, h);
+    return kp.then(function(key){
+      return crypto.subtle.decrypt({ name: 'AES-GCM', iv: h.iv }, key, h.ct).then(function(pt){
+        if(cacheKey) S.keys[sk] = key;
+        return new Uint8Array(pt);
+      }, function(){ throw new Error('bad'); });
+    });
+  }
+
+  function unlock(code, remember){
+    var pass = normCode(code);
+    return fetchBytes('vault/data.enc').then(function(u){ return decryptBytes(u, pass, true); }).then(function(pt){
+      S.data = JSON.parse(new TextDecoder().decode(pt)); S.pass = pass;
+      if(remember){ try{ localStorage.setItem(LS_KEY, pass); }catch(e){} }
+      var ids = S.data.travelers.map(function(p){ return p.id; }), saved = null;
+      try{ saved = localStorage.getItem(LS_PERSON); }catch(e){}
+      S.person = (saved && (saved === 'all' || ids.indexOf(saved) >= 0)) ? saved : ids[0];
+      loadPdfs();
+    });
+  }
+
+  function loadPdfs(){
+    if(S.pdfStarted) return; S.pdfStarted = true;
+    var list = S.data.travelers.slice();
+    (function next(){
+      var p = list.shift(); if(!p) return;
+      fetchBytes('vault/' + p.pdf + '.enc').then(function(u){ return decryptBytes(u, S.pass, false); }).then(function(pt){
+        S.pdf[p.pdf] = URL.createObjectURL(new Blob([pt], { type: 'application/pdf' }));
+        updatePdfLinks();
+      }).catch(function(){}).then(next);
+    })();
+  }
+  function updatePdfLinks(){
+    var a, i, els = document.querySelectorAll('[data-pdfopen],[data-pdfsave]');
+    for(i = 0; i < els.length; i++){
+      a = els[i]; var id = a.getAttribute('data-pdfopen') || a.getAttribute('data-pdfsave');
+      if(S.pdf[id]){ a.href = S.pdf[id]; a.removeAttribute('aria-disabled'); if(a.getAttribute('data-pdfsave')) a.setAttribute('download', a.getAttribute('data-fname')); }
+    }
+  }
+
+  /* ---------- time helpers ---------- */
+  function fmtTime(local){ return local.slice(11, 16); }
+  function fmtDate(local){ return new Date(local.slice(0, 10) + 'T00:00:00Z').toLocaleDateString(tt().locale, { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' }); }
+  function addMin(local, m){ var p = local.match(/(\d+)-(\d+)-(\d+)T(\d+):(\d+)/); var d = new Date(Date.UTC(+p[1], +p[2] - 1, +p[3], +p[4], +p[5] + m)); return d.toISOString().slice(0, 16); }
+  function dur(ms){
+    var t = tt(), m = Math.max(0, Math.round(ms / 60000)), d = Math.floor(m / 1440), h = Math.floor(m % 1440 / 60), mm = m % 60, out = [];
+    if(d) out.push(d + ' ' + (d === 1 ? t.day1 : t.dayN));
+    if(h) out.push(h + ' ' + (h === 1 ? t.hour1 : t.hourN));
+    if(!d && (mm || !out.length)) out.push(mm + ' ' + t.min);
+    return out.join(' · ');
+  }
+  function legState(l, now){ return now >= Date.parse(l.arr) ? 'done' : (now >= Date.parse(l.dep) ? 'air' : 'todo'); }
+  function firstOpen(p, now){ for(var i = 0; i < p.legs.length; i++) if(legState(p.legs[i], now) !== 'done') return i; return -1; }
+  function isConn(p, i){ var pr = p.legs[i - 1], l = p.legs[i]; return !!pr && pr.to === l.from_ && (Date.parse(l.dep) - Date.parse(pr.arr)) < 864e5; }
+  function arriveByStr(l){ var a = l.checkinLocal || addMin(l.depLocal, -180), s = fmtTime(a); if(a.slice(0, 10) !== l.depLocal.slice(0, 10)) s += ' (' + fmtDate(a) + ')'; return s; }
+  function termTxt(term){ var t = tt(); return t.terminal + ' ' + term.replace('(international)', '(' + t.intl + ')'); }
+  function getP(id){ var a = S.data.travelers; for(var i = 0; i < a.length; i++) if(a[i].id === id) return a[i]; return a[0]; }
+
+  /* ---------- views ---------- */
+  function bannerHTML(p){
+    var t = tt(), now = Date.now(), i = firstOpen(p, now);
+    if(i < 0) return '<div class="tix-next done">' + t.tripDone + '</div>';
+    var l = p.legs[i], st = legState(l, now), head = ltr(l.flights[0]) + ' · ' + ltr(l.from_ + ' → ' + l.to);
+    if(st === 'air') return '<div class="tix-next"><div class="k">' + t.inFlight + '</div><div class="big">' + head + '</div><div class="sub">' + t.landsIn + ' <b>' + dur(Date.parse(l.arr) - now) + '</b></div></div>';
+    var sub = t.departsIn + ' <b>' + dur(Date.parse(l.dep) - now) + '</b><br>' + fmtDate(l.depLocal) + ' · ' + ltr(fmtTime(l.depLocal));
+    if(!isConn(p, i)) sub += '<br>' + t.arriveBy + ' <b>' + esc(arriveByStr(l)) + '</b>';
+    return '<div class="tix-next"><div class="k">' + t.nextFlight + '</div><div class="big">' + head + '</div><div class="sub">' + sub + '</div></div>';
+  }
+
+  function legHTML(p, i, firstIdx){
+    var t = tt(), l = p.legs[i], now = Date.now(), st = legState(l, now), conn = isConn(p, i);
+    var cls = 'tix-leg ' + st + (i === firstIdx && st === 'todo' ? ' first-todo' : '');
+    var badge = st === 'done' ? '<span class="tix-badge dim">' + t.done + '</span>' : (st === 'air' ? '<span class="tix-badge">' + t.now + '</span>' : (i === firstIdx ? '<span class="tix-badge">' + t.next + '</span>' : ''));
+    var flights = ltr(l.flights.join(' · ')) + (l.flights.length > 1 ? ' <span class="tix-cities">(' + t.operated + ' ' + esc(l.operator) + ')</span>' : '');
+    var h = '<div class="' + cls + '"><div class="tix-leg-h"><span class="route">' + ltr(l.from_ + ' → ' + l.to) + '</span>' + badge + '</div>';
+    h += '<div class="tix-cities">' + (i + 1) + '/' + p.legs.length + ' · ' + esc(t.city[l.from_]) + ' ' + t.arrow + ' ' + esc(t.city[l.to]) + '</div>';
+    h += '<div class="tix-times"><div><div class="k">' + t.dep + '</div><div class="t">' + fmtTime(l.depLocal) + '</div><div class="d">' + fmtDate(l.depLocal) + '</div><div class="s">' + esc(l.depAirport) + '<br>' + esc(termTxt(l.depTerm)) + '</div></div>';
+    h += '<div class="mid">✈</div>';
+    h += '<div><div class="k">' + t.arr + '</div><div class="t">' + fmtTime(l.arrLocal) + '</div><div class="d">' + fmtDate(l.arrLocal) + '</div><div class="s">' + esc(l.arrAirport) + '<br>' + esc(termTxt(l.arrTerm)) + '</div></div></div>';
+    h += '<div class="tix-meta"><span class="k">' + t.flight + '</span><span>' + flights + '</span>';
+    h += '<span class="k">' + t.seat + '</span><span>' + (l.seat ? '<b>' + ltr(l.seat) + '</b>' : esc(t.seatNone)) + '</span>';
+    h += '<span class="k">' + t.bag + '</span><span>' + ltr(l.bag + ' ' + t.kg) + ' · Economy Flex Plus</span></div>';
+    if(conn){
+      h += '<div class="tix-note">🔁 ' + t.layover + esc(t.city[l.from_]) + ' — ' + t.layoverWord + ' <b>' + dur(Date.parse(l.dep) - Date.parse(p.legs[i - 1].arr)) + '</b></div>';
+    } else {
+      h += '<div class="tix-note">🛄 ' + t.arriveBy + ' <b>' + esc(arriveByStr(l)) + '</b> <span class="tix-cities">(' + t.arriveByNote + ')</span></div>';
+    }
+    return h + '</div>';
+  }
+
+  function personHTML(p){
+    var t = tt(), now = Date.now(), fi = firstOpen(p, now);
+    var fname = 'Emirates-ticket-' + p.first + '.pdf';
+    var h = '<div id="tixNext_' + S.lang + '">' + bannerHTML(p) + '</div>';
+    h += '<div class="tix-pass"><div class="tix-first">' + esc(p.first) + '</div><div class="tix-printed">' + ltr(p.printed) + '</div>';
+    h += '<div class="tix-ids"><div class="tix-id"><div class="kv"><div class="k">' + t.bookingRef + '</div><div class="v tix-mono">' + ltr(p.pnr) + '</div></div><button type="button" class="tix-copy" data-copy="' + esc(p.pnr) + '">' + t.copy + '</button></div>';
+    h += '<div class="tix-id"><div class="kv"><div class="k">' + t.ticketNo + '</div><div class="v sm tix-mono">' + ltr(p.ticket) + '</div></div><button type="button" class="tix-copy" data-copy="' + esc(p.ticket.replace(/\s/g, '')) + '">' + t.copy + '</button></div></div>';
+    h += '<div class="tix-bc" data-act="full"><img alt="Ticket barcode" src="' + p.barcode + '"></div><p class="tix-bc-hint">' + t.tapFull + '</p>';
+    h += '<div class="tix-actions"><button type="button" class="tix-btn primary" data-act="full">' + t.full + '</button>';
+    h += '<a class="tix-btn" data-pdfopen="' + p.pdf + '" href="#" target="_blank" rel="noopener" aria-disabled="true">' + t.openPdf + '</a>';
+    h += '<a class="tix-btn" data-pdfsave="' + p.pdf + '" data-fname="' + esc(fname) + '" href="#" aria-disabled="true">' + t.savePdf + '</a>';
+    if('wakeLock' in navigator) h += '<button type="button" class="tix-btn' + (S.wakeWanted ? ' on' : '') + '" data-act="wake" style="grid-column:1 / -1">' + (S.wakeWanted ? t.keepOnActive : t.keepOn) + '</button>';
+    h += '</div></div>';
+    h += '<h3 class="tix-h">' + t.flights + '</h3><p class="tix-cities" style="margin:-4px 0 10px">' + t.local + '</p>';
+    for(var i = 0; i < p.legs.length; i++) h += legHTML(p, i, fi);
+    return h;
+  }
+
+  function allHTML(){
+    var t = tt(), h = '<h3 class="tix-h" style="margin-top:14px">' + t.allHead + '</h3>', groups = {}, order = [];
+    S.data.travelers.forEach(function(p){
+      var seats = [], last = p.legs[p.legs.length - 1];
+      p.legs.forEach(function(l){ if(l.seat && seats.indexOf(l.seat) < 0) seats.push(l.seat); });
+      h += '<button type="button" class="tix-row" data-person="' + p.id + '"><div class="n">' + esc(p.first) + '<span class="pn">' + ltr(p.printed) + '</span></div>';
+      h += '<div class="m">' + ltr(p.pnr) + ' · ' + ltr(p.ticket) + '</div>';
+      h += '<div class="m2">' + t.seatLbl + ': ' + (seats.length ? ltr(seats.join(', ')) : esc(t.noSeat)) + '</div>';
+      h += '<div class="m2">' + t.ret + ': ' + ltr(last.flights[0] + ' · ' + last.from_ + ' ' + fmtTime(last.depLocal) + ' → ' + last.to + ' ' + fmtTime(last.arrLocal)) + '</div></button>';
+      var k = last.flights[0]; if(!groups[k]){ groups[k] = { l: last, names: [] }; order.push(k); } groups[k].names.push(p.first);
+    });
+    if(order.length > 1){
+      h += '<div class="tix-warn"><b>' + t.retDiff + '</b>';
+      order.forEach(function(k){ var g = groups[k]; h += '<div style="margin-top:8px"><strong>' + esc(g.names.join(', ')) + '</strong><br>' + ltr(k + ' · ' + g.l.from_ + ' ' + fmtTime(g.l.depLocal) + ' → ' + g.l.to + ' ' + fmtTime(g.l.arrLocal)) + '</div>'; });
+      h += '</div>';
+    }
+    return h;
+  }
+
+  function lockHTML(lang, msg, busy){
+    var t = T[lang];
+    if(busy) return '<div class="tix-busy">' + t.opening + '</div>';
+    return '<div class="tix-lock"><div class="ico">🔒</div><h2>' + t.title + '</h2><p>' + t.lockSub + '</p>' +
+      '<input id="tixCode_' + lang + '" class="tix-code" type="text" dir="ltr" placeholder="xxxx-xxxx-xxxx" autocapitalize="none" autocorrect="off" autocomplete="off" spellcheck="false" inputmode="text">' +
+      '<label class="tix-remember"><input type="checkbox" id="tixRem_' + lang + '" checked> ' + t.remember + '</label>' +
+      '<button type="button" class="fx-btn" data-act="unlock" style="width:100%; min-height:50px">' + t.unlock + '</button>' +
+      '<div class="tix-err" id="tixErr_' + lang + '">' + (msg ? esc(msg) : '') + '</div></div>';
+  }
+
+  function scrollToTabsOnce(){
+    if(!S.wantScroll) return; S.wantScroll = false;
+    var tabs = document.querySelector('#block_' + S.lang + ' .view-tabs'); if(!tabs) return;
+    var top = tabs.getBoundingClientRect().top + window.pageYOffset;
+    if(top > 0 && window.pageYOffset < top) window.scrollTo(0, top);
+  }
+  function render(msg, busy){
+    var lang = S.lang, root = $('tixRoot_' + lang), t = tt();
+    if(!root) return;
+    if(!S.data){ root.innerHTML = lockHTML(lang, msg, busy); return; }
+    var h = '<div class="tix-chips">';
+    S.data.travelers.forEach(function(p){ h += '<button type="button" class="tix-chip' + (S.person === p.id ? ' on' : '') + '" data-person="' + p.id + '">' + esc(p.first) + '</button>'; });
+    h += '<button type="button" class="tix-chip' + (S.person === 'all' ? ' on' : '') + '" data-person="all">' + t.all + '</button></div>';
+    if(S.person === 'all') h += allHTML();
+    else {
+      var p = getP(S.person);
+      h += personHTML(p);
+      h += '<h3 class="tix-h">' + t.rulesTitle + '</h3><div class="tix-rules"><ul>' + t.rules.map(function(r){ return '<li>' + esc(r) + '</li>'; }).join('') + '</ul></div>';
+    }
+    h += '<div class="tix-foot"><div id="tixOff_' + lang + '"></div><button type="button" data-act="lang">' + t.otherLang + '</button> &nbsp;·&nbsp; <button type="button" data-act="lock">' + t.lock + '</button></div>';
+    root.innerHTML = h;
+    updatePdfLinks();
+    offlineStatus();
+    scrollToTabsOnce();
+  }
+
+  function offlineStatus(){
+    var el = $('tixOff_' + S.lang); if(!el) return;
+    var t = tt();
+    ((window.caches && caches.match) ? caches.match('vault/data.enc').then(function(r){ return !!r; }) : Promise.resolve(false)).catch(function(){ return false; }).then(function(ok){
+      var e2 = $('tixOff_' + S.lang); if(e2) e2.textContent = ok ? t.offlineOk : t.offlineNo;
+    });
+  }
+
+  /* ---------- actions ---------- */
+  function wakeOn(){
+    if(!('wakeLock' in navigator)) return;
+    navigator.wakeLock.request('screen').then(function(s){ S.wake = s; s.addEventListener('release', function(){ if(S.wake === s) S.wake = null; }); }).catch(function(){});
+  }
+  function wakeOff(){ if(S.wake){ try{ S.wake.release(); }catch(e){} S.wake = null; } }
+  document.addEventListener('visibilitychange', function(){ if(document.visibilityState === 'visible' && (S.wakeWanted || $('tixFull').classList.contains('show')) && !S.wake) wakeOn(); });
+
+  function copyText(txt, btn){
+    var t = tt(), done = function(){ var old = btn.textContent; btn.textContent = t.copied; setTimeout(function(){ btn.textContent = old; }, 1300); };
+    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done, function(){ fallbackCopy(txt); done(); }); }
+    else { fallbackCopy(txt); done(); }
+  }
+  function fallbackCopy(txt){ var ta = document.createElement('textarea'); ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); }catch(e){} document.body.removeChild(ta); }
+
+  function openFull(){
+    var p = getP(S.person === 'all' ? S.data.travelers[0].id : S.person), t = tt();
+    $('tixFullName').textContent = p.first + ' · ' + p.printed;
+    $('tixFullImg').src = p.barcode;
+    $('tixFullNum').textContent = p.ticket;
+    $('tixFullPnr').textContent = p.pnr;
+    $('tixFullHint').textContent = t.fullHint;
+    $('tixFull').classList.add('show'); wakeOn();
+  }
+  function closeFull(){ $('tixFull').classList.remove('show'); if(!S.wakeWanted) wakeOff(); }
+
+  function doUnlock(root){
+    var lang = S.lang, inp = $('tixCode_' + lang), rem = $('tixRem_' + lang);
+    if(!inp || !inp.value.trim()) return;
+    render('', true);
+    unlock(inp.value, rem ? rem.checked : true).then(function(){ render(); }).catch(function(e){ render(e && e.message === 'bad' ? tt().bad : tt().loadFail); });
+  }
+  function doLock(){
+    S.data = null; S.pass = ''; S.keys = {}; S.pdfStarted = false;
+    Object.keys(S.pdf).forEach(function(k){ try{ URL.revokeObjectURL(S.pdf[k]); }catch(e){} }); S.pdf = {};
+    try{ localStorage.removeItem(LS_KEY); }catch(e){}
+    S.wakeWanted = false; wakeOff(); render();
+  }
+
+  function onClick(e){
+    var el = e.target.closest ? e.target.closest('[data-act],[data-person],[data-copy],[data-pdfopen],[data-pdfsave]') : null;
+    if(!el) return;
+    if(el.getAttribute('aria-disabled') === 'true'){ e.preventDefault(); return; }
+    if(el.hasAttribute('data-pdfopen') || el.hasAttribute('data-pdfsave')) return;
+    var act = el.getAttribute('data-act');
+    if(el.hasAttribute('data-copy')){ copyText(el.getAttribute('data-copy'), el); return; }
+    if(el.hasAttribute('data-person')){
+      S.person = el.getAttribute('data-person'); try{ localStorage.setItem(LS_PERSON, S.person); }catch(x){}
+      render(); return;
+    }
+    if(act === 'unlock') doUnlock();
+    else if(act === 'full') openFull();
+    else if(act === 'lock') doLock();
+    else if(act === 'lang'){ var nl = S.lang === 'he' ? 'en' : 'he'; if(window.switchLang) window.switchLang(); if(window.showView) window.showView(nl, 'tix'); }
+    else if(act === 'wake'){ S.wakeWanted = !S.wakeWanted; if(S.wakeWanted) wakeOn(); else wakeOff(); render(); }
+  }
+
+  ['he', 'en'].forEach(function(lang){
+    var root = $('tixRoot_' + lang); if(!root) return;
+    root.addEventListener('click', onClick);
+    root.addEventListener('keydown', function(e){ if(e.key === 'Enter' && e.target && e.target.classList && e.target.classList.contains('tix-code')){ e.preventDefault(); S.lang = lang; doUnlock(); } });
+  });
+  $('tixFull').addEventListener('click', closeFull);
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeFull(); });
+
+  function tickBanner(){
+    if(!S.data || S.person === 'all') return;
+    var el = $('tixNext_' + S.lang), view = $('viewTix_' + S.lang);
+    if(el && view && view.classList.contains('show')) el.innerHTML = bannerHTML(getP(S.person));
+  }
+
+  window.TixOpen = function(lang){
+    S.lang = lang;
+    var tabs = document.querySelector('#block_' + lang + ' .view-tabs');
+    var root = $('tixRoot_' + lang); if(root && tabs) root.style.setProperty('--tabsH', tabs.offsetHeight + 'px');
+    S.wantScroll = true;
+    if(!S.tick) S.tick = setInterval(tickBanner, 20000);
+    if(S.data){ render(); return; }
+    var saved = null; try{ saved = localStorage.getItem(LS_KEY); }catch(e){}
+    if(!saved){ render(); return; }
+    render('', true);
+    unlock(saved, true).then(function(){ render(); }).catch(function(e){
+      if(e && e.message === 'bad'){ try{ localStorage.removeItem(LS_KEY); }catch(x){} render(); }
+      else render(tt().loadFail);
+    });
+  };
+})();
+
+</script>
+<script>
+(function(){
+  if('serviceWorker' in navigator){
+    window.addEventListener('load', function(){ navigator.serviceWorker.register('sw.js').catch(function(){}); });
+  }
+  function openFromHash(){
+    if(location.hash !== '#tickets') return;
+    var lang = document.getElementById('block_he').classList.contains('hidden') ? 'en' : 'he';
+    window.showView(lang, 'tix');
+  }
+  openFromHash();
+  window.addEventListener('hashchange', openFromHash);
 })();
 </script>
 </body>
