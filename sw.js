@@ -1,5 +1,5 @@
 /* Offline support: keeps the page and the (encrypted) ticket files available without internet. */
-const VER = 'jt-v1';
+const VER = 'jt-v2';
 const CORE = ['./', 'index.html'];
 const VAULT = ['vault/data.enc', 'vault/p1.enc', 'vault/p2.enc', 'vault/p3.enc', 'vault/p4.enc'];
 
