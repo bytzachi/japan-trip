@@ -270,6 +270,34 @@ main{padding-top:6px;}
 .leaflet-popup-content b{display:block; margin-bottom:4px; font-size:14.5px;}
 .leaflet-popup-content a{color:var(--indigo); font-weight:600; text-decoration:none;}
 
+.view-fx{display:none;}
+.view-fx.show{display:block;}
+.fx-wrap{padding:24px 22px 90px;}
+.fx-wrap h2{font-family:var(--serif); font-size:22px; margin:0 0 4px;}
+.fx-wrap .fx-sub{font-size:13.5px; color:var(--ink-soft); margin:0 0 16px;}
+.fx-card{background:var(--paper-alt); border:1px solid var(--line); border-radius:14px; padding:18px;}
+.fx-label{display:block; font-size:13px; font-weight:600; color:var(--ink-soft); margin-bottom:8px;}
+.fx-row{display:flex; gap:10px;}
+.fx-input{
+  flex:1; min-width:0; font-family:var(--sans); font-size:22px; font-weight:600; padding:10px 14px;
+  border:1px solid var(--line); border-radius:10px; background:var(--paper); color:var(--ink); text-align:start;
+}
+.fx-input:focus{outline:2px solid var(--indigo); outline-offset:1px;}
+.fx-btn{
+  font-family:var(--sans); font-size:15px; font-weight:700; padding:0 22px; border:none; border-radius:10px;
+  background:var(--indigo); color:var(--paper); cursor:pointer; min-height:48px;
+}
+.fx-btn:disabled{opacity:.6; cursor:wait;}
+.fx-result{margin-top:16px; min-height:24px;}
+.fx-big{font-family:var(--serif); font-size:36px; font-weight:700; color:var(--indigo); line-height:1.15; direction:ltr; unicode-bidi:isolate;}
+.fx-line{font-size:14px; margin-top:6px; color:var(--ink);}
+.fx-meta{font-size:12.5px; margin-top:10px; color:var(--ink-soft); line-height:1.6;}
+.fx-meta a{color:var(--indigo); font-weight:600; text-decoration:none;}
+.fx-num{direction:ltr; unicode-bidi:isolate; display:inline-block;}
+.fx-msg{font-size:14px; color:var(--ink-soft);}
+.fx-err{font-size:14px; color:var(--vermillion); font-weight:600;}
+.fx-note{font-size:12.5px; color:var(--ink-soft); margin:14px 2px 0; line-height:1.6;}
+
 footer{padding:20px 0 70px; text-align:center; color:var(--ink-soft); font-size:13px;}
 
 @media (max-width:480px){
@@ -306,6 +334,7 @@ footer{padding:20px 0 70px; text-align:center; color:var(--ink-soft); font-size:
 </header><div class="view-tabs">
       <button type="button" class="active" id="tabItin_he" onclick="showView('he','itin')">📋 מסלול</button>
       <button type="button" id="tabMap_he" onclick="showView('he','map')">🗺️ מפה</button>
+      <button type="button" id="tabFx_he" onclick="showView('he','fx')">💴 המרת מטבע</button>
     </div><div class="view-itinerary" id="viewItin_he"><nav class="jump"><div class="wrap"><a href="#reminders_he" style="color:var(--vermillion); font-weight:700;">🔔 תזכורות</a><a href="#tokyo1_he">טוקיו</a><a href="#hakone_he">האקונה</a><a href="#kawaguchiko_he">פוג'י קוואגוצ'יקו</a><a href="#takayama_he">טקאיאמה</a><a href="#kanazawa_he">קנאזאווה</a><a href="#kyoto_he">קיוטו</a><a href="#osaka_he">אוסקה</a><a href="#hiroshima_he">הירושימה</a><a href="#tokyo2_he">טוקיו (גינזה)</a><a href="#logistics_he">תחבורה ולוגיסטיקה</a><a href="#open_he">נותר לאשר</a></div></nav><main><div class="wrap"><div class="now-card" id="nowCard_he">
       <p class="eyebrow" id="nowEyebrow_he">כרגע</p>
       <h2 id="nowTitle_he"></h2>
@@ -546,6 +575,21 @@ footer{padding:20px 0 70px; text-align:center; color:var(--ink-soft); font-size:
           <span><span class="dot" style="background:var(--sakura);"></span>טיסה</span>
         </div>
       </div>
+    </div>
+<div class="view-fx" id="viewFx_he">
+      <div class="wrap fx-wrap">
+        <h2>מחשבון המרה: שקל ← ין</h2>
+        <p class="fx-sub">השער נשלף מהרשת ברגע החישוב — בכל לחיצה על ״חשב״</p>
+        <div class="fx-card">
+          <label class="fx-label" for="fxAmt_he">סכום בשקלים (₪)</label>
+          <div class="fx-row">
+            <input class="fx-input" id="fxAmt_he" type="text" inputmode="decimal" dir="ltr" placeholder="1,000" autocomplete="off">
+            <button type="button" class="fx-btn" id="fxBtn_he">חשב</button>
+          </div>
+          <div class="fx-result" id="fxRes_he" aria-live="polite"></div>
+        </div>
+        <p class="fx-note">שער אמצע־שוק (שער ייחוס), מתעדכן פעם ביום אצל ספקי השערים החינמיים. בכרטיס אשראי, בכספומט ובדוכני החלפה ביפן השער בפועל שונה מעט בגלל עמלות ומרווחים.</p>
+      </div>
     </div></div><div class="lang-block hidden" id="block_en" dir="ltr" lang="en">
 <header class="hero">
   <div class="hero-bg">
@@ -566,6 +610,7 @@ footer{padding:20px 0 70px; text-align:center; color:var(--ink-soft); font-size:
 </header><div class="view-tabs">
       <button type="button" class="active" id="tabItin_en" onclick="showView('en','itin')">📋 Itinerary</button>
       <button type="button" id="tabMap_en" onclick="showView('en','map')">🗺️ Map</button>
+      <button type="button" id="tabFx_en" onclick="showView('en','fx')">💴 Currency</button>
     </div><div class="view-itinerary" id="viewItin_en"><nav class="jump"><div class="wrap"><a href="#reminders_en" style="color:var(--vermillion); font-weight:700;">🔔 Reminders</a><a href="#tokyo1_en">Tokyo</a><a href="#hakone_en">Hakone</a><a href="#kawaguchiko_en">Fujikawaguchiko</a><a href="#takayama_en">Takayama</a><a href="#kanazawa_en">Kanazawa</a><a href="#kyoto_en">Kyoto</a><a href="#osaka_en">Osaka</a><a href="#hiroshima_en">Hiroshima</a><a href="#tokyo2_en">Tokyo · Ginza</a><a href="#logistics_en">Getting around</a><a href="#open_en">Still to confirm</a></div></nav><main><div class="wrap"><div class="now-card" id="nowCard_en">
       <p class="eyebrow" id="nowEyebrow_en">Right now</p>
       <h2 id="nowTitle_en"></h2>
@@ -806,6 +851,21 @@ footer{padding:20px 0 70px; text-align:center; color:var(--ink-soft); font-size:
           <span><span class="dot" style="background:var(--sakura);"></span>Flight</span>
         </div>
       </div>
+    </div>
+<div class="view-fx" id="viewFx_en">
+      <div class="wrap fx-wrap">
+        <h2>Currency converter: shekel → yen</h2>
+        <p class="fx-sub">The rate is pulled from the web at the moment you calculate — on every press of “Calculate”</p>
+        <div class="fx-card">
+          <label class="fx-label" for="fxAmt_en">Amount in shekels (₪)</label>
+          <div class="fx-row">
+            <input class="fx-input" id="fxAmt_en" type="text" inputmode="decimal" dir="ltr" placeholder="1,000" autocomplete="off">
+            <button type="button" class="fx-btn" id="fxBtn_en">Calculate</button>
+          </div>
+          <div class="fx-result" id="fxRes_en" aria-live="polite"></div>
+        </div>
+        <p class="fx-note">Mid-market reference rate, refreshed once a day by the free rate providers. Card, ATM and exchange-counter rates in Japan differ slightly because of fees and spreads.</p>
+      </div>
     </div></div><button class="lang-toggle" id="langToggleBtn" type="button" onclick="switchLang()">🌐 <span id="langToggleLabel"></span></button>
 <script type="application/json" id="tripData">{"departure": "2027-04-08", "return": "2027-04-28", "langs": {"he": {"days": [{"date": "2027-04-09", "key": "tokyo1_he", "city": "טוקיו", "hotel": "Mitsui Garden Hotel Jingugaien Tokyo Premier", "desc": "נחיתה ב-Narita בשעה 13:30, רכבת N'EX ל-Shinjuku, ומשם מונית קצרה למלון. אונסן והתאקלמות.", "stops": ["Narita International Airport", "Shinjuku Station"], "area": "Tokyo"}, {"date": "2027-04-10", "key": "tokyo1_he", "city": "טוקיו", "hotel": "Mitsui Garden Hotel Jingugaien Tokyo Premier", "desc": "Shibuya Crossing, מקדש Meiji, פארק Yoyogi ורחוב Takeshita ב-Harajuku.", "stops": ["Shibuya Crossing", "Meiji Shrine", "Yoyogi Park", "Takeshita Street"], "area": "Tokyo"}, {"date": "2027-04-11", "key": "tokyo1_he", "city": "טוקיו", "hotel": "Mitsui Garden Hotel Jingugaien Tokyo Premier", "desc": "Asakusa ומקדש Sensō-ji, ואז Akihabara. בערב: אריזה מחדש למזוודות הגדולות.", "stops": ["Sensō-ji", "Akihabara"], "area": "Tokyo"}, {"date": "2027-04-12", "key": "hakone_he", "city": "האקונה", "hotel": "Ten-yu or Tensui Saryo (onsen ryokan)", "desc": "המזוודות הגדולות נאספות ע״י שליח Takkyubin ויוצאות היישר ל-Kyoto. מונית ל-Shinjuku, רכבת ל-Odawara, ואיסוף הרכב השכור. עמק Owakudani ואגם Ashi.", "stops": ["Odawara Station", "Owakudani", "Lake Ashi"], "area": "Hakone"}, {"date": "2027-04-13", "key": "kawaguchiko_he", "city": "פוג'י קוואגוצ'יקו", "hotel": "Kawaguchiko Country Cottage Ban", "desc": "נסיעה ל-Fujikawaguchiko. Chureito Pagoda, פארק Oishi, וארוחת ערב מהסופר מול הר Fuji.", "stops": ["Chureito Pagoda", "Oishi Park"], "area": "Fujikawaguchiko, Yamanashi"}, {"date": "2027-04-14", "key": "takayama_he", "city": "טקאיאמה", "hotel": "Takayama Ouan", "desc": "בוקר עם נוף להר Fuji, ואז נסיעה שעוברת ב-Matsumoto Castle ומעל רכס Japan Alps אל Takayama.", "stops": ["Matsumoto Castle"], "area": "Takayama, Gifu"}, {"date": "2027-04-15", "key": "kanazawa_he", "city": "קנאזאווה", "hotel": "The Hotel Sanraku Kanazawa", "desc": "השוק והעיר העתיקה של Takayama בבוקר, ואז כפר Shirakawa-go בדרך אל Kanazawa.", "stops": ["Takayama Old Town", "Shirakawa-go"], "area": "Kanazawa, Ishikawa"}, {"date": "2027-04-16", "key": "kyoto_he", "city": "קיוטו", "hotel": "Villa Sanjomuromachi KYOTO", "desc": "גן Kenrokuen, ואז נסיעה ל-Kyoto והחזרת הרכב השכור בתחנת Kyoto. צ׳ק-אין — המזוודות הגדולות מחכות.", "stops": ["Kenrokuen Garden", "Kyoto Station"], "area": "Kyoto"}, {"date": "2027-04-17", "key": "kyoto_he", "city": "קיוטו", "hotel": "Villa Sanjomuromachi KYOTO", "desc": "אלפי שערי הטוריי של Fushimi Inari, ואז הרחובות ההיסטוריים של Gion.", "stops": ["Fushimi Inari Taisha", "Gion"], "area": "Kyoto"}, {"date": "2027-04-18", "key": "kyoto_he", "city": "קיוטו", "hotel": "Villa Sanjomuromachi KYOTO", "desc": "מערב Kyoto: יער הבמבוק של Arashiyama והמקדש המוזהב Kinkaku-ji.", "stops": ["Arashiyama Bamboo Grove", "Kinkaku-ji"], "area": "Kyoto"}, {"date": "2027-04-19", "key": "kyoto_he", "city": "קיוטו", "hotel": "Villa Sanjomuromachi KYOTO", "desc": "בוקר וצהריים: Kiyomizu-dera והסמטאות ההיסטוריות Sannenzaka ו-Ninenzaka. בערב: teamLab Biovortex Kyoto (פתוח עד 21:00), קרוב לתחנת Kyoto.", "stops": ["Kiyomizu-dera", "Sannenzaka", "Ninenzaka", "teamLab Biovortex Kyoto"], "area": "Kyoto"}, {"date": "2027-04-20", "key": "osaka_he", "city": "אוסקה", "hotel": "Hotel Forza Osaka Namba", "desc": "רכבת קצרה ל-Osaka, Osaka Castle, צ׳ק-אין, וערב קולינרי בסמטאות Dotonbori.", "stops": ["Osaka Castle", "Dotonbori"], "area": "Osaka"}, {"date": "2027-04-21", "key": "hiroshima_he", "city": "הירושימה", "hotel": "THE KNOT HIROSHIMA", "desc": "שינקנסן מהיר ל-Hiroshima. Peace Park, מוזיאון הזיכרון לשלום, וכיפת ה-A-Bomb Dome — ורופטופ במלון בערב.", "stops": ["Hiroshima Peace Memorial Park", "Hiroshima Peace Memorial Museum", "Atomic Bomb Dome"], "area": "Hiroshima"}, {"date": "2027-04-22", "key": "hiroshima_he", "city": "הירושימה", "hotel": "THE KNOT HIROSHIMA", "desc": "יום מלא באי Miyajima: המעבורת, שער הטוריי הצף של Itsukushima Shrine, והרכבל אל הר Misen.", "stops": ["Miyajima Ferry Terminal", "Itsukushima Shrine", "Mount Misen Ropeway"], "area": "Hiroshima"}, {"date": "2027-04-23", "key": "tokyo2_he", "city": "טוקיו (גינזה)", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "שינקנסן ישיר מ-Hiroshima ל-Tokyo. צ׳ק-אין ב-Ginza וסיור ברחובות.", "stops": ["Ginza"], "area": "Ginza, Tokyo"}, {"date": "2027-04-24", "key": "tokyo2_he", "city": "טוקיו (גינזה)", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "יום רגוע יותר ב-Odaiba — אפשר להוסיף בהתאם לרצון.", "stops": ["Odaiba"], "area": "Ginza, Tokyo"}, {"date": "2027-04-25", "key": "tokyo2_he", "city": "טוקיו (גינזה)", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "שוק הדגים החיצוני Tsukiji, גני Hamarikyu, וקניות בכלבואים של Ginza.", "stops": ["Tsukiji Outer Market", "Hamarikyu Gardens"], "area": "Ginza, Tokyo"}, {"date": "2027-04-26", "key": "tokyo2_he", "city": "טוקיו (גינזה)", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "יום אחרון לקניות ולאטרקציות נוספות — אריזת המזוודות.", "stops": [], "area": "Ginza, Tokyo"}, {"date": "2027-04-27", "key": "tokyo2_he", "city": "טוקיו (גינזה)", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "צ׳ק-אאוט, השארת המזוודות, ויציאה לנמל התעופה Haneda בסביבות השעה 20:30.", "stops": ["Haneda Airport"], "area": "Ginza, Tokyo"}], "flight_out": "המראה מ-Tel Aviv בשעה 15:50 ב-8 באפריל · Emirates דרך Dubai · נחיתה ב-Narita בשעה 13:30 ב-9 באפריל", "flight_back": "עזיבת המלון בסביבות השעה 20:30 ב-27 באפריל · המראה מ-Haneda (HND) בשעה 00:05 ב-28 באפריל · Emirates דרך Dubai · נחיתה בישראל באותו הבוקר", "text": {"title": "יפן, אפריל 2027", "subtitle": "נוחות בע״מ", "dates": "8–28 באפריל 2027 · 20 יום", "getting_around": "תחבורה ולוגיסטיקה", "still_to_confirm": "נותר לאשר", "outbound_flight": "טיסת ההלוך", "return_flight": "טיסת החזור", "view_on_maps": "צפייה בגוגל מפות", "on_maps_suffix": "במפות", "confirmation": "אישור", "footer_ready": "הכל מוכן ליפן 🌸", "footer_trip": "נסיעה נעימה!", "live_note": "העמוד הזה מתעדכן במקום — פתחו את הקישור הזה בכל שלב כדי לראות את התוכנית העדכנית.", "photo_credit_prefix": "תמונות", "chapter_photo_credit": "צילום", "toggle_label": "English", "days_until": "עד הטיסה", "day_word_1": "יום", "day_word_n": "ימים", "bon_voyage": "נסיעה טובה — היום יוצאים לדרך 🌸", "hope_wonderful": "מקווים שהיה לכם טיול נפלא ביפן 🌸", "today_flight_narita": "היום: טיסה ל-Narita ✈️", "today_flight_home": "היום: חזרה לישראל ✈️", "today_prefix": "היום", "day_of_20": "מתוך 20", "tonight": "🏨 הלילה", "tomorrow": "מחר", "tomorrow_flight_home": "<strong>מחר:</strong> טיסה חזרה לישראל ✈️", "see_full_section": "📍 לצפייה בקטע המלא בהמשך העמוד", "eyebrow_jp": "יפן · אפריל 2027"}}, "en": {"days": [{"date": "2027-04-09", "key": "tokyo1_en", "city": "Tokyo", "hotel": "Mitsui Garden Hotel Jingugaien Tokyo Premier", "desc": "Land at Narita 13:30, N'EX train to Shinjuku, short taxi to the hotel. Onsen and settling in.", "stops": ["Narita International Airport", "Shinjuku Station"], "area": "Tokyo"}, {"date": "2027-04-10", "key": "tokyo1_en", "city": "Tokyo", "hotel": "Mitsui Garden Hotel Jingugaien Tokyo Premier", "desc": "Shibuya crossing, Meiji Shrine, Yoyogi Park, Harajuku's Takeshita Street.", "stops": ["Shibuya Crossing", "Meiji Shrine", "Yoyogi Park", "Takeshita Street"], "area": "Tokyo"}, {"date": "2027-04-11", "key": "tokyo1_en", "city": "Tokyo", "hotel": "Mitsui Garden Hotel Jingugaien Tokyo Premier", "desc": "Asakusa and Sensō-ji, then Akihabara. In the evening: repack into the big suitcases.", "stops": ["Sensō-ji", "Akihabara"], "area": "Tokyo"}, {"date": "2027-04-12", "key": "hakone_en", "city": "Hakone", "hotel": "Ten-yu or Tensui Saryo (onsen ryokan)", "desc": "Big suitcases picked up by Takkyubin courier, heading straight to Kyoto. Taxi to Shinjuku, train to Odawara, pick up the rental car. Owakudani valley and Lake Ashi.", "stops": ["Odawara Station", "Owakudani", "Lake Ashi"], "area": "Hakone"}, {"date": "2027-04-13", "key": "kawaguchiko_en", "city": "Fujikawaguchiko", "hotel": "Kawaguchiko Country Cottage Ban", "desc": "Drive to Fujikawaguchiko. Chureito Pagoda, Oishi Park, and a supermarket dinner facing Mt Fuji.", "stops": ["Chureito Pagoda", "Oishi Park"], "area": "Fujikawaguchiko, Yamanashi"}, {"date": "2027-04-14", "key": "takayama_en", "city": "Takayama", "hotel": "Takayama Ouan", "desc": "Morning views of Fuji, then a drive past Matsumoto Castle and over the Japan Alps to Takayama.", "stops": ["Matsumoto Castle"], "area": "Takayama, Gifu"}, {"date": "2027-04-15", "key": "kanazawa_en", "city": "Kanazawa", "hotel": "The Hotel Sanraku Kanazawa", "desc": "Takayama's morning market and old town, then Shirakawa-gō village on the way to Kanazawa.", "stops": ["Takayama Old Town", "Shirakawa-go"], "area": "Kanazawa, Ishikawa"}, {"date": "2027-04-16", "key": "kyoto_en", "city": "Kyoto", "hotel": "Villa Sanjomuromachi KYOTO", "desc": "Kenrokuen Garden, then drive to Kyoto and return the rental car at Kyoto Station. Check in — the big suitcases are waiting.", "stops": ["Kenrokuen Garden", "Kyoto Station"], "area": "Kyoto"}, {"date": "2027-04-17", "key": "kyoto_en", "city": "Kyoto", "hotel": "Villa Sanjomuromachi KYOTO", "desc": "Fushimi Inari's thousand torii gates, then the historic streets of Gion.", "stops": ["Fushimi Inari Taisha", "Gion"], "area": "Kyoto"}, {"date": "2027-04-18", "key": "kyoto_en", "city": "Kyoto", "hotel": "Villa Sanjomuromachi KYOTO", "desc": "West Kyoto: the Arashiyama bamboo forest and the golden Kinkaku-ji.", "stops": ["Arashiyama Bamboo Grove", "Kinkaku-ji"], "area": "Kyoto"}, {"date": "2027-04-19", "key": "kyoto_en", "city": "Kyoto", "hotel": "Villa Sanjomuromachi KYOTO", "desc": "Morning and afternoon: Kiyomizu-dera and the historic lanes of Sannenzaka and Ninenzaka. In the evening: teamLab Biovortex Kyoto (open until 21:00), close to Kyoto Station.", "stops": ["Kiyomizu-dera", "Sannenzaka", "Ninenzaka", "teamLab Biovortex Kyoto"], "area": "Kyoto"}, {"date": "2027-04-20", "key": "osaka_en", "city": "Osaka", "hotel": "Hotel Forza Osaka Namba", "desc": "Short train to Osaka, Osaka Castle, check in, then a culinary evening through the Dōtonbori alleys.", "stops": ["Osaka Castle", "Dotonbori"], "area": "Osaka"}, {"date": "2027-04-21", "key": "hiroshima_en", "city": "Hiroshima", "hotel": "THE KNOT HIROSHIMA", "desc": "Fast shinkansen to Hiroshima. Peace Park, the Memorial Museum, the A-Bomb Dome — rooftop at the hotel in the evening.", "stops": ["Hiroshima Peace Memorial Park", "Hiroshima Peace Memorial Museum", "Atomic Bomb Dome"], "area": "Hiroshima"}, {"date": "2027-04-22", "key": "hiroshima_en", "city": "Hiroshima", "hotel": "THE KNOT HIROSHIMA", "desc": "Full day on Miyajima: the ferry, Itsukushima Shrine's floating gate, and the ropeway up Mt Misen.", "stops": ["Miyajima Ferry Terminal", "Itsukushima Shrine", "Mount Misen Ropeway"], "area": "Hiroshima"}, {"date": "2027-04-23", "key": "tokyo2_en", "city": "Tokyo · Ginza", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "Direct shinkansen from Hiroshima to Tokyo. Check in at Ginza and stroll the boulevards.", "stops": ["Ginza"], "area": "Ginza, Tokyo"}, {"date": "2027-04-24", "key": "tokyo2_en", "city": "Tokyo · Ginza", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "A lighter day at Odaiba — room to add anything else you'd like.", "stops": ["Odaiba"], "area": "Ginza, Tokyo"}, {"date": "2027-04-25", "key": "tokyo2_en", "city": "Tokyo · Ginza", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "The outer Tsukiji market, Hamarikyu Gardens, and shopping among Ginza's department stores.", "stops": ["Tsukiji Outer Market", "Hamarikyu Gardens"], "area": "Ginza, Tokyo"}, {"date": "2027-04-26", "key": "tokyo2_en", "city": "Tokyo · Ginza", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "A last day for shopping and any final sights — pack the suitcases.", "stops": [], "area": "Ginza, Tokyo"}, {"date": "2027-04-27", "key": "tokyo2_en", "city": "Tokyo · Ginza", "hotel": "Daiwa Roynet Ginza PREMIER", "desc": "Check out, leave the luggage. Head for Haneda Airport around 20:30.", "stops": ["Haneda Airport"], "area": "Ginza, Tokyo"}], "flight_out": "Depart Tel Aviv 15:50 on 8 April · Emirates via Dubai · land Narita 13:30 on 9 April", "flight_back": "Leave the hotel ~20:30 on 27 April · depart Haneda (HND) 00:05 on 28 April · Emirates via Dubai · land in Israel that same morning", "text": {"title": "Japan, April 2027", "subtitle": "Comfort Ltd.", "dates": "8 – 28 April 2027 · 20 days", "getting_around": "Getting around", "still_to_confirm": "Still to confirm", "outbound_flight": "Outbound flight", "return_flight": "Return flight", "view_on_maps": "View on Google Maps", "on_maps_suffix": "on Maps", "confirmation": "Confirmation", "footer_ready": "Everything's ready for Japan 🌸", "footer_trip": "Have a wonderful trip!", "live_note": "This page updates in place — reopen the same link any time for the latest plan.", "photo_credit_prefix": "Photos", "chapter_photo_credit": "Photo", "toggle_label": "עברית", "days_until": "until departure", "day_word_1": "day", "day_word_n": "days", "bon_voyage": "Bon voyage — wheels up today 🌸", "hope_wonderful": "Hope you had a wonderful trip in Japan 🌸", "today_flight_narita": "Today: flight to Narita ✈️", "today_flight_home": "Today: flight home to Israel ✈️", "today_prefix": "Today", "day_of_20": "of 20", "tonight": "🏨 Tonight", "tomorrow": "Tomorrow", "tomorrow_flight_home": "<strong>Tomorrow:</strong> flight home to Israel ✈️", "see_full_section": "📍 See the full section below", "eyebrow_jp": "Japan · April 2027"}}}}</script>
 <script>
@@ -953,22 +1013,126 @@ function updateToggleLabel(){
     mapsInited[lang] = map;
   }
   window.showView = function(lang, view){
-    var itinBtn = document.getElementById('tabItin_' + lang);
-    var mapBtn = document.getElementById('tabMap_' + lang);
+    var btns = { itin: document.getElementById('tabItin_' + lang), map: document.getElementById('tabMap_' + lang), fx: document.getElementById('tabFx_' + lang) };
     var itinView = document.getElementById('viewItin_' + lang);
     var mapView = document.getElementById('viewMap_' + lang);
+    var fxView = document.getElementById('viewFx_' + lang);
+    itinView.style.display = (view === 'itin') ? '' : 'none';
+    mapView.classList.toggle('show', view === 'map');
+    fxView.classList.toggle('show', view === 'fx');
+    Object.keys(btns).forEach(function(k){ btns[k].classList.toggle('active', k === view); });
     if(view === 'map'){
-      itinView.style.display = 'none';
-      mapView.classList.add('show');
-      mapBtn.classList.add('active'); itinBtn.classList.remove('active');
       initMap(lang);
       setTimeout(function(){ if(mapsInited[lang]) mapsInited[lang].invalidateSize(); }, 60);
-    } else {
-      mapView.classList.remove('show');
-      itinView.style.display = '';
-      itinBtn.classList.add('active'); mapBtn.classList.remove('active');
+    }
+    if(view === 'fx'){
+      var inp = document.getElementById('fxAmt_' + lang);
+      if(inp && !inp.value){ try{ inp.focus({preventScroll:true}); }catch(e){} }
     }
   };
+})();
+</script>
+<script>
+(function(){
+  /* ILS -> JPY converter. The rate is fetched from the web on every calculation (never cached). */
+  var SOURCES = [
+    { name: 'Frankfurter',
+      url: 'https://api.frankfurter.dev/v2/rate/ILS/JPY',
+      parse: function(d){
+        var r = Array.isArray(d) ? d[0] : d;
+        if(!r || typeof r.rate !== 'number' || !(r.rate > 0)) return null;
+        if(r.base && r.base !== 'ILS') return null;
+        if(r.quote && r.quote !== 'JPY') return null;
+        return { rate: r.rate, asOf: r.date || '' };
+      } },
+    { name: 'ExchangeRate-API', attribution: true,
+      url: 'https://open.er-api.com/v6/latest/ILS',
+      parse: function(d){
+        if(!d || d.result !== 'success' || !d.rates || typeof d.rates.JPY !== 'number' || !(d.rates.JPY > 0)) return null;
+        var asOf = '';
+        if(d.time_last_update_utc){ var t = new Date(d.time_last_update_utc); if(!isNaN(t)) asOf = t.toISOString().slice(0,10); }
+        return { rate: d.rates.JPY, asOf: asOf };
+      } }
+  ];
+
+  var TXT = {
+    he: { loading:'מביא שער עדכני מהרשת…', bad:'נא להזין סכום תקין בשקלים.', fail:'לא הצלחתי להביא שער מהרשת כרגע. בדקו חיבור לאינטרנט ונסו שוב.',
+          rate:'שער', asof:'שער לתאריך', fetched:'נשלף עכשיו בשעה', source:'מקור', locale:'he-IL' },
+    en: { loading:'Fetching the latest rate…', bad:'Please enter a valid amount in shekels.', fail:'Could not fetch a rate from the web right now. Check your connection and try again.',
+          rate:'Rate', asof:'Rate date', fetched:'fetched just now at', source:'Source', locale:'en-GB' }
+  };
+
+  function fetchJson(url, ms){
+    var ctl = ('AbortController' in window) ? new AbortController() : null;
+    var timer = ctl ? setTimeout(function(){ ctl.abort(); }, ms) : null;
+    return fetch(url, { cache: 'no-store', signal: ctl ? ctl.signal : undefined })
+      .then(function(res){ if(timer) clearTimeout(timer); if(!res.ok) throw new Error('HTTP ' + res.status); return res.json(); })
+      .catch(function(e){ if(timer) clearTimeout(timer); throw e; });
+  }
+
+  function getLiveRate(){
+    var i = 0;
+    function next(){
+      if(i >= SOURCES.length) return Promise.reject(new Error('all sources failed'));
+      var src = SOURCES[i++];
+      return fetchJson(src.url, 8000).then(function(d){
+        var out = src.parse(d);
+        if(!out) throw new Error('bad payload');
+        out.source = src;
+        return out;
+      }).catch(next);
+    }
+    return next();
+  }
+
+  function parseAmount(v){
+    var n = parseFloat(String(v).replace(/[,\s₪]/g, ''));
+    return (isFinite(n) && n >= 0 && n < 1e9) ? n : null;
+  }
+  var nfYen = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 });
+  var nfIls = new Intl.NumberFormat('en-US', { maximumFractionDigits: 2 });
+
+  function setup(lang){
+    var inp = document.getElementById('fxAmt_' + lang);
+    var btn = document.getElementById('fxBtn_' + lang);
+    var out = document.getElementById('fxRes_' + lang);
+    if(!inp || !btn || !out) return;
+    var T = TXT[lang], seq = 0;
+
+    function msg(cls, text){ out.innerHTML = ''; var p = document.createElement('div'); p.className = cls; p.textContent = text; out.appendChild(p); }
+
+    function calc(){
+      var amount = parseAmount(inp.value);
+      if(amount === null){ msg('fx-err', T.bad); return; }
+      var mine = ++seq;
+      btn.disabled = true; msg('fx-msg', T.loading);
+      getLiveRate().then(function(r){
+        if(mine !== seq) return;
+        var yen = amount * r.rate;
+        var now = new Date().toLocaleTimeString(T.locale, { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        out.innerHTML = '';
+        var big = document.createElement('div'); big.className = 'fx-big'; big.textContent = '¥ ' + nfYen.format(yen); out.appendChild(big);
+        var line = document.createElement('div'); line.className = 'fx-line';
+        line.innerHTML = '<span class="fx-num">₪ ' + nfIls.format(amount) + ' = ¥ ' + nfYen.format(yen) + '</span>';
+        out.appendChild(line);
+        var meta = document.createElement('div'); meta.className = 'fx-meta';
+        var parts = [ T.rate + ': <span class="fx-num">1 ₪ = ' + r.rate.toFixed(4) + ' ¥</span>' ];
+        if(r.asOf) parts.push(T.asof + ': <span class="fx-num">' + r.asOf + '</span>');
+        parts.push(T.fetched + ' <span class="fx-num">' + now + '</span>');
+        var srcHtml = T.source + ': ' + r.source.name;
+        if(r.source.attribution) srcHtml = T.source + ': <a href="https://www.exchangerate-api.com" target="_blank" rel="noopener">Rates By Exchange Rate API</a>';
+        parts.push(srcHtml);
+        meta.innerHTML = parts.join('<br>');
+        out.appendChild(meta);
+      }).catch(function(){
+        if(mine !== seq) return;
+        msg('fx-err', T.fail);
+      }).then(function(){ if(mine === seq) btn.disabled = false; });
+    }
+    btn.addEventListener('click', calc);
+    inp.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); calc(); } });
+  }
+  setup('he'); setup('en');
 })();
 </script>
 </body>
