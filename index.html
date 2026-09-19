@@ -276,6 +276,9 @@ main{padding-top:6px;}
 .fx-wrap h2{font-family:var(--serif); font-size:22px; margin:0 0 4px;}
 .fx-wrap .fx-sub{font-size:13.5px; color:var(--ink-soft); margin:0 0 16px;}
 .fx-card{background:var(--paper-alt); border:1px solid var(--line); border-radius:14px; padding:18px;}
+.fx-dir{display:inline-flex; direction:ltr; border:1px solid var(--line); border-radius:10px; overflow:hidden; margin-bottom:14px;}
+.fx-dir button{font-family:var(--sans); font-size:15px; font-weight:700; padding:9px 18px; border:none; background:var(--paper); color:var(--ink-soft); cursor:pointer;}
+.fx-dir button.active{background:var(--indigo); color:var(--paper);}
 .fx-label{display:block; font-size:13px; font-weight:600; color:var(--ink-soft); margin-bottom:8px;}
 .fx-row{display:flex; gap:10px;}
 .fx-input{
@@ -683,10 +686,11 @@ footer{padding:20px 0 70px; text-align:center; color:var(--ink-soft); font-size:
 <div class="view-tix" id="viewTix_he"><div class="wrap tix-wrap" id="tixRoot_he"></div></div>
 <div class="view-fx" id="viewFx_he">
       <div class="wrap fx-wrap">
-        <h2>מחשבון המרה: שקל ← ין</h2>
+        <h2>מחשבון המרה: שקל ⇄ ין</h2>
         <p class="fx-sub">השער נשלף מהרשת ברגע החישוב — בכל לחיצה על ״חשב״</p>
         <div class="fx-card">
-          <label class="fx-label" for="fxAmt_he">סכום בשקלים (₪)</label>
+          <div class="fx-dir" role="group"><button type="button" class="active" id="fxDirA_he">₪ → ¥</button><button type="button" id="fxDirB_he">¥ → ₪</button></div>
+          <label class="fx-label" id="fxLab_he" for="fxAmt_he">סכום בשקלים (₪)</label>
           <div class="fx-row">
             <input class="fx-input" id="fxAmt_he" type="text" inputmode="decimal" dir="ltr" placeholder="1,000" autocomplete="off">
             <button type="button" class="fx-btn" id="fxBtn_he">חשב</button>
@@ -962,10 +966,11 @@ footer{padding:20px 0 70px; text-align:center; color:var(--ink-soft); font-size:
 <div class="view-tix" id="viewTix_en"><div class="wrap tix-wrap" id="tixRoot_en"></div></div>
 <div class="view-fx" id="viewFx_en">
       <div class="wrap fx-wrap">
-        <h2>Currency converter: shekel → yen</h2>
+        <h2>Currency converter: shekel ⇄ yen</h2>
         <p class="fx-sub">The rate is pulled from the web at the moment you calculate — on every press of “Calculate”</p>
         <div class="fx-card">
-          <label class="fx-label" for="fxAmt_en">Amount in shekels (₪)</label>
+          <div class="fx-dir" role="group"><button type="button" class="active" id="fxDirA_en">₪ → ¥</button><button type="button" id="fxDirB_en">¥ → ₪</button></div>
+          <label class="fx-label" id="fxLab_en" for="fxAmt_en">Amount in shekels (₪)</label>
           <div class="fx-row">
             <input class="fx-input" id="fxAmt_en" type="text" inputmode="decimal" dir="ltr" placeholder="1,000" autocomplete="off">
             <button type="button" class="fx-btn" id="fxBtn_en">Calculate</button>
@@ -1177,9 +1182,11 @@ function updateToggleLabel(){
 
   var TXT = {
     he: { loading:'מביא שער עדכני מהרשת…', bad:'נא להזין סכום תקין בשקלים.', fail:'לא הצלחתי להביא שער מהרשת כרגע. בדקו חיבור לאינטרנט ונסו שוב.',
-          rate:'שער', asof:'שער לתאריך', fetched:'נשלף עכשיו בשעה', source:'מקור', locale:'he-IL' },
+          rate:'שער', asof:'שער לתאריך', fetched:'נשלף עכשיו בשעה', source:'מקור', locale:'he-IL',
+          labA:'סכום בשקלים (₪)', labB:'סכום בין (¥)', phA:'1,000', phB:'50,000' },
     en: { loading:'Fetching the latest rate…', bad:'Please enter a valid amount in shekels.', fail:'Could not fetch a rate from the web right now. Check your connection and try again.',
-          rate:'Rate', asof:'Rate date', fetched:'fetched just now at', source:'Source', locale:'en-GB' }
+          rate:'Rate', asof:'Rate date', fetched:'fetched just now at', source:'Source', locale:'en-GB',
+          labA:'Amount in shekels (₪)', labB:'Amount in yen (¥)', phA:'1,000', phB:'50,000' }
   };
 
   function fetchJson(url, ms){
@@ -1206,18 +1213,29 @@ function updateToggleLabel(){
   }
 
   function parseAmount(v){
-    var n = parseFloat(String(v).replace(/[,\s₪]/g, ''));
+    var n = parseFloat(String(v).replace(/[,\s₪¥]/g, ''));
     return (isFinite(n) && n >= 0 && n < 1e9) ? n : null;
   }
   var nfYen = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 });
   var nfIls = new Intl.NumberFormat('en-US', { maximumFractionDigits: 2 });
+  var nfIls2 = new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
   function setup(lang){
     var inp = document.getElementById('fxAmt_' + lang);
     var btn = document.getElementById('fxBtn_' + lang);
     var out = document.getElementById('fxRes_' + lang);
     if(!inp || !btn || !out) return;
-    var T = TXT[lang], seq = 0;
+    var T = TXT[lang], seq = 0, dir = 'ils2jpy';
+    var bA = document.getElementById('fxDirA_' + lang), bB = document.getElementById('fxDirB_' + lang), lab = document.getElementById('fxLab_' + lang);
+    function setDir(d){
+      dir = d; seq++; btn.disabled = false; out.innerHTML = '';
+      bA.classList.toggle('active', d === 'ils2jpy'); bB.classList.toggle('active', d === 'jpy2ils');
+      lab.textContent = d === 'ils2jpy' ? T.labA : T.labB;
+      inp.placeholder = d === 'ils2jpy' ? T.phA : T.phB;
+      try{ inp.focus({preventScroll:true}); }catch(e){}
+    }
+    bA.addEventListener('click', function(){ setDir('ils2jpy'); });
+    bB.addEventListener('click', function(){ setDir('jpy2ils'); });
 
     function msg(cls, text){ out.innerHTML = ''; var p = document.createElement('div'); p.className = cls; p.textContent = text; out.appendChild(p); }
 
@@ -1228,15 +1246,19 @@ function updateToggleLabel(){
       btn.disabled = true; msg('fx-msg', T.loading);
       getLiveRate().then(function(r){
         if(mine !== seq) return;
-        var yen = amount * r.rate;
+        var toYen = (dir === 'ils2jpy');
+        var result = toYen ? amount * r.rate : amount / r.rate;
         var now = new Date().toLocaleTimeString(T.locale, { hour: '2-digit', minute: '2-digit', second: '2-digit' });
         out.innerHTML = '';
-        var big = document.createElement('div'); big.className = 'fx-big'; big.textContent = '¥ ' + nfYen.format(yen); out.appendChild(big);
+        var bigTxt = toYen ? '¥ ' + nfYen.format(result) : '₪ ' + nfIls2.format(result);
+        var lineTxt = toYen ? '₪ ' + nfIls.format(amount) + ' = ¥ ' + nfYen.format(result)
+                            : '¥ ' + nfYen.format(amount) + ' = ₪ ' + nfIls2.format(result);
+        var big = document.createElement('div'); big.className = 'fx-big'; big.textContent = bigTxt; out.appendChild(big);
         var line = document.createElement('div'); line.className = 'fx-line';
-        line.innerHTML = '<span class="fx-num">₪ ' + nfIls.format(amount) + ' = ¥ ' + nfYen.format(yen) + '</span>';
+        line.innerHTML = '<span class="fx-num">' + lineTxt + '</span>';
         out.appendChild(line);
         var meta = document.createElement('div'); meta.className = 'fx-meta';
-        var parts = [ T.rate + ': <span class="fx-num">1 ₪ = ' + r.rate.toFixed(4) + ' ¥</span>' ];
+        var parts = [ T.rate + ': <span class="fx-num">1 ₪ = ' + r.rate.toFixed(4) + ' ¥</span> &nbsp;·&nbsp; <span class="fx-num">1 ¥ = ' + (1 / r.rate).toFixed(5) + ' ₪</span>' ];
         if(r.asOf) parts.push(T.asof + ': <span class="fx-num">' + r.asOf + '</span>');
         parts.push(T.fetched + ' <span class="fx-num">' + now + '</span>');
         var srcHtml = T.source + ': ' + r.source.name;
